@@ -1,0 +1,4740 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title class="i18n">АТ "ІІТ" web-віджет підпису користувача ЦСК</title>
+
+		<style>
+			@font-face {
+				font-family: eUkraine;
+				src: url(./fonts/e-Ukraine-Regular.ttf);
+				font-style: normal;
+				font-weight: normal;
+				font-display: swap;
+			}
+
+			@font-face {
+				font-family: eUkraine;
+				src: url(./fonts/e-Ukraine-Bold.ttf);
+				font-style: normal;
+				font-weight: bold;
+				font-display: swap;
+			}
+
+			@font-face {
+				font-family: eUkraineHead;
+				src: url(./fonts/e-UkraineHead-Regular.ttf);
+				font-style: normal;
+				font-weight: normal;
+				font-display: swap;
+			}
+
+			@font-face {
+				font-family: eUkraineHead;
+				src: url(./fonts/e-UkraineHead-Bold.ttf);
+				font-style: normal;
+				font-weight: bold;
+				font-display: swap;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			html,
+			body {
+				height: 100%;
+				/*overflow: hidden;*/
+			}
+
+			body,
+			button,
+			select,
+			input {
+				font-family: eUkraine, Arial, Tahoma, Helvetica;
+			}
+
+			body {
+				background: none transparent;
+				font-weight: normal;
+				font-size: 16px;
+				font-style: normal;
+				font-weight: normal;
+				line-height: 24px;
+				letter-spacing: -0.02em;
+				color: rgba(0, 0, 0, 1);
+				margin: 0px;
+				/*overflow: hidden;*/
+			}
+
+			h1 {
+				font-style: normal;
+				font-weight: normal;
+				font-size: 38px;
+				line-height: 40px;
+				letter-spacing: -0.02em;
+			}
+
+			h2 {
+				font-style: normal;
+				font-weight: normal;
+				font-size: 16px;
+				line-height: 24px;
+				letter-spacing: -0.02em;
+				margin: 0px;
+			}
+
+			h5 {
+				font-style: normal;
+				font-weight: normal;
+				font-size: 12px;
+				line-height: 16px;
+				letter-spacing: -0.02em;
+				margin: 0px;
+				opacity: 0.5;
+			}
+
+			h6 {
+				font-style: normal;
+				font-weight: normal;
+				font-size: 16px;
+				line-height: 24px;
+				letter-spacing: -0.02em;
+				margin: 0px;
+				margin-bottom: 0.25em;
+			}
+
+			a {
+				cursor: pointer;
+				pointer-events: auto;
+				color: rgba(0, 0, 0, 1);
+			}
+
+			.TextError {
+				color: red;
+			}
+
+			.TextSmall {
+				font-size: 12px;
+			}
+
+			.TextUnderline {
+				text-decoration: underline;
+			}
+
+			.TextLight {
+				opacity: 0.5;
+			}
+
+			.Block {
+				margin-bottom: 0.5em;
+			}
+
+			.CenterBaseBlock {
+				display: flex;
+				justify-content: center;
+				overflow-wrap: anywhere;
+			}
+
+			.CenterNodeBlock {
+				align-self: center;
+			}
+
+			.Button {
+				color: #000000;
+				background-color: #ffffff;
+				text-align: center;
+				min-width: 200px;
+				padding: 0px 20px;
+				overflow: hidden;
+				box-shadow: none;
+				border-radius: 40px;
+				border: 2px solid #000000;
+				line-height: 56px;
+				display: inline-block;
+				-webkit-transition: all ease 0.3s;
+				-moz-transition: all ease 0.3s;
+				transition: all ease 0.3s;
+				cursor: pointer;
+			}
+
+			.Button:hover {
+				color: #ffffff;
+				background-color: #000000;
+			}
+
+			/*
+.Button:hover {
+	color: #000000;
+    opacity: 1;
+	background-color: transparent;
+	visibility: visible;
+    background-size: 200% 300%;
+	animation: 10s infinite granimate;
+	background-image: linear-gradient(217deg,rgba(255,0,0,.8),rgba(255,0,0,0) 70.71%),linear-gradient(127deg,rgba(0,0,255,.8),rgba(0,0,255,0) 70.71%),linear-gradient(336deg,rgba(0,255,0,.8),rgba(0,255,0,0) 70.71%);
+	box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
+}
+*/
+
+			.Button a {
+				text-decoration: none;
+				cursor: pointer;
+				pointer-events: auto;
+				color: #ffffff;
+				width: 100%;
+				display: inline-block;
+			}
+
+			/* .Button a:hover {
+			} */
+
+			.Button input {
+				visibility: hidden;
+				display: none;
+			}
+
+			.Button[disabled] {
+				color: #7b7b7b;
+				border: 2px solid #7b7b7b;
+				background-color: #fafafa;
+				pointer-events: none;
+			}
+
+			.Button[disabled] a {
+				color: #7b7b7b;
+			}
+
+			.ButtonBlack {
+				color: #ffffff;
+				background-color: #000000;
+			}
+
+			.ButtonBlack:hover {
+				color: #000000;
+				opacity: 1;
+				background-color: transparent;
+			}
+
+			.ButtonBlack[disabled] {
+				color: #ffffff;
+				border: 2px solid #000000;
+				background-color: #000000;
+				pointer-events: none;
+				opacity: 0.2;
+			}
+
+			.ButtonBlack[disabled] a {
+				color: #ffffff;
+				opacity: 0.2;
+			}
+
+			.ButtonBlack:hover a {
+				color: #000000;
+			}
+
+			.LabelButton {
+				cursor: pointer;
+				pointer-events: auto;
+			}
+
+			.FileDropZoneMessage {
+				text-align: center;
+			}
+
+			.FileDropZone {
+				border: 2px dashed #808080;
+				box-sizing: border-box;
+				border-radius: 2px;
+				outline: none;
+				padding: 20px 120px;
+				text-align: center;
+				color: #000000;
+				transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+				background-color: #fff;
+			}
+
+			.FileDropZoneError {
+				border: 2px dashed red !important;
+			}
+
+			.BottomButtonsBlock {
+				margin-top: 72px;
+			}
+
+			/*----------------------------------------------------------------------------*/
+
+			@keyframes rotate {
+				from {
+					transform: rotate(0deg);
+				}
+
+				to {
+					transform: rotate(360deg);
+				}
+			}
+
+			.DimmerViewMainBlock {
+				position: fixed;
+				/*position: absolute;*/
+				top: 0px;
+				left: 0px;
+				width: 100%;
+				height: 100%;
+				z-index: 10000;
+				display: flex;
+				flex-direction: column;
+				background: #fff;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.DimmerViewImageBlock {
+				width: 136px;
+				height: 136px;
+				margin: 0 auto;
+				position: relative;
+				overflow: hidden;
+				border-radius: 30%;
+			}
+
+			.DimmerViewImage {
+				top: 2px;
+				left: 2px;
+				right: 2px;
+				bottom: 2px;
+				margin: auto;
+				display: flex;
+				z-index: 6;
+				position: absolute;
+				background: #fff;
+				align-items: center;
+				border-radius: 30%;
+				justify-content: center;
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center center;
+				background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik00NS45MzEgNzguODQ4QzQyLjQ4MjggNzYuMjE4NyAzOS45Mzk3IDcyLjI5NjMgMzkuMTIwNyA2Ny43MjczSDI4VjE5LjY2N0MzMy45OTE0IDIyLjY0MTEgMzguMjU4NiAyOS4yMzYgMzguNzc1OSAzNi4wNDYzTDQwLjQ1NjkgNDkuNTM3N0wzOS42Mzc5IDQ5LjQwODRDMzcuODI3NiA0OS40MDg0IDM2LjI3NTkgNTEuMDg5NCAzNi4yNzU5IDUyLjc3MDRDMzYuMjc1OSA1NC4zMjIyIDM3LjQ4MjggNTUuNjU4NCAzOS4wMzQ1IDU2LjAwMzJMNDEuMDYwMyA1Ni40NzczQzQ0LjQyMjQgNTAuMTQxMSA0Ni4zMTkgNDMuOTM0MiA0Ni4zMTkgMzcuODEzNUM0Ni4zMTkgMzIuMjk2MyA0NS41ODYyIDI2LjgyMjIgNDUuNSAyMS4yMTg3QzQ1LjUgMTguNzE4NyA0Ni40NDgzIDE2LjQzNDIgNDggMTQuNjY3QzQ5LjU1MTcgMTYuNDc3MyA1MC41IDE4LjcxODcgNTAuNSAyMS4yMTg3QzUwLjUgMjYuODIyMiA0OS42ODEgMzIuMzM5NCA0OS42ODEgMzcuODEzNUM0OS42ODEgNDMuODkxMSA1MS41Nzc2IDUwLjE0MTEgNTQuOTM5NyA1Ni40NzczTDU2Ljk2NTUgNTYuMDAzMkM1OC41MTcyIDU1LjY1ODQgNTkuNzI0MSA1NC4zMjIyIDU5LjcyNDEgNTIuNzcwNEM1OS43MjQxIDUxLjA4OTQgNTguMTcyNCA0OS40MDg0IDU2LjM2MjEgNDkuNDA4NEw1NS41NDMxIDQ5LjUzNzdMNTcuMjI0MSAzNi4wNDYzQzU4LjA0MzEgMjkuMjM2IDYyLjAwODYgMjIuNjQxMSA2OCAxOS42NjdWNjcuNzI3M0g1Ni44NzkzQzU2LjA2MDMgNzIuMjUzMiA1My42NDY1IDc2LjM0OCA1MC4wNjkgNzguODQ4QzQ5LjI1IDc5LjQ1MTUgNDguNTE3MiA4MC4xODQyIDQ4LjA0MzEgODEuMTMyNUM0Ny40ODI4IDgwLjE0MTEgNDYuNzUgNzkuNDUxNSA0NS45MzEgNzguODQ4Wk0zMy4yNTg2IDUxLjEzMjVDMzMuNzMyOCA0OS4zMjIyIDM1LjA2OSA0Ny43NzA0IDM2LjcwNjkgNDYuODIyMkwzNS4zNzA3IDM1LjcwMTVDMzQuODk2NiAzMi4yNTMyIDMzLjQ3NDEgMjkuMTQ5OCAzMS4zMTkgMjYuNjA2NlY1MS4wODk0SDMzLjI1ODZWNTEuMTMyNVpNMzguOTA1MiA2NC4zNjUzQzM4LjkwNTIgNjIuNjg0MiAzOS4xNjM4IDYxLjEzMjUgMzkuNTA4NiA1OS41ODA4TDM3Ljk1NjkgNTkuMjM2QzM1LjY3MjQgNTguNTAzMiAzMy45MDUyIDU2LjczNiAzMy4zMDE3IDU0LjQ1MTVIMzEuNDA1MlY2NC4zNjUzSDM4LjkwNTJaTTQ2LjI3NTkgNjQuMzY1M0M0Ni4yNzU5IDYyLjMzOTQgNDQuNzI0MSA2MC41MjkxIDQyLjY5ODMgNjAuMzEzNUM0Mi4zNTM1IDYxLjYwNjYgNDIuMDk0OCA2Mi45NDI5IDQyLjA5NDggNjQuMzY1M0g0Ni4yNzU5Wk00Ni4yNzU5IDY3LjcyNzNINDIuNTY5QzQzLjE3MjQgNzAuMzU2NiA0NC40NjU1IDcyLjcyNzMgNDYuMjc1OSA3NC43OTYzVjY3LjcyNzNaTTUxLjUzNDUgNTcuMzM5NEM1MC4xMTIxIDU0LjcxMDEgNDguNzc1OSA1MS45NTE1IDQ3Ljk1NjkgNDkuMTA2NkM0Ny4xMzc5IDUxLjk5NDYgNDUuODAxNyA1NC43MTAxIDQ0LjM3OTMgNTcuMzM5NEM0NS44MDE3IDU3LjY4NDIgNDcuMDA4NiA1OC42MzI1IDQ3Ljk1NjkgNTkuNzEwMUM0OC45MDUyIDU4LjYzMjUgNTAuMTEyMSA1Ny42ODQyIDUxLjUzNDUgNTcuMzM5NFpNNTMuODE5IDY0LjM2NTNDNTMuODE5IDYyLjk0MjkgNTMuNTYwMyA2MS42MDY2IDUzLjIxNTUgNjAuMzEzNUM1MS4xODk3IDYwLjU3MjIgNDkuNjM3OSA2Mi4zMzk0IDQ5LjYzNzkgNjQuMzY1M0g1My44MTlaTTUzLjM0NDggNjcuNzI3M0g0OS42Mzc5Vjc0Ljc5NjNDNTEuNDQ4MyA3Mi43MjczIDUyLjc0MTQgNzAuMzU2NiA1My4zNDQ4IDY3LjcyNzNaTTY0LjU5NDggNjQuMzY1M1Y1NC40NTE1SDYyLjY5ODNDNjIuMDk0OCA1Ni43MzYgNjAuMzI3NiA1OC41MDMyIDU4LjA0MzEgNTkuMjM2TDU2LjQ5MTQgNTkuNTgwOEM1Ni44MzYyIDYxLjEzMjUgNTcuMDk0OCA2Mi42ODQyIDU3LjA5NDggNjQuMzY1M0g2NC41OTQ4Wk02NC41OTQ4IDUxLjEzMjVWMjYuNjQ5OEM2Mi40Mzk3IDI5LjE0OTggNjAuODg3OSAzMi4yNTMyIDYwLjU0MzEgMzUuNzQ0Nkw1OS4yMDY5IDQ2Ljg2NTNDNjAuODg3OSA0Ny44MTM1IDYyLjE4MSA0OS4zNjUzIDYyLjY1NTIgNTEuMTc1Nkg2NC41OTQ4VjUxLjEzMjVaIiBmaWxsPSJibGFjayIgLz4KPC9zdmc+');
+			}
+
+			.DimmerViewAnimationMainBlock {
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				z-index: 4;
+				position: absolute;
+				overflow: hidden;
+				background: #000;
+				border-radius: 30%;
+			}
+
+			.DimmerViewAnimationBlock {
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				display: block;
+				position: absolute;
+				border-radius: 50%;
+				animation-name: rotate;
+				animation-duration: 2s;
+				animation-timing-function: linear;
+				animation-iteration-count: infinite;
+			}
+
+			.DimmerViewAnimationBlock2 {
+				top: -28px;
+				left: 0;
+				width: 75px;
+				right: 0;
+				height: 75px;
+				margin: auto;
+				z-index: 5;
+				position: absolute;
+				background: linear-gradient(90deg, #8edacb 0, #7abace 100%);
+				border-radius: 50%;
+			}
+
+			.ColorBorder {
+				padding: 21px;
+				overflow: hidden;
+				border: 2px solid;
+				border-image: radial-gradient(
+						92.76% 76.25% at 7.24% 21%,
+						#b5d39d 0%,
+						#f1acac 25.66%,
+						#bf98c6 54.47%,
+						#7179ef 86.04%,
+						#2833d0 100%
+					)
+					1;
+				display: flex;
+				flex-direction: row;
+			}
+
+			.NewIcon {
+				border: 2px solid #000000;
+				width: 72px;
+				height: 28px;
+				box-sizing: border-box;
+				border-radius: 100px;
+				text-align: center;
+				margin-right: 10px;
+				float: left;
+			}
+
+			.Tip {
+				padding: 21px;
+				overflow: hidden;
+				border: none;
+				background: #fff4d7;
+				display: flex;
+				flex-direction: row;
+			}
+
+			.TipIcon {
+				font-size: 24px;
+				padding-right: 8px;
+			}
+
+			.TipTitle {
+				font-size: 24px;
+				line-height: 24px;
+			}
+
+			/*----------------------------------------------------------------------------*/
+
+			.FileIcon {
+				height: 24px;
+				width: 24px;
+				min-width: 24px;
+				display: flex;
+				background: #fff;
+				align-items: center;
+				justify-content: center;
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center center;
+				background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTYgNEw2IDIwTDE4IDIwTDE4IDguNDE0MjJMMTMuNTg1OCA0TDYgNFoiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMiIvPgo8cGF0aCBkPSJNOSAxNkwxNSAxNiIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik05IDEzTDE1IDEzIiBzdHJva2U9ImJsYWNrIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+Cg');
+			}
+
+			.FileIcon[type='text'] {
+				height: auto;
+				background-position: center right;
+				width: 100%;
+			}
+
+			.FileContent {
+				flex-grow: 2;
+				display: grid;
+			}
+
+			.FileContent h2 {
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+				min-width: 240px;
+			}
+
+			.FileContent label {
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+				min-width: 240px;
+			}
+
+			.DownloadIcon {
+				height: 24px;
+				width: 24px;
+				min-width: 24px;
+				display: flex;
+				background: #fff;
+				align-items: center;
+				justify-content: center;
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center center;
+				background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDRMMTIgMTVNMTIgMTVMMTcgMTAuNjA4OE0xMiAxNUw3IDEwLjYwODgiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMiIvPgo8bGluZSB4MT0iNyIgeTE9IjE4IiB4Mj0iMTciIHkyPSIxOCIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPgo');
+			}
+
+			#signInfo {
+				border: 2px solid black;
+				padding: 21px;
+			}
+
+			/*-----------------------------------------------------------------------------*/
+
+			.InputLabel {
+				top: 0;
+				left: 0;
+				position: absolute;
+				opacity: 0.5;
+				transform: translate(0, 20px) scale(1);
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+				width: 90%;
+			}
+
+			.InputLabel-shrink {
+				transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+					transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+				transform: translate(0, 1.5px) scale(0.75);
+				transform-origin: top left;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+				width: 125%;
+			}
+
+			.Input {
+				position: relative;
+			}
+
+			label + .Input {
+				margin-top: 16px;
+			}
+			/*
+.Input-underline:before {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "\00a0";
+    position: absolute;
+    transition: border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border-bottom: 2px solid #000000;
+    pointer-events: none;
+}
+*/
+			.InputBase {
+				color: #000000;
+				cursor: text;
+				display: inline-flex;
+				position: relative;
+				font-size: 16px;
+				box-sizing: border-box;
+				align-items: center;
+				font-family: 'eUkraine';
+				font-weight: 400;
+				/*line-height: 1.1875em;*/
+				letter-spacing: -0.02em;
+			}
+			.InputBase-input {
+				font: inherit;
+				color: #000000;
+				width: 100%;
+				border: 0;
+				/*height: 1.1875em;*/
+				margin: 0;
+				display: block;
+				padding: 6px 0px 0px;
+				min-width: 0;
+				background: none;
+				box-sizing: content-box;
+				animation-name: -auto-fill-cancel;
+				-webkit-tap-highlight-color: transparent;
+			}
+
+			.FormControl {
+				border: 0;
+				margin: 0;
+				display: flex;
+				padding: 0;
+				z-index: unset;
+				position: relative;
+				min-width: 0;
+				flex-direction: column;
+				vertical-align: top;
+			}
+
+			.FormHelperText {
+				color: #000000;
+				margin: 0;
+				font-size: 11px;
+				margin-top: 3px;
+				text-align: left;
+				font-family: 'eUkraine';
+				font-weight: 400;
+				line-height: 1.66;
+				letter-spacing: 0.03333em;
+			}
+
+			.error {
+				color: red;
+			}
+
+			.status {
+				color: green;
+			}
+
+			.Select-iconOpen {
+				transform: rotate(180deg);
+			}
+
+			.Select-icon {
+				color: #000000;
+				right: 0;
+				pointer-events: none;
+			}
+			.SvgIcon-root {
+				fill: currentColor;
+				width: 1em;
+				height: 1em;
+				display: inline-block;
+				font-size: 1.5rem;
+				transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+			}
+
+			input {
+				outline: none;
+				border-radius: unset;
+				border-top-width: 0px;
+
+				width: 100%;
+				border: none;
+				border-bottom: 2px solid black;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				font-size: 16px;
+				box-sizing: border-box;
+				font-weight: 400;
+				padding: 2px 0px 2px;
+				background: transparent;
+				background-color: transparent !important;
+				line-height: 24px;
+				font-family: eUkraine, Arial, Tahoma, Helvetica;
+			}
+
+			input:-webkit-autofill,
+			input:-webkit-autofill:hover,
+			input:-webkit-autofill:focus,
+			textarea:-webkit-autofill,
+			textarea:-webkit-autofill:hover,
+			textarea:-webkit-autofill:focus,
+			select:-webkit-autofill,
+			select:-webkit-autofill:hover,
+			select:-webkit-autofill:focus {
+				background-color: transparent !important;
+				background: transparent !important;
+			}
+
+			input[disabled],
+			input[disabled]:hover,
+			input[disabled]:active,
+			input[disabled]:focus {
+				opacity: 0.5;
+				border: none;
+				border-bottom: 2px solid black;
+			}
+
+			input[type='checkbox'] {
+				width: auto;
+				-webkit-appearance: checkbox;
+				-moz-appearance: checkbox;
+				appearance: checkbox;
+			}
+
+			input[type='radio'] {
+				width: auto;
+				-webkit-appearance: radio;
+				-moz-appearance: radio;
+				appearance: radio;
+			}
+
+			input[type='file'] {
+				display: none;
+			}
+
+			input:hover,
+			input:active,
+			input:focus {
+				outline: 0;
+				border-radius: unset;
+				border-top-width: 0px;
+				border-bottom: 2px solid;
+				border-image: linear-gradient(
+						90deg,
+						#c3aab2 0%,
+						#99eecc 57.66%,
+						#80c0c8 76.7%,
+						#4b8bfa 100%
+					)
+					47% 0%;
+			}
+
+			select {
+				width: 100%;
+				border: none;
+				outline: none;
+				border-radius: unset;
+				border-top-width: 0px;
+				border-bottom: 2px solid black;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				font-size: 16px;
+				box-sizing: border-box;
+				font-weight: 400;
+				padding: 2px 0px 2px;
+				line-height: 24px;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+			}
+
+			select:focus {
+				outline: 0;
+			}
+
+			select:hover {
+				outline: 0;
+				border-radius: unset;
+				border-top-width: 0px;
+				border-bottom: 2px solid;
+				border-image: linear-gradient(
+						90deg,
+						#c3aab2 0%,
+						#99eecc 57.66%,
+						#80c0c8 76.7%,
+						#4b8bfa 100%
+					)
+					47% 0%;
+			}
+
+			.FormControl .Separator {
+				margin: 0px;
+			}
+
+			.Separator {
+				width: 100%;
+				height: 2px;
+				margin: 10px 0px 0px;
+				overflow: hidden;
+				background: linear-gradient(
+					90deg,
+					#c3aab2 0%,
+					#99eecc 57.66%,
+					#80c0c8 76.7%,
+					#4b8bfa 100%
+				);
+			}
+
+			.TabButton {
+				font-size: 16px;
+				box-sizing: border-box;
+				font-weight: 400;
+				padding: 2px 0 7px;
+				border: none;
+				background: none;
+				outline: 0;
+				opacity: 0.5;
+				margin-right: 20px;
+			}
+
+			.TabButton[selected] {
+				opacity: 1;
+				border-bottom: 2px solid black;
+				transition: 0.2s ease-in-out;
+			}
+
+			.TabButton-base:hover {
+				opacity: 1;
+				border-bottom: 2px solid black;
+				transition: 0.2s ease-in-out;
+			}
+
+			.FlexBlock {
+				display: -ms-flexbox;
+				display: flex;
+				align-items: center;
+				width: 100%;
+				/*margin-bottom:0.5em;*/
+			}
+
+			.WrapFlexBlock {
+				display: -ms-flexbox;
+				display: flex;
+				align-items: center;
+				width: 100%;
+				flex-wrap: wrap;
+			}
+
+			.FlexBlockItem + .FlexBlockItem {
+				margin-left: 20px;
+			}
+
+			@media (max-width: 650px) {
+				.FlexBlock {
+					flex-direction: column;
+					align-items: normal;
+				}
+
+				.FlexBlockItem + .FlexBlockItem {
+					margin-left: 0px;
+					margin-top: 10px;
+				}
+			}
+
+			/*-----------------------------------------------------------------------------*/
+
+			.MenuItem {
+				display: -ms-flexbox;
+				display: flex;
+				align-items: center;
+				width: 100%;
+				border-top: 2px solid black;
+				border-bottom: 2px solid black;
+				font-size: 28px;
+				line-height: 32px;
+				padding: 1em 0em;
+				letter-spacing: -0.02em;
+				cursor: default;
+			}
+
+			.MenuItem[disabled] span {
+				cursor: default;
+				opacity: 0.5;
+			}
+
+			.MenuItem + .MenuItem {
+				border-top: none;
+			}
+
+			.MenuItemIcon {
+				flex: auto;
+				min-height: 16px;
+				min-width: 22px;
+				background: #fff;
+				align-items: center;
+				justify-content: center;
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center right;
+				background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAyMiAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCgk8cGF0aCBkPSJNMC4zMzMzNDMgOUwyMC4zMzMzIDlNMjAuMzMzMyA5TDExLjc3ODUgMU0yMC4zMzMzIDlMMTEuNzc4NSAxNyIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIyIi8+DQo8L3N2Zz4');
+			}
+
+			.MenuItemButtonIcon {
+				font-size: 16px;
+				line-height: 20px;
+				background: #fff;
+				align-items: center;
+				justify-content: center;
+				border: 2px solid #000000;
+				border-radius: 100px;
+				padding: 4px;
+				margin-left: auto;
+				margin-right: 0;
+			}
+
+			/*-----------------------------------------------------------------------------*/
+
+			.HelpBlock {
+				width: 100%;
+			}
+
+			.HelpTitleBlock {
+				display: -ms-flexbox;
+				display: flex;
+				width: 100%;
+				font-size: 18px;
+				font-weight: bold;
+			}
+
+			.HelpTitleBlock span {
+				width: 100%;
+			}
+
+			.HelpTextBlock {
+				width: 100%;
+				font-size: 16px;
+				font-weight: 300;
+				margin-top: 10px;
+				font-style: normal;
+			}
+
+			.Arrow {
+				flex: auto;
+				width: 10px;
+				height: 6px;
+				background: #fff;
+				align-items: center;
+				justify-content: center;
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center right;
+				background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iNiIgdmlld0JveD0iMCAwIDEwIDYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQoJPHBhdGggZD0iTTUgMEw5LjMzMDEzIDZMMC42Njk4NzMgNkw1IDBaIiBmaWxsPSJibGFjayIvPg0KPC9zdmc+');
+				transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+			}
+
+			.Arrow[direction='up'] {
+				transform: none;
+				-webkit-transform: none;
+			}
+
+			.Arrow[direction='down'] {
+				transform: rotate(180deg);
+				-webkit-transform: rotate(180deg);
+			}
+
+			.ColoredBorderBlock {
+				padding: 21px;
+				overflow: hidden;
+				border: 2px solid;
+				border-image: radial-gradient(
+						92.76% 76.25% at 7.24% 21%,
+						#b5d39d 0%,
+						#f1acac 25.66%,
+						#bf98c6 54.47%,
+						#7179ef 86.04%,
+						#2833d0 100%
+					)
+					1;
+				margin: 2em 0em;
+			}
+
+			/*-----------------------------------------------------------------------------*/
+
+			.ProxySettingsIcon {
+				height: 24px;
+				width: 24px;
+				display: flex;
+				background: #fff;
+				align-items: center;
+				justify-content: center;
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center center;
+				background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTcuNzA3MiAzLjI5MjkyTDE3IDIuNTg1ODJMMTYuMjkyOSAzLjI5MjkyTDguNzkyOTQgMTAuNzkyOUw4LjU1NzI0IDExLjAyODZMOC41MTAxIDExLjM1ODZMOC4wMTAxIDE0Ljg1ODZMNy44MjE1MyAxNi4xNzg1TDkuMTQxNDcgMTUuOTlMMTIuNjQxNSAxNS40OUwxMi45NzE0IDE1LjQ0MjhMMTMuMjA3MiAxNS4yMDcxTDIwLjcwNzIgNy43MDcxNEwyMS40MTQzIDcuMDAwMDNMMjAuNzA3MiA2LjI5MjkyTDE3LjcwNzIgMy4yOTI5MlpNMTAuMTc4NiAxMy44MjE1TDEwLjQ0MjkgMTEuOTcxNEwxNC43MDcyIDcuNzA3MTJMMTYuMjkzIDkuMjkyOTFMMTIuMDI4NiAxMy41NTcyTDEwLjE3ODYgMTMuODIxNVpNMTcuNzA3MiA3Ljg3ODY5TDE4LjU4NTggNy4wMDAwM0wxNyA1LjQxNDI0TDE2LjEyMTQgNi4yOTI5MUwxNy43MDcyIDcuODc4NjlaIiBmaWxsPSJibGFjayIvPg0KPHBhdGggZD0iTTkuMDc0MDcgNkg1VjE5SDE3VjE1IiBzdHJva2U9ImJsYWNrIiBzdHJva2Utd2lkdGg9IjIiLz4NCjwvc3ZnPg0K');
+			}
+
+			/*-----------------------------------------------------------------------------*/
+
+			.ProxySettingsIcon {
+				height: 24px;
+				width: 24px;
+				display: flex;
+				background: #fff;
+				align-items: center;
+				justify-content: center;
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center center;
+				background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTcuNzA3MiAzLjI5MjkyTDE3IDIuNTg1ODJMMTYuMjkyOSAzLjI5MjkyTDguNzkyOTQgMTAuNzkyOUw4LjU1NzI0IDExLjAyODZMOC41MTAxIDExLjM1ODZMOC4wMTAxIDE0Ljg1ODZMNy44MjE1MyAxNi4xNzg1TDkuMTQxNDcgMTUuOTlMMTIuNjQxNSAxNS40OUwxMi45NzE0IDE1LjQ0MjhMMTMuMjA3MiAxNS4yMDcxTDIwLjcwNzIgNy43MDcxNEwyMS40MTQzIDcuMDAwMDNMMjAuNzA3MiA2LjI5MjkyTDE3LjcwNzIgMy4yOTI5MlpNMTAuMTc4NiAxMy44MjE1TDEwLjQ0MjkgMTEuOTcxNEwxNC43MDcyIDcuNzA3MTJMMTYuMjkzIDkuMjkyOTFMMTIuMDI4NiAxMy41NTcyTDEwLjE3ODYgMTMuODIxNVpNMTcuNzA3MiA3Ljg3ODY5TDE4LjU4NTggNy4wMDAwM0wxNyA1LjQxNDI0TDE2LjEyMTQgNi4yOTI5MUwxNy43MDcyIDcuODc4NjlaIiBmaWxsPSJibGFjayIvPg0KPHBhdGggZD0iTTkuMDc0MDcgNkg1VjE5SDE3VjE1IiBzdHJva2U9ImJsYWNrIiBzdHJva2Utd2lkdGg9IjIiLz4NCjwvc3ZnPg0K');
+			}
+
+			.ButtonBlock {
+				padding-top: 2em;
+			}
+
+			/*-----------------------------------------------------------------------------*/
+
+			.FileSelectButton {
+				text-align: center;
+				width: 200px;
+				overflow: hidden;
+				color: black;
+				box-shadow: none;
+				display: inline-block;
+				-webkit-transition: all ease 0.3s;
+				-moz-transition: all ease 0.3s;
+				transition: all ease 0.3s;
+				cursor: pointer;
+			}
+			.FileSelectButton:hover {
+				color: black;
+				opacity: 1;
+				animation: 10s infinite granimate;
+				visibility: visible;
+			}
+
+			.FileSelectButton a {
+				text-decoration: none;
+				cursor: pointer;
+				pointer-events: auto;
+				color: black;
+				width: 100%;
+				display: inline-block;
+			}
+
+			#mainBlock {
+				min-height: 100%;
+				flex: 1;
+				margin: auto;
+				display: flex;
+				overflow: unset;
+				/*max-width: 1280px;*/
+				/*min-height: calc(100% - 130px);*/
+				/*flex-direction: row-reverse;*/
+			}
+
+			#leftBlock {
+				flex: 1;
+				display: flex;
+				overflow: unset;
+				margin-left: 0;
+				flex-direction: column;
+				background-color: #fff;
+				padding: 32px 120px 80px 80px;
+			}
+
+			#rightBlock {
+				width: 400px;
+				padding: 80px 40px 0;
+				background-color: #d6dcea;
+			}
+
+			#helpContainerBlock {
+				display: none;
+			}
+
+			@media (max-width: 1279.95px) {
+				#leftBlock {
+					padding: 0px;
+				}
+
+				#rightBlock {
+					display: none;
+				}
+
+				#helpContainerBlock {
+					display: inline-block;
+				}
+			}
+
+			.HelpPanel {
+				overflow: hidden;
+			}
+
+			.HelpPanelLine {
+				width: 320px;
+				height: 1px;
+				background: #000000;
+			}
+
+			.HelpPanelSubLine {
+				width: 320px;
+				height: 1px;
+				background: rgba(0, 0, 0, 0.125);
+			}
+
+			.HelpPanelItem {
+				width: 100%;
+				overflow: hidden;
+			}
+
+			.HelpPanelItemHeader {
+				line-height: 50px;
+				cursor: pointer;
+				font-size: 24px;
+				text-align: center;
+			}
+
+			.HelpPanelSubItemHeader {
+				padding-bottom: 4px;
+			}
+
+			.HelpPanelItemHeader::before {
+				display: inline-block;
+				width: 25px;
+				content: '+';
+				font-size: 24px;
+				margin-right: 12px;
+				transition: all 0.5s ease-out;
+			}
+
+			.HelpPanelItemContent {
+				max-height: 0;
+				display: none;
+				padding-top: 10px;
+				transition: all 0.5s ease-out;
+			}
+
+			.HelpPanelText {
+				padding: 30px 10px;
+			}
+
+			input:checked + .HelpPanelItemHeader::before {
+				content: '-';
+			}
+
+			input:checked ~ .HelpPanelItemContent {
+				display: block;
+				max-height: 200em;
+			}
+		</style>
+
+		<script type="text/javascript">
+			var MAX_FILE_SIZE = 25 * 1024 * 1024
+			var JS_WORKER_PATH = './js/euscp.worker.js'
+			var LIBRARY_SETTINGS = {
+				language: 'uk',
+				encoding: 'utf-8',
+				httpProxyServiceURL: 'https://modern-sign-server.onrender.com',
+				directAccess: true,
+				CAs: 'Data/CAs.Test.All.json',
+				CACertificates: 'Data/CACertificates.Test.All.p7b',
+				allowedKeyMediaTypes: [
+					'е.ключ BIFIT iToken',
+					'криптомод. ІІТ Гряда-61',
+					'е.ключ ІІТ Алмаз-1К',
+					'е.ключ ІІТ Алмаз-1К (Bluetooth)',
+					'е.ключ ІІТ Кристал-1',
+					'криптомод. ІІТ Гряда-301',
+					'ID-карта громадянина (БЕН)',
+					'е.ключ ІІТ Алмаз-1К (PKCS#11)',
+					'е.ключ ІІТ Кристал-1 (PKCS#11)',
+					'е.ключ чи смарт-карта Avest (PKCS#11)',
+					'е.ключ Ефіт Key (PKCS#11)',
+					'е.ключ чи смарт-карта Автор (PKCS#11)',
+					'е.ключ чи смарт-карта Автор 338 (PKCS#11)',
+					'смарт-карта Техноконс. TEllipse3 (PKCS#11)',
+					'смарт-карта Техноконс. TEllipse',
+					'см.-карта чи е.ключ Техноконс. TEllipse2/3/4',
+				],
+				mssServiceURL: null,
+				passwordRequirements: null,
+				supportAdvancedCertificates: true,
+				KSPs: [
+					{
+						name: 'ІІТ - хмарний підпис (2)',
+						ksp: 6,
+						address: 'https://sserver2.iit.com.ua',
+						port: '443',
+						clientIdPrefix: '',
+						clientIdType: 1,
+					},
+					{
+						name: 'DepositSign - хмарний підпис',
+						ksp: 6,
+						address: 'https://depositsign.com/api/v1/informjust/sign-server',
+						port: '',
+						clientIdPrefix: '',
+						directAccess: true,
+					},
+					{
+						name: 'Сервер підпису "КНЕДП ДПС"',
+						ksp: 6,
+						address: 'http://smart-sign.tax.gov.ua/',
+						port: '80',
+						directAccess: true,
+						clientIdType: 1,
+						clientIdPrefix: '',
+					},
+					{
+						name: 'Приватбанк - хмарний підпис "SmartID"',
+						ksp: 6,
+						address: 'https://acsk.privatbank.ua/cloud/api/back/',
+						port: '',
+						directAccess: true,
+						clientIdPrefix: 'IIT_',
+						confirmationURL: 'https://www.privat24.ua/rd/kep',
+						mobileAppName: 'Приват24',
+					},
+					{
+						name: 'Фоззі Груп - хмарний підпис',
+						ksp: 6,
+						address: 'https://skey.fozzy.ua',
+						port: '443',
+						clientIdPrefix: '',
+						directAccess: true,
+					},
+					{
+						name: 'Хмарний підпис АТ «АЛЬФА-БАНК»',
+						ksp: 6,
+						address: 'https://microservice.alfabank.kiev.ua/sign-server/',
+						port: '',
+						clientIdPrefix: '',
+						directAccess: true,
+						pollingInterval: 5,
+					},
+					{
+						name: 'Вчасно - хмарний підпис',
+						ksp: 6,
+						address: 'https://cs.vchasno.ua/ss/',
+						port: '',
+						clientIdPrefix: '',
+						directAccess: true,
+					},
+					{
+						name: 'Вчасно - хмарний підпис (QR)',
+						ksp: 6,
+						address: 'https://cs.vchasno.ua/ss/',
+						port: '',
+						directAccess: true,
+						clientIdPrefix: 'IIT_',
+						confirmationURL: 'https://cs.vchasno.ua/rd/',
+						mobileAppName: 'Вчасно.КЕП',
+					},
+					{
+						name: 'eSign - хмарний підпис',
+						ksp: 6,
+						address: 'https://cabinet.e-life.com.ua/api/EDG/Sign',
+						port: '',
+						clientIdPrefix: '',
+						directAccess: true,
+					},
+					{
+						name: 'ТОВ «ЦСК «Україна» - хмарний підпис CloudKey',
+						ksp: 6,
+						address: 'https://sid.uakey.com.ua/smartid/iit/',
+						port: '',
+						directAccess: true,
+						clientIdPrefix: 'IIT_',
+						confirmationURL: 'https://sid.uakey.com.ua/kep',
+						mobileAppName: 'CloudKey',
+					},
+					{
+						name: 'ПУМБ - хмарний підпис',
+						ksp: 6,
+						address: 'https://apiext.pumb.ua/hogsmeade/striga/v1',
+						port: '',
+						directAccess: false,
+						clientIdPrefix: 'DIIA_3',
+						confirmationURL: 'https://www.pumb.ua/qes',
+						mobileAppName: '',
+					},
+					{
+						name: 'Укргазбанк - хмарний підпис',
+						ksp: 6,
+						address: 'https://vtms-api-qca.ukrgasbank.com/iit-signer/api/v1',
+						port: '',
+						directAccess: false,
+						clientIdPrefix: 'UGB_PROD',
+						confirmationURL: 'https://cihsm-commiter-qca.ukrgasbank.com',
+						mobileAppName: '',
+					},
+					{
+						name: 'Банк Альянс - хмарний підпис',
+						ksp: 6,
+						address: 'https://cihsm-api.bankalliance.ua/iit-signer/api/v1',
+						port: '',
+						directAccess: false,
+						clientIdPrefix: 'ALLIANCE_PROD',
+						confirmationURL: 'https://cihsm-commiter.bankalliance.ua',
+						mobileAppName: '',
+					},
+					{
+						name: 'Інфотех - хмарний підпис',
+						ksp: 6,
+						address: 'https://cihsm-api.infotech.gov.ua/iit-signer/api/v1',
+						port: '',
+						directAccess: false,
+						clientIdPrefix: 'INFOTECH_CORP_PROD',
+						confirmationURL: 'https://cihsm-commiter-ca.infotech.gov.ua',
+						mobileAppName: '',
+					},
+					{
+						name: 'АМО ФІНТЕХ – хмарний підпис AMOKEY',
+						ksp: 6,
+						address: 'https://sserver.amokey.com',
+						port: '443',
+						clientIdPrefix: '',
+						directAccess: true,
+						codeEDRPOU: '44669502',
+					},
+					{
+						name: 'КНЕДП УСС - сервер підпису КП ГІОЦ',
+						ksp: 6,
+						address: 'https://smartkey.kyivcity.gov.ua',
+						port: '443',
+						clientIdPrefix: '',
+						directAccess: true,
+						codeEDRPOU: '04013755',
+					},
+					{
+						name: 'Ощадбанк - хмарний підпис',
+						ksp: 6,
+						address: 'https://cihsm-api.oschadbank.ua/iit-signer/api/v1',
+						port: '',
+						directAccess: false,
+						clientIdPrefix: 'OSCHADBANK_PROD',
+						confirmationURL: 'https://cihsm-commiter.oschadbank.ua',
+						mobileAppName: 'BC.C SmartID',
+					},
+					{
+						name: 'Ощадбанк - хмарний підпис (Mobile Approval)',
+						ksp: 6,
+						address: 'https://cihsm-api.oschadbank.ua/iit-signer/api/v1',
+						port: '',
+						directAccess: false,
+						clientIdPrefix: 'OSCHADBANK_MOBILE_PROD',
+						confirmationURL: 'https://smartid.oschadbank.ua/widgetidua/  ',
+						mobileAppName: 'BC.C SmartID',
+					},
+					{
+						name: 'Фоззі Груп - хмарний підпис (тестування)',
+						ksp: 6,
+						address: 'https://skey-test.fozzy.ua',
+						port: '443',
+						clientIdPrefix: '',
+						directAccess: true,
+					},
+					{
+						name: 'Сервер підпису "КНЕДП Дія" (тестування)',
+						ksp: 6,
+						address: 'https://ssign.diia.gov.ua',
+						port: '443',
+						clientIdPrefix: '',
+						directAccess: true,
+					},
+					{
+						name: 'Вчасно - хмарний підпис (тестування)',
+						ksp: 6,
+						address: 'https://cs.vchasno.stg.evo/ss/',
+						port: '',
+						clientIdPrefix: '',
+						directAccess: true,
+					},
+					{
+						name: 'Вчасно - хмарний підпис (тестування QR)',
+						ksp: 6,
+						address: 'https://cs.vchasno.stg.evo/ss/',
+						port: '',
+						directAccess: true,
+						clientIdPrefix: 'IIT_',
+						confirmationURL: 'https://cs.vchasno.stg.evo/rd/kep',
+						mobileAppName: 'Вчасно.КЕП',
+					},
+					{
+						name: 'АТ "Укртранснафта" - хмарний підпис (тестування)',
+						ksp: 6,
+						address: 'https://kepserver.ukrtransnafta.com',
+						port: '444',
+						directAccess: false,
+						clientIdPrefix: '',
+						clientIdType: 1,
+					},
+					{
+						name: 'Тестовий сервер підпису "КНЕДП Дія"',
+						ksp: 6,
+						address: 'https://test2-ssign.diia.org.ua',
+						port: '443',
+						clientIdPrefix: '',
+						directAccess: true,
+					},
+					{
+						name: 'Сайфер - хмарний підпис (тестування QR)',
+						ksp: 6,
+						address: 'https://cihsm-dev-api.cipher.com.ua/iit-signer/api/v1',
+						port: '',
+						directAccess: false,
+						clientIdPrefix: 'CIPHER_TEST_',
+						confirmationURL: 'https://iit-signer-commiter-dev.cipher.com.ua',
+						mobileAppName: '',
+					},
+					{
+						name: 'Укргазбанк - хмарний підпис (тестування)',
+						ksp: 6,
+						address: 'https://vtms-api-csk.ukrgasbank.com/iit-signer/api/v1',
+						port: '',
+						directAccess: false,
+						clientIdPrefix: 'UGB_TEST_',
+						confirmationURL: 'https://cihsm-commiter-csk.ukrgasbank.com',
+						mobileAppName: '',
+					},
+					{
+						name: 'ОГП - хмарний підпис (тестування QR)',
+						ksp: 6,
+						address: 'https://cihsm-api.gp.gov.ua/iit-signer/api/v1',
+						port: '',
+						directAccess: false,
+						clientIdPrefix: 'OGP_PROD',
+						confirmationURL: 'https://cihsm-commiter.gp.gov.ua',
+						mobileAppName: '',
+					},
+				],
+				allowMakeNewCertOnNewKeyMedia: false,
+				allowMakeNewCertOnFileKeyMedia: true,
+				signInfoTmpl: 'Data/sign-info.tmpl.xml',
+				connectionTimeout: 10000,
+			}
+			LIBRARY_SETTINGS['language'] = 'uk'
+			var LIBRARY_LOCALIZATION = {
+				ua: {
+					'АТ "ІІТ" web-віджет підпису користувача ЦСК':
+						'АТ "ІІТ" web-віджет підпису користувача ЦСК',
+					'Для роботи JavaScript має бути ввімкненим!':
+						'Для роботи JavaScript має бути ввімкненим!',
+
+					'Оберіть тип особистого ключа, особистий ключ та натисніть "Зчитати"':
+						'Оберіть тип особистого ключа, особистий ключ та натисніть "Зчитати"',
+					Файловий: 'Файловий',
+					Токен: 'Токен',
+					Хмарний: 'Хмарний',
+					'Як це працює': 'Як це працює',
+					'Електронного підпису': 'Електронного підпису',
+					'Дiя.Пiдпис - UA': 'Дiя.Пiдпис - UA',
+					'Дiя.Пiдпис - EU': 'Дiя.Пiдпис - EU',
+					'Оновити сторінку': 'Оновити сторінку',
+					'Підключатися через proxy-сервер': 'Підключатися через proxy-сервер',
+					'Версія від': 'Версія від',
+
+					'Адреса серверу': 'Адреса серверу',
+					'Введіть DNS-ім`я чи ip-адресу proxy-сервера':
+						'Введіть DNS-ім`я чи ip-адресу proxy-сервера',
+					Порт: 'Порт',
+					'Введіть номер порту proxy-сервера':
+						'Введіть номер порту proxy-сервера',
+					'Автентифікуватися на proxy-сервері':
+						'Автентифікуватися на proxy-сервері',
+					"Ім'я користувача": "Ім'я користувача",
+					"Введіть ім'я користувача": "Введіть ім'я користувача",
+					Пароль: 'Пароль',
+					'Введіть пароль користувача': 'Введіть пароль користувача',
+					Відміна: 'Відміна',
+					'Налаштувати proxy-сервер': 'Налаштувати proxy-сервер',
+
+					'Кваліфікований надавач електронних довірчих послуг':
+						'Кваліфікований надавач електронних довірчих послуг',
+					'Нажаль, ми не змогли автоматично визначити центр сертифікацї вашого ключа':
+						'Нажаль, ми не змогли автоматично визначити центр сертифікацї вашого ключа',
+					'Перетягніть сюди файл ключа': 'Перетягніть сюди файл ключа',
+					'або ': 'або ',
+					'завантажте його зі свого носія': 'завантажте його зі свого носія',
+					Змінити: 'Змінити',
+					'Оберіть файл з особистим ключем': 'Оберіть файл з особистим ключем',
+					"Ім'я ключа": "Ім'я ключа",
+					'Пароль захисту ключа': 'Пароль захисту ключа',
+					'Введіть пароль від особистого ключа':
+						'Введіть пароль від особистого ключа',
+					'Перетягніть сюди файл з сертифікатами':
+						'Перетягніть сюди файл з сертифікатами',
+					'(зазвичай *.cer або *.crt)': '(зазвичай *.cer або *.crt)',
+					'Файл(и) з сертифікатами:': 'Файл(и) з сертифікатами:',
+					'Оберіть файл з сертифікатами': 'Оберіть файл з сертифікатами',
+					Далі: 'Далі',
+					'Носій особистого ключа': 'Носій особистого ключа',
+					'Введіть пароль захисту ключа': 'Введіть пароль захисту ключа',
+					'Тип сервісу підпису': 'Тип сервісу підпису',
+					'Ідентифікатор користувача': 'Ідентифікатор користувача',
+					'Введіть ідентифікатор користувача':
+						'Введіть ідентифікатор користувача',
+					'Ім`я файла з особистим ключем': 'Ім`я файла з особистим ключем',
+					'Підтвердження пароля захисту ключа':
+						'Підтвердження пароля захисту ключа',
+					Підрозділ: 'Підрозділ',
+					УНЗР: 'УНЗР',
+					ЄДРПОУ: 'ЄДРПОУ',
+					Сертифікати: 'Сертифікати',
+					ДіЯ: 'ДіЯ',
+
+					'е.ключ BIFIT iToken': 'е.ключ BIFIT iToken',
+					'криптомод. ІІТ Гряда-61': 'криптомод. ІІТ Гряда-61',
+					'е.ключ ІІТ Алмаз-1К': 'е.ключ ІІТ Алмаз-1К',
+					'е.ключ ІІТ Кристал-1': 'е.ключ ІІТ Кристал-1',
+					'криптомод. ІІТ Гряда-301': 'криптомод. ІІТ Гряда-301',
+					'ID-карта громадянина (БЕН)': 'ID-карта громадянина (БЕН)',
+					'е.ключ ІІТ Алмаз-1К (PKCS#11)': 'е.ключ ІІТ Алмаз-1К (PKCS#11)',
+					'е.ключ ІІТ Кристал-1 (PKCS#11)': 'е.ключ ІІТ Кристал-1 (PKCS#11)',
+					'е.ключ чи смарт-карта Avest (PKCS#11)':
+						'е.ключ чи смарт-карта Avest (PKCS#11)',
+					'е.ключ Ефіт Key (PKCS#11)': 'е.ключ Ефіт Key (PKCS#11)',
+					'е.ключ чи смарт-карта Автор (PKCS#11)':
+						'е.ключ чи смарт-карта Автор (PKCS#11)',
+					'е.ключ чи смарт-карта Автор 338 (PKCS#11)':
+						'е.ключ чи смарт-карта Автор 338 (PKCS#11)',
+					'смарт-карта Техноконс. TEllipse3 (PKCS#11)':
+						'смарт-карта Техноконс. TEllipse3 (PKCS#11)',
+					'смарт-карта Техноконс. TEllipse': 'смарт-карта Техноконс. TEllipse',
+					'смарт-карта Техноконс. TEllipse2/3':
+						'смарт-карта Техноконс. TEllipse2/3',
+
+					'Файл із запитом (ЕЦП, EU.p10)': 'Файл із запитом (ЕЦП, EU.p10)',
+					'Файл із запитом (протокол розподілу ключів, EU-KEP.p10)':
+						'Файл із запитом (протокол розподілу ключів, EU-KEP.p10)',
+					Обрати: 'Обрати',
+					'Рекомендуємо підписувати документи у форматі ASIC-E.':
+						'Рекомендуємо підписувати документи у форматі ASIC-E.',
+					'Це уніфікований формат електронного документообігу, який гарантує, що ваші документи прийматимуть всі держоргани.':
+						'Це уніфікований формат електронного документообігу, який гарантує, що ваші документи прийматимуть всі держоргани.',
+					'Так, підписати в форматі ASIC-E': 'Так, підписати в форматі ASIC-E',
+					'Ні, обрати інший формат': 'Ні, обрати інший формат',
+					'Виберіть, в якому форматі підписати документ':
+						'Виберіть, в якому форматі підписати документ',
+					'XAdES. Дані та підпис зберігаються в XML файлі (*.xml)':
+						'XAdES. Дані та підпис зберігаються в XML файлі (*.xml)',
+					'PAdES. Дані та підпис зберігаються в PDF файлі (*.pdf)':
+						'PAdES. Дані та підпис зберігаються в PDF файлі (*.pdf)',
+					'CAdES. Дані та підпис зберігаються в CMS файлі (*.p7s)':
+						'CAdES. Дані та підпис зберігаються в CMS файлі (*.p7s)',
+					'ASIC. Дані та підпис зберігаються в архіві':
+						'ASIC. Дані та підпис зберігаються в архіві',
+					'ASIC-E. Дані та підпис зберігаються в архіві (розширений формат)':
+						'ASIC-E. Дані та підпис зберігаються в архіві (розширений формат)',
+					'ASIC-S. Дані та підпис зберігаються в архіві (простий формат)':
+						'ASIC-S. Дані та підпис зберігаються в архіві (простий формат)',
+					'NEW!': 'NEW!',
+					CAdES: 'CAdES',
+					XAdES: 'XAdES',
+					'Алгоритм підпису': 'Алгоритм підпису',
+					'Тип підпису': 'Тип підпису',
+					'Підпис та дані в окремих файлах (detached)':
+						'Підпис та дані в окремих файлах (detached)',
+					'Підпис та дані в одному файлі (enveloping)':
+						'Підпис та дані в одному файлі (enveloping)',
+					'Підпис та дані в одному файлі (enveloped)':
+						'Підпис та дані в одному файлі (enveloped)',
+					'XAdES-B-LTA – е-підпис для тривалого (архівного) зберігання':
+						'XAdES-B-LTA – е-підпис для тривалого (архівного) зберігання',
+					'XAdES-B-LT – додаються повні дані для перевірки':
+						'XAdES-B-LT – додаються повні дані для перевірки',
+					'XAdES-B-T – додається час підписання файлу КЕП':
+						'XAdES-B-T – додається час підписання файлу КЕП',
+					'XAdES-B-B – базова перевірка достовірності і цілісності даних':
+						'XAdES-B-B – базова перевірка достовірності і цілісності даних',
+					'PAdES-B-LTA – е-підпис для тривалого (архівного) зберігання':
+						'PAdES-B-LTA – е-підпис для тривалого (архівного) зберігання',
+					'PAdES-B-LT – додаються повні дані для перевірки':
+						'PAdES-B-LT – додаються повні дані для перевірки',
+					'PAdES-B-T – додається час підписання файлу КЕП':
+						'PAdES-B-T – додається час підписання файлу КЕП',
+					'PAdES-B-B – базова перевірка достовірності і цілісності даних':
+						'PAdES-B-B – базова перевірка достовірності і цілісності даних',
+					'CAdES-X Long – Довгостроковий з повними даними ЦСК для перевірки':
+						'CAdES-X Long – Довгостроковий з повними даними ЦСК для перевірки',
+					'CAdES-X Long – Довгостроковий з повними даними для перевірки':
+						'CAdES-X Long – Довгостроковий з повними даними для перевірки',
+					'CAdES-C – додається посилання на повні дані для перевірки':
+						'CAdES-C – додається посилання на повні дані для перевірки',
+					'CAdES-T – додається час підписання файлу КЕП':
+						'CAdES-T – додається час підписання файлу КЕП',
+					'CAdES-BES – базова перевірка достовірності і цілісності даних':
+						'CAdES-BES – базова перевірка достовірності і цілісності даних',
+					'Перетягніть сюди файл(и) для підпису':
+						'Перетягніть сюди файл(и) для підпису',
+					'(doc, pdf, docx та інші)': '(doc, pdf, docx та інші)',
+					'Файл(и) для підпису:': 'Файл(и) для підпису:',
+					Підписати: 'Підписати',
+					ОК: 'ОК',
+
+					'Зчитайте ключ': 'Зчитайте ключ',
+					'Оберіть тип носія особистого ключа, особистий ключ, введіть пароль захисту ключа та натисніть "Зчитати"':
+						'Оберіть тип носія особистого ключа, особистий ключ, введіть пароль захисту ключа та натисніть "Зчитати"',
+
+					'Підписати та зберегти': 'Підписати та зберегти',
+
+					'Формування нового сертифіката': 'Формування нового сертифіката',
+					'Оберіть тип носія діючого особистого ключа, діючий особистий ключ, введіть пароль захисту ключа та натисніть "Зчитати"':
+						'Оберіть тип носія діючого особистого ключа, діючий особистий ключ, введіть пароль захисту ключа та натисніть "Зчитати"',
+					'Оберіть тип носія для нового особистого ключа, новий особистий ключ, введіть пароль захисту ключа та натисніть "Сформувати"':
+						'Оберіть тип носія для нового особистого ключа, новий особистий ключ, введіть пароль захисту ключа та натисніть "Сформувати"',
+					'Введіть новий пароль захисту ключа, його підтвердження та натисніть "Сформувати"':
+						'Введіть новий пароль захисту ключа, його підтвердження та натисніть "Сформувати"',
+					'Завантажити нові сертифікати особистого ключа можна за посиланнями':
+						'Завантажити нові сертифікати особистого ключа можна за посиланнями',
+
+					'Встановлення налаштувань proxy-сервера':
+						'Встановлення налаштувань proxy-сервера',
+					'Встановіть налаштування proxy-сервера та натисніть "Зберегти"':
+						'Встановіть налаштування proxy-сервера та натисніть "Зберегти"',
+
+					'Перевірте дані': 'Перевірте дані',
+
+					'Підписати файл за допомогою': 'Підписати файл за допомогою',
+					'Оберіть файл для підпису та натисніть "Підписати"':
+						'Оберіть файл для підпису та натисніть "Підписати"',
+					'👍 Документ підписано': '👍 Документ підписано',
+					'Ви можете зберігти підписаний файл.':
+						'Ви можете зберігти підписаний файл.',
+
+					'Перегляд інформації про сертифікати особистого ключа':
+						'Перегляд інформації про сертифікати особистого ключа',
+					'Для збереження сертифікатів особистого ключа до папки "Завантаження" натисніть "Зберегти"':
+						'Для збереження сертифікатів особистого ключа до папки "Завантаження" натисніть "Зберегти"',
+
+					'Формування технологічних сертифікатів':
+						'Формування технологічних сертифікатів',
+					'Оберіть тип носія особистого ключа, особистий ключ, введіть пароль захисту ключа відповідальної особи та натисніть "Зчитати"':
+						'Оберіть тип носія особистого ключа, особистий ключ, введіть пароль захисту ключа відповідальної особи та натисніть "Зчитати"',
+					'Введіть назву технічного пристрою, оберіть файл із запитом ЕЦП (EU.p10) та протоколу розподілу ключів (EU-KEP.p10), та натисніть "Сформувати"':
+						'Введіть назву технічного пристрою, оберіть файл із запитом ЕЦП (EU.p10) та протоколу розподілу ключів (EU-KEP.p10), та натисніть "Сформувати"',
+					'Завантажити технологічні сертифікати можна за посиланнями':
+						'Завантажити технологічні сертифікати можна за посиланнями',
+
+					Завантаження: 'Завантаження',
+					'Завантаження криптографічної бібліотеки':
+						'Завантаження криптографічної бібліотеки',
+					'Ініціалізація криптографічної бібліотеки':
+						'Ініціалізація криптографічної бібліотеки',
+					'Збереження налаштувань proxy-серверу':
+						'Збереження налаштувань proxy-серверу',
+					'Зчитування особистого ключа': 'Зчитування особистого ключа',
+					'Формування нових сертифікатів особистого ключа':
+						'Формування нових сертифікатів особистого ключа',
+					'Накладання підпису на файл': 'Накладання підпису на файл',
+					'Накладання підпису на дані': 'Накладання підпису на дані',
+					'Формування технологічного сертифікату пристрою':
+						'Формування технологічного сертифікату пристрою',
+
+					'Опис помилки': 'Опис помилки',
+					'Для роботи з криптографічною бібліотекою необхідно встановити додаткове програмне забезпечення (web-бібліотеку підпису) після чого натиснути "Оновити сторінку"':
+						'Для роботи з криптографічною бібліотекою необхідно встановити додаткове програмне забезпечення (web-бібліотеку підпису) після чого натиснути "Оновити сторінку"',
+					'Для роботи з криптографічною бібліотекою необхідно оновити додаткове програмне забезпечення (web-бібліотеку підпису) після чого натиснути "Оновити сторінку"':
+						'Для роботи з криптографічною бібліотекою необхідно оновити додаткове програмне забезпечення (web-бібліотеку підпису) після чого натиснути "Оновити сторінку"',
+					'Інсталяційний пакет web-бібліотеки підпису':
+						'Інсталяційний пакет web-бібліотеки підпису',
+					'Оновлення web-бібліотеки підпису':
+						'Оновлення web-бібліотеки підпису',
+					'Інсталяційний пакет бібліотеки підпису (web-розширення)':
+						'Інсталяційний пакет бібліотеки підпису (web-розширення)',
+					'Настанова користувача': 'Настанова користувача',
+					'Завантажити нові сертифікати': 'Завантажити нові сертифікати',
+					'Зберегти новий особистий ключ': 'Зберегти новий особистий ключ',
+					'Зберегти підписаний файл': 'Зберегти підписаний файл',
+					'Визначити автоматично': 'Визначити автоматично',
+					'Перевірте та встановіть налаштування proxy-сервера':
+						'Перевірте та встановіть налаштування proxy-сервера',
+					'ДСТУ 4145': 'ДСТУ 4145',
+					RSA: 'RSA',
+					ECDSA: 'ECDSA',
+					'Результат накладання підпису': 'Результат накладання підпису',
+					'Підпис накладено успішно. Цілісність даних підтверджено':
+						'Підпис накладено успішно. Цілісність даних підтверджено',
+					'Назва файлу, що підписувався': 'Назва файлу, що підписувався',
+					Підписувач: 'Підписувач',
+					Власник: 'Власник',
+					Організація: 'Організація',
+					Посада: 'Посада',
+					РНОКПП: 'РНОКПП',
+					'Код ЄДРПОУ': 'Код ЄДРПОУ',
+					'Є цифровою печаткою': 'Є цифровою печаткою',
+					'Тип ключа': 'Тип ключа',
+					'Використання ключів': 'Використання ключів',
+					ЕЦП: 'ЕЦП',
+					Неспростовність: 'Неспростовність',
+					'Протоколи розподілу ключів': 'Протоколи розподілу ключів',
+					'Сертифікат виданий': 'Сертифікат виданий',
+					'Серійний номер': 'Серійний номер',
+					'Cертифікат чинний': 'Cертифікат чинний',
+					Cертифікат: 'Cертифікат',
+					Cертифікати: 'Cертифікати',
+					'Час підпису': 'Час підпису',
+					'Час підпису (підтверджено кваліфікованою позначкою часу для підпису від Надавача)':
+						'Час підпису (підтверджено кваліфікованою позначкою часу для підпису від Надавача)',
+					'Час підпису (підтверджено кваліфікованою позначкою часу для даних від Надавача)':
+						'Час підпису (підтверджено кваліфікованою позначкою часу для даних від Надавача)',
+					'Час підпису (не підтверджено кваліфікованою позначкою часу для підпису від Надавача)':
+						'Час підпису (не підтверджено кваліфікованою позначкою часу для підпису від Надавача)',
+					відсутній: 'відсутній',
+					'Носій ос. ключа': 'Носій ос. ключа',
+					'Завантажити сертифікати': 'Завантажити сертифікати',
+					чинний: 'чинний',
+					з: 'з',
+					до: 'до',
+					"Ім'я": "Ім'я",
+					'Тип носія особистого ключа': 'Тип носія особистого ключа',
+					Захищений: 'Захищений',
+					Незахищений: 'Незахищений',
+					'Серійний номер носія особистого ключа':
+						'Серійний номер носія особистого ключа',
+					'Не визначено': 'Не визначено',
+					'Натисність або зчитайте QR-код сканером у застосунку {0} та дотримуйтесь інструкцій':
+						'Натисність або зчитайте QR-код сканером у застосунку {0} та дотримуйтесь інструкцій',
+					'QR-код буде дійсним ще': 'QR-код буде дійсним ще',
+
+					'Особистий ключ': 'Особистий ключ',
+					'(зазвичай його назва "Key-6.dat" або *.pfx, *.pk8, *.zs2, *.jks)':
+						'(зазвичай його назва "Key-6.dat" або *.pfx, *.pk8, *.zs2, *.jks)',
+					'(Key-6.dat або *.pfx)': '(Key-6.dat або *.pfx)',
+					'Файловий носій (flash-диск, CD-диск, SD-картка тощо)':
+						'Файловий носій (flash-диск, CD-диск, SD-картка тощо)',
+					'Захищений носій (е.ключ Алмаз-1К, Кристал-1, Гряда-301, ID-картка тощо)':
+						'Захищений носій (е.ключ Алмаз-1К, Кристал-1, Гряда-301, ID-картка тощо)',
+					'SIM-картка': 'SIM-картка',
+					'Назва технічного пристрою:': 'Назва технічного пристрою:',
+					'Крок {0} з {1}': 'Крок {0} з {1}',
+
+					Зчитати: 'Зчитати',
+					Cтерти: 'Cтерти',
+					Сформувати: 'Сформувати',
+					'Обрати інший': 'Обрати інший',
+					Назад: 'Назад',
+					Зберегти: 'Зберегти',
+					Завантажити: 'Завантажити',
+					Дякую: 'Дякую',
+					'Підписати в форматі ASIC-E': 'Підписати в форматі ASIC-E',
+
+					'Особистий ключ зчитано': 'Особистий ключ зчитано',
+					'Особистий ключ створено': 'Особистий ключ створено',
+					'Підпис накладено успішно': 'Підпис накладено успішно',
+					'Результат збережено до папки "Завантаження" з ім\'ям {0}':
+						'Результат збережено до папки "Завантаження" з ім\'ям {0}',
+
+					'Не вказана адреса proxy-сервера': 'Не вказана адреса proxy-сервера',
+					'Не вказаний порт proxy-сервера': 'Не вказаний порт proxy-сервера',
+					"Не вказане ім'я користувача proxy-сервера":
+						"Не вказане ім'я користувача proxy-сервера",
+					"Не вказане ім'я файлу нового ключа":
+						"Не вказане ім'я файлу нового ключа",
+					'Не вказано номер мобільного телефону або він має невірний формат':
+						'Не вказано номер мобільного телефону або він має невірний формат',
+					'Не вказано ідентифікатор користувача або він має невірний формат':
+						'Не вказано ідентифікатор користувача або він має невірний формат',
+					'Не вказано пароль до особистого ключа':
+						'Не вказано пароль до особистого ключа',
+					'Не вказано користувача носія ключової інформації':
+						'Не вказано користувача носія ключової інформації',
+					'Не вказано новий пароль до особистого ключа':
+						'Не вказано новий пароль до особистого ключа',
+					'Не вказано підтвердження нового паролю до особистого ключа':
+						'Не вказано підтвердження нового паролю до особистого ключа',
+					'Новий пароль та його підтвердження не співпадають':
+						'Новий пароль та його підтвердження не співпадають',
+					'Новий пароль не відповідає вимогам':
+						'Новий пароль не відповідає вимогам',
+					'Не обрано сертифікати особистого ключа':
+						'Не обрано сертифікати особистого ключа',
+					'Виникла помилка при отриманні інформації про особистий ключ':
+						'Виникла помилка при отриманні інформації про особистий ключ',
+					'Виникла помилка при оновленні списку носіїв ключової інформації':
+						'Виникла помилка при оновленні списку носіїв ключової інформації',
+					'Криптографічна бібліотека не підтримується':
+						'Криптографічна бібліотека не підтримується',
+					'Криптографічна бібліотека не завантажена':
+						'Криптографічна бібліотека не завантажена',
+					'Виникла помилка при завантаженні бібліотеки':
+						'Виникла помилка при завантаженні бібліотеки',
+					'Виникла помилка при ініціалізації криптографічної бібліотеки':
+						'Виникла помилка при ініціалізації криптографічної бібліотеки',
+					'Виникла помилка при отриманні налаштувань proxy-серверу':
+						'Виникла помилка при отриманні налаштувань proxy-серверу',
+					'Виникла помилка при збереженні налаштувань proxy-серверу':
+						'Виникла помилка при збереженні налаштувань proxy-серверу',
+					'Особистий ключ не зчитано': 'Особистий ключ не зчитано',
+					'Зчитаний особистий ключ не підтримує {0}. Необхідно зчитати інший особистий ключ':
+						'Зчитаний особистий ключ не підтримує {0}. Необхідно зчитати інший особистий ключ',
+					'Виникла помилка при зчитуванні особистого ключа':
+						'Виникла помилка при зчитуванні особистого ключа',
+					'Ваш сертифікат виданий іншим надавачем та не обслуговується в {0}. Необхідно обрати надавача Вашого сертифіката':
+						'Ваш сертифікат виданий іншим надавачем та не обслуговується в {0}. Необхідно обрати надавача Вашого сертифіката',
+					'Надавач не підтримує автоматичний пошук сертифіката за ос. ключем. Необхідно обрати надавача самостійно':
+						'Надавач не підтримує автоматичний пошук сертифіката за ос. ключем. Необхідно обрати надавача самостійно',
+					'Надавач {0} не підтримує автоматичний пошук сертифіката за ос. ключем. Необхідно обрати сертифікат(и) ос. ключа':
+						'Надавач {0} не підтримує автоматичний пошук сертифіката за ос. ключем. Необхідно обрати сертифікат(и) ос. ключа',
+					'Виникла помилка при формуванні нових сертифікатів особистого ключа':
+						'Виникла помилка при формуванні нових сертифікатів особистого ключа',
+					'Формування нового сертифіката можливе лише для користувачів {0}! Ваш сертифікат виданий іншим надавачем!':
+						'Формування нового сертифіката можливе лише для користувачів {0}! Ваш сертифікат виданий іншим надавачем!',
+					'Не обрано файл для підпису': 'Не обрано файл для підпису',
+					"Не вказане ім'я файлу з підписом":
+						"Не вказане ім'я файлу з підписом",
+					'Обраний файл не містить даних. Оберіть інший файл':
+						'Обраний файл не містить даних. Оберіть інший файл',
+					'Занадто великий розмір файлу. Оберіть файл меншого розміру або оберіть тип підпису "Дані та підпис окремими файлами (формат CAdES)"':
+						'Занадто великий розмір файлу. Оберіть файл меншого розміру або оберіть тип підпису "Дані та підпис окремими файлами (формат CAdES)"',
+					'Обраний формат підпису не підтримує одночасний підпис декількох файлів. Необхідно використовувати формат підпису ASiC-E':
+						'Обраний формат підпису не підтримує одночасний підпис декількох файлів. Необхідно використовувати формат підпису ASiC-E',
+					'Виникла помилка при підписі файла':
+						'Виникла помилка при підписі файла',
+					'Не вказано назву технічного пристрою':
+						'Не вказано назву технічного пристрою',
+					'Назва технічного пристрою має невірний формат':
+						'Назва технічного пристрою має невірний формат',
+					'Не обрано файл із запитом ЕЦП': 'Не обрано файл із запитом ЕЦП',
+					'Не обрано файл із запитом протоколу розподілу ключів':
+						'Не обрано файл із запитом протоколу розподілу ключів',
+					'Виникла помилка при формуванні технологічних сертифікатів пристрою':
+						'Виникла помилка при формуванні технологічних сертифікатів пристрою',
+					'Використання удосконаленого сертифіката відкритого ключа не дозволено. Зверніться до надавача Вашого сертифіката ({0}) для отримання квалфікованого сертифіката відкритого ключа':
+						'Використання удосконаленого сертифіката відкритого ключа не дозволено. Зверніться до надавача Вашого сертифіката ({0}) для отримання квалфікованого сертифіката відкритого ключа',
+					'Формування підпису в форматі PAdES можливо лише для файлів pdf. Оберіть інший файл або формат підпису':
+						'Формування підпису в форматі PAdES можливо лише для файлів pdf. Оберіть інший файл або формат підпису',
+					'Формування підпису в форматі XAdES-enveloped можливо лише для файлів xml. Оберіть інший файл, формат або тип підпису':
+						'Формування підпису в форматі XAdES-enveloped можливо лише для файлів xml. Оберіть інший файл, формат або тип підпису',
+
+					'Виникла помилка при завантаженні даних':
+						'Виникла помилка при завантаженні даних',
+					'Виникла помилка в шаблоні при відображенні результату підпису':
+						'Виникла помилка в шаблоні при відображенні результату підпису',
+					'Виникла помилка при збереженні файлу {0}':
+						'Виникла помилка при збереженні файлу {0}',
+
+					'Ви відмовилися надавати ідентифікаційні дані ос. ключа. Продовжити?':
+						'Ви відмовилися надавати ідентифікаційні дані ос. ключа. Продовжити?',
+
+					'Файл(и) без підпису': 'Файл(и) без підпису',
+					'Перевірені файли:': 'Перевірені файли:',
+
+					Файл: 'Файл',
+					'Файл з підписом:': 'Файл з підписом:',
+					'Файл без підпису:': 'Файл без підпису:',
+					'Завантажити інший файл': 'Завантажити інший файл',
+					Перевірити: 'Перевірити',
+					'👍 Файл успішно перевірено. Усі дані цілі':
+						'👍 Файл успішно перевірено. Усі дані цілі',
+					'Ви можете зберегти підписаний файл.':
+						'Ви можете зберегти підписаний файл.',
+					'Завантажити все архівом': 'Завантажити все архівом',
+					'Підпис створено та перевірено успішно. Цілісність даних підтверджено':
+						'Підпис створено та перевірено успішно. Цілісність даних підтверджено',
+					'Файл з підписом': 'Файл з підписом',
+					'Файл без підпису': 'Файл без підпису',
+					'Протокол створення та перевірки кваліфікованого електронного підпису від ':
+						'Протокол створення та перевірки кваліфікованого електронного підпису від ',
+					'Електронна печатка': 'Електронна печатка',
+					Відсутній: 'Відсутній',
+					Кваліфікований: 'Кваліфікований',
+					Удосконалений: 'Удосконалений',
+					'Необхідно обрати 2(два) файли для перевірки зовнішнього підпису або 1(один) для перевірки внутрішнього підпису':
+						'Необхідно обрати 2(два) файли для перевірки зовнішнього підпису або 1(один) для перевірки внутрішнього підпису',
+					'Перевірка підпису файлів': 'Перевірка підпису файлів',
+					'Перевірка кваліфікованого електронного підпису, який сформовано у вигляді окремого файлу з розширенням .p7s виконується за умов наявності файлу з даними, на які накладено кваліфікований електронний підпис. Ім`я такого файлу зазвичай ідентичне з іменем файлу файлу з розширенням .p7s. Оберіть цей файл разом з файлом кваліфікованого електронного підпису.':
+						'Перевірка кваліфікованого електронного підпису, який сформовано у вигляді окремого файлу з розширенням .p7s виконується за умов наявності файлу з даними, на які накладено кваліфікований електронний підпис. Ім`я такого файлу зазвичай ідентичне з іменем файлу файлу з розширенням .p7s. Оберіть цей файл разом з файлом кваліфікованого електронного підпису.',
+					'Файл не містить підписів': 'Файл не містить підписів',
+					'Файл занадто великий': 'Файл занадто великий',
+					Б: 'Б',
+					КБ: 'КБ',
+					МБ: 'МБ',
+					ГБ: 'ГБ',
+					ТБ: 'ТБ',
+					'Файл {0} збережено до директорії "Завантаження"':
+						'Файл {0} збережено до директорії "Завантаження"',
+					'Невідома помилка, спробуйте перезавантажити сторінку або скористайтеся іншим браузером':
+						'Невідома помилка, спробуйте перезавантажити сторінку або скористайтеся іншим браузером',
+					'Виникла помилка при перевірці файлів':
+						'Виникла помилка при перевірці файлів',
+					Ініціалізація: 'Ініціалізація',
+					'Не ініціалізовано': 'Не ініціалізовано',
+					'Збереження файлу': 'Збереження файлу',
+					'Підпис та дані в архіві (ASiC-S)':
+						'Підпис та дані в архіві (ASiC-S)',
+					'Підпис та дані в архіві (розширений) (ASiC-E)':
+						'Підпис та дані в архіві (розширений) (ASiC-E)',
+					'Підписаний PDF-файл (PAdES)': 'Підписаний PDF-файл (PAdES)',
+					'Підпис та дані в одному файлі (CAdES enveloped)':
+						'Підпис та дані в одному файлі (CAdES enveloped)',
+					'Підпис та дані в окремих файлах (CAdES detached)':
+						'Підпис та дані в окремих файлах (CAdES detached)',
+					'Підпис та дані в одному файлі (XAdES enveloped)':
+						'Підпис та дані в одному файлі (XAdES enveloped)',
+					'Підпис та дані в окремих файлах (XAdES detached)':
+						'Підпис та дані в окремих файлах (XAdES detached)',
+					'Підпис та дані в одному файлі (XAdES enveloping)':
+						'Підпис та дані в одному файлі (XAdES enveloping)',
+					'Базовий (CAdES-BES)': 'Базовий (CAdES-BES)',
+					'З позначкою часу від ЕП (CAdES-T)':
+						'З позначкою часу від ЕП (CAdES-T)',
+					'З посиланнями на повні дані для перевірки (CAdES-C)':
+						'З посиланнями на повні дані для перевірки (CAdES-C)',
+					'З повними даними для перевірки (CAdES-X Long)':
+						'З повними даними для перевірки (CAdES-X Long)',
+					'З повними даними ЦСК для перевірки (CAdES-X Long)':
+						'З повними даними ЦСК для перевірки (CAdES-X Long)',
+					'CAdES (Не визначено)': 'CAdES (Не визначено)',
+					'Базовий (XAdES-B-B)': 'Базовий (XAdES-B-B)',
+					'З позначкою часу від ЕП (XAdES-B-T)':
+						'З позначкою часу від ЕП (XAdES-B-T)',
+					'З повними даними для перевірки (XAdES-B-LT)':
+						'З повними даними для перевірки (XAdES-B-LT)',
+					'З повними даними для архівного зберігання (XAdES-B-LTA)':
+						'З повними даними для архівного зберігання (XAdES-B-LTA)',
+					'XAdES (Не визначено)': 'XAdES (Не визначено)',
+					'Базовий (PAdES-B-B)': 'Базовий (PAdES-B-B)',
+					'З позначкою часу від ЕП (PAdES-B-T)':
+						'З позначкою часу від ЕП (PAdES-B-T)',
+					'З повними даними для перевірки (PAdES-B-LT)':
+						'З повними даними для перевірки (PAdES-B-LT)',
+					'З повними даними для архівного зберігання (PAdES-B-LTA)':
+						'З повними даними для архівного зберігання (PAdES-B-LTA)',
+					'PAdES (Не визначено)': 'PAdES (Не визначено)',
+					'ЗНКІ е.ключ ІІТ Кристал-1': 'ЗНКІ е.ключ ІІТ Кристал-1',
+					'ЗНКІ е.ключ ІІТ Алмаз-1К': 'ЗНКІ е.ключ ІІТ Алмаз-1К',
+					'ЗНКІ смарт-карта чи е.ключ Автор 337':
+						'ЗНКІ смарт-карта чи е.ключ Автор 337',
+					'ЗНКІ смарт-карта чи е.ключ Автор 338':
+						'ЗНКІ смарт-карта чи е.ключ Автор 338',
+					'ЗНКІ смарт-карта чи е.ключ БІФІТ IToken':
+						'ЗНКІ смарт-карта чи е.ключ БІФІТ IToken',
+					'ЗНКІ е.ключ Авест AvestKey': 'ЗНКІ е.ключ Авест AvestKey',
+					'ЗНКІ е.ключ Ефіт EfitKey': 'ЗНКІ е.ключ Ефіт EfitKey',
+					'ЗНКІ смарт-карта Техноконс. TEllipse2/3':
+						'ЗНКІ смарт-карта Техноконс. TEllipse2/3',
+					'ЗНКІ ID-карта громадянина (БЕН)': 'ЗНКІ ID-карта громадянина (БЕН)',
+					'ЗНКІ ID-карта громадянина (БЕН) 2':
+						'ЗНКІ ID-карта громадянина (БЕН) 2',
+					'ЗНКІ криптомод. ІІТ Гряда-61': 'ЗНКІ криптомод. ІІТ Гряда-61',
+					'ЗНКІ SIM-карта ID HUB (MobileID)':
+						'ЗНКІ SIM-карта ID HUB (MobileID)',
+					'ЗНКІ криптомодуль ІІТ Гряда-301': 'ЗНКІ криптомодуль ІІТ Гряда-301',
+					'ЗНКІ криптомодуль Сайфер Шифр-HSM':
+						'ЗНКІ криптомодуль Сайфер Шифр-HSM',
+					"ЗНКІ шлюз захисту ІІТ Бар'єр-301":
+						"ЗНКІ шлюз захисту ІІТ Бар'єр-301",
+					'ЗНКІ IP-шифратор Канал': 'ЗНКІ IP-шифратор Канал',
+					'ЗНКІ SIM-карта Київстар (MobileID)':
+						'ЗНКІ SIM-карта Київстар (MobileID)',
+					'Онлайн сервіс створення та перевірки кваліфікованого та удосконаленого електронного підпису':
+						'Онлайн сервіс створення та перевірки кваліфікованого та удосконаленого електронного підпису',
+					ПРОТОКОЛ: 'ПРОТОКОЛ',
+					'створення та перевірки кваліфікованого та удосконаленого електронного підпису':
+						'створення та перевірки кваліфікованого та удосконаленого електронного підпису',
+					'Дата та час': 'Дата та час',
+					'Назва файлу з підписом': 'Назва файлу з підписом',
+					'Розмір файлу з підписом': 'Розмір файлу з підписом',
+					'Назва файлу без підпису': 'Назва файлу без підпису',
+					'Розмір файлу без підпису': 'Розмір файлу без підпису',
+					'Результат перевірки підпису': 'Результат перевірки підпису',
+					Підписувачі: 'Підписувачі',
+					'П.І.Б.': 'П.І.Б.',
+					Країна: 'Країна',
+					'Організація (установа)': 'Організація (установа)',
+					'Тип контейнера': 'Тип контейнера',
+					'Формат підпису': 'Формат підпису',
+					Сертифікат: 'Сертифікат',
+					'Шановний користувач!': 'Шановний користувач!',
+					'Звертаємо Вашу увагу на те, що із набуттям чинності 07.11.2018 Закону України «Про електронну ідентифікацію та електронні довірчі послуги» та відповідно до частини четвертої статті 26 цього закону, використання кваліфікованої електронної позначки часу для постійного зберігання електронних даних є обов’язковим.':
+						'Звертаємо Вашу увагу на те, що із набуттям чинності 07.11.2018 Закону України «Про електронну ідентифікацію та електронні довірчі послуги» та відповідно до частини четвертої статті 26 цього закону, використання кваліфікованої електронної позначки часу для постійного зберігання електронних даних є обов’язковим.',
+					'Просимо звернутися до свого суб’єкта надання послуг електронного підпису із вимогою про приведення програмно-технічного комплексу у відповідність до норм законодавства.':
+						'Просимо звернутися до свого суб’єкта надання послуг електронного підпису із вимогою про приведення програмно-технічного комплексу у відповідність до норм законодавства.',
+					'Звертаємо Вашу увагу на те, що із набуттям чинності 07.11.2018 Закону України «Про електронну ідентифікацію та електронні довірчі послуги» та відповідно до частини 2 статті 17 цього закону, використання кваліфікованого сертифікату відкритого ключа є обов’язковим.':
+						'Звертаємо Вашу увагу на те, що із набуттям чинності 07.11.2018 Закону України «Про електронну ідентифікацію та електронні довірчі послуги» та відповідно до частини 2 статті 17 цього закону, використання кваліфікованого сертифікату відкритого ключа є обов’язковим.',
+					'Просимо звернутися до свого суб’єкта надання електронних довірчих послуг для отримання кваліфікованого сертифікату відкритого ключа.':
+						'Просимо звернутися до свого суб’єкта надання електронних довірчих послуг для отримання кваліфікованого сертифікату відкритого ключа.',
+
+					'Як це працює?': 'Як це працює?',
+					'Що таке електронний підпис?': 'Що таке електронний підпис?',
+					'Електронний підпис є аналогом власноручного підпису та забезпечує достовірність і цілісність інформації, викладеної у документі, а також дає змогу підтвердити цілісність електронного документа та ідентифікувати особу, яка підписала документ.':
+						'Електронний підпис є аналогом власноручного підпису та забезпечує достовірність і цілісність інформації, викладеної у документі, а також дає змогу підтвердити цілісність електронного документа та ідентифікувати особу, яка підписала документ.',
+					'Що таке сертифікат?': 'Що таке сертифікат?',
+					'Сертифікат є засобом підтвердження приналежності відкритого (публічного) ключа його власникові.':
+						'Сертифікат є засобом підтвердження приналежності відкритого (публічного) ключа його власникові.',
+					'Сертифікат видається кваліфікованим надавачем електронних довірчих послуг та використовується для перевірки, що відкритий ключ належить саме тому власнику, чиї дані зазначено в ньому.':
+						'Сертифікат видається кваліфікованим надавачем електронних довірчих послуг та використовується для перевірки, що відкритий ключ належить саме тому власнику, чиї дані зазначено в ньому.',
+					'Файл сертифікату має розширення “.cer”, зазвичай зазначені файли можливо відкрити вбудованими засобами операційної системи.':
+						'Файл сертифікату має розширення “.cer”, зазвичай зазначені файли можливо відкрити вбудованими засобами операційної системи.',
+					'Файл сертифікату містить ідентифікаційні дані, які однозначно визначають кваліфікованого надавача та користувача електронних довірчих послуг, строк дії сертифікату тощо.':
+						'Файл сертифікату містить ідентифікаційні дані, які однозначно визначають кваліфікованого надавача та користувача електронних довірчих послуг, строк дії сертифікату тощо.',
+					'Що таке файловий носій?': 'Що таке файловий носій?',
+					'Файловий носій – це спеціальний файл, який містить ваш особистий ключ.':
+						'Файловий носій – це спеціальний файл, який містить ваш особистий ключ.',
+					'Зазвичай цей файл має назву Key-6 з розширенням *.dat (зустрічаються також розширення *.pfx, *.pk8, *.zs2, *.jks).':
+						'Зазвичай цей файл має назву Key-6 з розширенням *.dat (зустрічаються також розширення *.pfx, *.pk8, *.zs2, *.jks).',
+					'Для того, щоб скористатись файловим носієм, вам необхідно:':
+						'Для того, щоб скористатись файловим носієм, вам необхідно:',
+					'1. Обрати зі списку свого надавача електронних довірчих послуг – суб’єкта, до якого ви зверталися для отримання електронного підпису.':
+						'1. Обрати зі списку свого надавача електронних довірчих послуг – суб’єкта, до якого ви зверталися для отримання електронного підпису.',
+					'2. Завантажити із зовнішнього носія чи власного комп’ютера файл з вашим особистим ключем.':
+						'2. Завантажити із зовнішнього носія чи власного комп’ютера файл з вашим особистим ключем.',
+					'3. Вказати пароль доступу до особистого ключа у відповідному полі.':
+						'3. Вказати пароль доступу до особистого ключа у відповідному полі.',
+					'Що таке токен?': 'Що таке токен?',
+					'Токен - це спеціальний апаратно-програмний пристрій, який захищає особисті ключі від копіювання чи зміни зловмисниками. Токен може мати форму USB-пристрою або у формі смарт-картки (картки з чипом). Прикладами токенів є пристрої Алмаз-1К, Кристал-1 тощо.':
+						'Токен - це спеціальний апаратно-програмний пристрій, який захищає особисті ключі від копіювання чи зміни зловмисниками. Токен може мати форму USB-пристрою або у формі смарт-картки (картки з чипом). Прикладами токенів є пристрої Алмаз-1К, Кристал-1 тощо.',
+					'Для того, щоб скористатись токеном, вам необхідно:':
+						'Для того, щоб скористатись токеном, вам необхідно:',
+					'1. Підключити ваш токен через USB-порт (якщо у вас токен у формі USB-пристрою) або скористатися спеціальним зчитувачем інформації (якщо у вас токен у формі смарт-картки).':
+						'1. Підключити ваш токен через USB-порт (якщо у вас токен у формі USB-пристрою) або скористатися спеціальним зчитувачем інформації (якщо у вас токен у формі смарт-картки).',
+					'2. Обрати зі списку свого надавача електронних довірчих послуг – суб’єкта, до якого ви зверталися для отримання електронного підпису.':
+						'2. Обрати зі списку свого надавача електронних довірчих послуг – суб’єкта, до якого ви зверталися для отримання електронного підпису.',
+					'3. Зі списку токенів обрати тип пристрою, який ви хочете використати.':
+						'3. Зі списку токенів обрати тип пристрою, який ви хочете використати.',
+					'4. Вказати пароль доступу до особистого ключа у відповідному полі.':
+						'4. Вказати пароль доступу до особистого ключа у відповідному полі.',
+					'Як працює хмарний підпис?': 'Як працює хмарний підпис?',
+					'Якщо ваш особистий ключ зберігається за допомогою стороннього сервісу (зберігання у захищеному хмарному сховищі), то для зчитування ключа необхідно обрати свого надавача зі списку та пройти авторизацію у його системі.':
+						'Якщо ваш особистий ключ зберігається за допомогою стороннього сервісу (зберігання у захищеному хмарному сховищі), то для зчитування ключа необхідно обрати свого надавача зі списку та пройти авторизацію у його системі.',
+					'Як працює Дія.Підпис?': 'Як працює Дія.Підпис?',
+					'Дія.Підпис – кваліфікований електронний підпис, який можна отримати віддалено за допомогою мобільного застосунку Дія.':
+						'Дія.Підпис – кваліфікований електронний підпис, який можна отримати віддалено за допомогою мобільного застосунку Дія.',
+					'Для цього потрібні 1 хвилина та один з документів у Дії: ID-картка, біометричний закордонний паспорт, закордонний паспорт, виданий після 2015 року або посвідка на тимчасове чи постійне місце проживання.':
+						'Для цього потрібні 1 хвилина та один з документів у Дії: ID-картка, біометричний закордонний паспорт, закордонний паспорт, виданий після 2015 року або посвідка на тимчасове чи постійне місце проживання.',
+					'Щоб активувати Дія.Підпис, потрібно: 1. зайти у застосунк Дія, обрати Меню; 2. натиснути Дія.Підпис та Активувати Дія.Підпис; 3. пройти перевірку за фото — Дія порівнює ваше зображення із зображенням на ваших документах; 4. придумати 5-значний ПІН-код для вашого Дія.Підпису.':
+						'Щоб активувати Дія.Підпис, потрібно: 1. зайти у застосунк Дія, обрати Меню; 2. натиснути Дія.Підпис та Активувати Дія.Підпис; 3. пройти перевірку за фото — Дія порівнює ваше зображення із зображенням на ваших документах; 4. придумати 5-значний ПІН-код для вашого Дія.Підпису.',
+					'Щоб автентифікуватись чи підписати документ на сайті за допомогою Дія.Підпису, вам необхідно: 1. Обрати розділ «Дія.Підпис». 2. Відсканувати QR-код. 3. Зчитати особистий ключ шляхом сканування обличчя (перевірки за фото) та вводу паролю до особистого ключа. 4. У разі успішної автентифікації у мобільному застосунку Дія, система передає ваші персональні дані, що дозволить вас ідентифікувати.':
+						'Щоб автентифікуватись чи підписати документ на сайті за допомогою Дія.Підпису, вам необхідно: 1. Обрати розділ «Дія.Підпис». 2. Відсканувати QR-код. 3. Зчитати особистий ключ шляхом сканування обличчя (перевірки за фото) та вводу паролю до особистого ключа. 4. У разі успішної автентифікації у мобільному застосунку Дія, система передає ваші персональні дані, що дозволить вас ідентифікувати.',
+					'Що таке Дія.Підпис UA та EU?': 'Що таке Дія.Підпис UA та EU?',
+					'Дія.Підпис-UA — це електронний підпис, який відповідає українському стандарту ДСТУ. Його ви можете використовувати для підписання документів, оформлення послуг у застосунку та на порталі Дія, а також авторизації в застосунках і на сайтах партнерів Дії.':
+						'Дія.Підпис-UA — це електронний підпис, який відповідає українському стандарту ДСТУ. Його ви можете використовувати для підписання документів, оформлення послуг у застосунку та на порталі Дія, а також авторизації в застосунках і на сайтах партнерів Дії.',
+					'Дія.Підпис-EU  — це електронний підпис, який відповідає регламенту eIDAS Європейського Союзу і є удосконаленим електронним підписом у країнах ЄС. Партнери з країн ЄС зможуть перевірити його на ':
+						'Дія.Підпис-EU  — це електронний підпис, який відповідає регламенту eIDAS Європейського Союзу і є удосконаленим електронним підписом у країнах ЄС. Партнери з країн ЄС зможуть перевірити його на ',
+					платформі: 'платформі',
+					' й впевнитись, що документ підписаний саме вами. Долучитися до бета-тесту можуть усі користувачі, які уже мають або активують Дія.Підпис. Для цього оновіть застосунок Дія до останньої версії. Документ з накладеним Дія.Підпис-EU матиме юридичну силу й після завершення бета-тесту.':
+						' й впевнитись, що документ підписаний саме вами. Долучитися до бета-тесту можуть усі користувачі, які уже мають або активують Дія.Підпис. Для цього оновіть застосунок Дія до останньої версії. Документ з накладеним Дія.Підпис-EU матиме юридичну силу й після завершення бета-тесту.',
+					'Що нового?': 'Що нового?',
+					'Підтримка формату ASiC': 'Підтримка формату ASiC',
+					'Забезпечено підтримку європейського формату ASiC.':
+						'Забезпечено підтримку європейського формату ASiC.',
+					"ASiC — структурований контейнер, що дозволяє зберігати набір файлових об'єктів з пов'язаними е-підписами та/або е-позначками часу, що відповідає специфікації ZIP.":
+						"ASiC — структурований контейнер, що дозволяє зберігати набір файлових об'єктів з пов'язаними е-підписами та/або е-позначками часу, що відповідає специфікації ZIP.",
+					'Що таке ASiC-E?': 'Що таке ASiC-E?',
+					"ASiC-E дозволяє зберігати один або кілька файлових об'єктів з пов'язаними е-підписами та в подальшому додавати файлові об'єкти, файли е-підпису та е-позначки часу.":
+						"ASiC-E дозволяє зберігати один або кілька файлових об'єктів з пов'язаними е-підписами та в подальшому додавати файлові об'єкти, файли е-підпису та е-позначки часу.",
+					'Що таке ASiC-S?': 'Що таке ASiC-S?',
+					"ASiC-S дозволяє зберігати один файловий об'єкт з пов'язаним е-підписом та в подальшому додавати нові. Також дає можливість додавати файли для захисту е-позначок часу.":
+						"ASiC-S дозволяє зберігати один файловий об'єкт з пов'язаним е-підписом та в подальшому додавати нові. Також дає можливість додавати файли для захисту е-позначок часу.",
+					'Формати підписів?': 'Формати підписів?',
+					'Що таке XAdES?': 'Що таке XAdES?',
+					'XAdES — уніфікований е-підпис, що дозволяє підписувани е-дані будь-якого формату. Також зберігає е-підпис у форматі XML, окремо від е-даних або разом з ними. Підтримує паралельне та послідовне підписання одного або кількох е-документів.':
+						'XAdES — уніфікований е-підпис, що дозволяє підписувани е-дані будь-якого формату. Також зберігає е-підпис у форматі XML, окремо від е-даних або разом з ними. Підтримує паралельне та послідовне підписання одного або кількох е-документів.',
+					'Що таке PAdES?': 'Що таке PAdES?',
+					'PAdES — уніфікований е-підпис, що дозволяє підписувати е-дані у форматі PDF завдяки програму забезпеченню для PDF-файлів. Не підтримує паралельне підписання е-даних.':
+						'PAdES — уніфікований е-підпис, що дозволяє підписувати е-дані у форматі PDF завдяки програму забезпеченню для PDF-файлів. Не підтримує паралельне підписання е-даних.',
+					'Що таке СAdES?': 'Що таке СAdES?',
+					'CAdES — уніфікований е-підпис, що дозволяє підписувати е-дані будь-якого формату, а також зберігати е-дані та е-підпис окремими файлами. Для подальшої перевірки е-підпису CAdES знадобляться два файли: оригінальний (без підпису) та підписаний.':
+						'CAdES — уніфікований е-підпис, що дозволяє підписувати е-дані будь-якого формату, а також зберігати е-дані та е-підпис окремими файлами. Для подальшої перевірки е-підпису CAdES знадобляться два файли: оригінальний (без підпису) та підписаний.',
+					'Який формат обрати': 'Який формат обрати',
+					'Дія.Підпис – послуга електронної ідентифікації для користувачів, які отримували особистий ключ віддалено за допомогою мобільного застосунку Дія.':
+						'Дія.Підпис – послуга електронної ідентифікації для користувачів, які отримували особистий ключ віддалено за допомогою мобільного застосунку Дія.',
+					'Дія.Підпис містить дві частини. Одна частина зберігається у вашому смартфоні, а інша — в спеціальному захищеному модулі порталу Дія.':
+						'Дія.Підпис містить дві частини. Одна частина зберігається у вашому смартфоні, а інша — в спеціальному захищеному модулі порталу Дія.',
+					'Отримати особистий ключ віддалено за допомогою мобільного застосунку Дія мають можливість громадяни України, які є власниками ID-картки або біометричного закордонного паспорта.':
+						'Отримати особистий ключ віддалено за допомогою мобільного застосунку Дія мають можливість громадяни України, які є власниками ID-картки або біометричного закордонного паспорта.',
+					'Щоб авторизуватися на сайті за допомогою Дія.Підпис, вам необхідно:':
+						'Щоб авторизуватися на сайті за допомогою Дія.Підпис, вам необхідно:',
+					'1. Обрати розділ «Дія.Підпис».': '1. Обрати розділ «Дія.Підпис».',
+					'2. Відсканувати QR-код.': '2. Відсканувати QR-код.',
+					'3. Зчитати особистий ключ шляхом сканування обличчя (перевірки за фото) та вводу паролю до особистого ключа.':
+						'3. Зчитати особистий ключ шляхом сканування обличчя (перевірки за фото) та вводу паролю до особистого ключа.',
+					'4. У разі успішної автентифікації у мобільному застосунку Дія, система передає ваші персональні дані, що дозволить вас ідентифікувати.':
+						'4. У разі успішної автентифікації у мобільному застосунку Дія, система передає ваші персональні дані, що дозволить вас ідентифікувати.',
+					'Що таке ASiC?': 'Що таке ASiC?',
+				},
+				en: {
+					'АТ "ІІТ" web-віджет підпису користувача ЦСК':
+						'JSC "IIT" CA user web-widget for the signature',
+					'Для роботи JavaScript має бути ввімкненим!':
+						'JavaScript must be enabled!',
+
+					'Оберіть тип особистого ключа, особистий ключ та натисніть "Зчитати"':
+						'Select private key type, private key and click "Read"',
+					Файловий: 'File',
+					Токен: 'Token',
+					Хмарний: 'Cloud',
+					'Як це працює': 'How it works',
+					'Електронного підпису': 'Electronic signature',
+					'Дiя.Пiдпис - UA': 'Diia.Signature - UA',
+					'Дiя.Пiдпис - EU': 'Diia.Signature - EU',
+					'Оновити сторінку': 'Refresh page',
+					'Підключатися через proxy-сервер': 'Connect through a proxy server',
+					'Версія від': 'Version',
+
+					'Адреса серверу': 'Server address',
+					'Введіть DNS-ім`я чи ip-адресу proxy-сервера':
+						'Enter the DNS or IP-address of the proxy server',
+					Порт: 'Port',
+					'Введіть номер порту proxy-сервера':
+						'Enter the port number of the proxy server',
+					'Автентифікуватися на proxy-сервері': 'Authenticate on proxy server',
+					"Ім'я користувача": 'Username',
+					"Введіть ім'я користувача": 'Enter username',
+					Пароль: 'Password',
+					'Введіть пароль користувача': 'Enter user password',
+					Відміна: 'Cancel',
+					'Налаштувати proxy-сервер': 'Configure proxy server',
+
+					'Кваліфікований надавач електронних довірчих послуг':
+						'Qualified Trust Service Provider',
+					'Нажаль, ми не змогли автоматично визначити центр сертифікацї вашого ключа':
+						'Unfortunately, we could not automatically determine the QTSP of your key',
+					'Перетягніть сюди файл ключа': 'Drag key file here',
+					'або ': 'or ',
+					'завантажте його зі свого носія': 'download it from your media',
+					Змінити: 'Change',
+					'Оберіть файл з особистим ключем': 'Select private key file',
+					"Ім'я ключа": 'Key alias',
+					'Пароль захисту ключа': 'Private key password',
+					'Введіть пароль від особистого ключа': 'Enter private key password',
+					'Перетягніть сюди файл з сертифікатами':
+						'Drag the certificate file here',
+					'(зазвичай *.cer або *.crt)': '(usually *.cer or *.crt)',
+					'Файл(и) з сертифікатами:': 'File(s) with certificates:',
+					'Оберіть файл з сертифікатами': 'Select certificate file',
+					Далі: 'Next',
+					'Носій особистого ключа': 'Private key media',
+					'Введіть пароль захисту ключа': 'Enter private key password',
+					'Тип сервісу підпису': 'Signature service type',
+					'Ідентифікатор користувача': 'Client ID',
+					'Введіть ідентифікатор користувача': 'Enter client ID',
+					'Ім`я файла з особистим ключем': 'Private key file name',
+					'Підтвердження пароля захисту ключа': 'Confirm key password',
+					Підрозділ: 'Organization unit',
+					УНЗР: 'UNZR',
+					ЄДРПОУ: 'TIN',
+					Сертифікати: 'Certificates',
+					ДіЯ: 'Diia',
+
+					'е.ключ BIFIT iToken': 'e.key BIFIT iToken',
+					'криптомод. ІІТ Гряда-61': 'crypto module IIT Gryada-61',
+					'е.ключ ІІТ Алмаз-1К': 'e.key IIT Almaz-1K',
+					'е.ключ ІІТ Кристал-1': 'e.key IIT Crystal-1',
+					'криптомод. ІІТ Гряда-301': 'crypto module IIT Gryada-301',
+					'ID-карта громадянина (БЕН)': 'citizen ID-card (CEC)',
+					'е.ключ ІІТ Алмаз-1К (PKCS#11)': 'e.key IIT Almaz-1K (PKCS#11)',
+					'е.ключ ІІТ Кристал-1 (PKCS#11)': 'e.key IIT Crystal-1 (PKCS#11)',
+					'е.ключ чи смарт-карта Avest (PKCS#11)':
+						'e.key or smart card Avest (PKCS#11)',
+					'е.ключ Ефіт Key (PKCS#11)': 'e.key EfitKey (PKCS#11)',
+					'е.ключ чи смарт-карта Автор (PKCS#11)':
+						'e.key or smart card Avtor (PKCS#11)',
+					'е.ключ чи смарт-карта Автор 338 (PKCS#11)':
+						'e.key or smart card Avtor 338 (PKCS#11)',
+					'смарт-карта Техноконс. TEllipse3 (PKCS#11)':
+						'смарт-карта Техноконс. TEllipse3 (PKCS#11)',
+					'смарт-карта Техноконс. TEllipse': 'smart card Technocons. TEllipse',
+					'смарт-карта Техноконс. TEllipse2/3':
+						'smart card Technocons. TEllipse2/3',
+
+					'Файл із запитом (ЕЦП, EU.p10)':
+						'File with request (Digital signature, EU.p10)',
+					'Файл із запитом (протокол розподілу ключів, EU-KEP.p10)':
+						'File with request (Key agreement, EU-KEP.p10)',
+					Обрати: 'Choose',
+					'Рекомендуємо підписувати документи у форматі ASIC-E.':
+						'We recommend signing documents in ASIC-E format.',
+					'Це уніфікований формат електронного документообігу, який гарантує, що ваші документи прийматимуть всі держоргани.':
+						'This is a unified format of electronic document managment, which guarantees that your documents will be accepted by all state authorities.',
+					'Так, підписати в форматі ASIC-E': 'Yes, sign in ASIC-E format',
+					'Ні, обрати інший формат': 'No, choose another format',
+					'Виберіть, в якому форматі підписати документ':
+						'Choose in which format to sign the document',
+					'XAdES. Дані та підпис зберігаються в XML файлі (*.xml)':
+						'XAdES. Data and signature stored in XML file (*.xml)',
+					'PAdES. Дані та підпис зберігаються в PDF файлі (*.pdf)':
+						'PAdES. Data and signature stored in PDF file (*.pdf)',
+					'CAdES. Дані та підпис зберігаються в CMS файлі (*.p7s)':
+						'CAdES. Data and signature are stored in CMS file (*.p7s)',
+					'ASIC. Дані та підпис зберігаються в архіві':
+						'ASIC. Data and signature are archived',
+					'ASIC-E. Дані та підпис зберігаються в архіві (розширений формат)':
+						'ASIC-E. Data and signature are archived (extended format)',
+					'ASIC-S. Дані та підпис зберігаються в архіві (простий формат)':
+						'ASIC-S. Data and signature are archived (simple format)',
+					'NEW!': 'NEW!',
+					CAdES: 'CAdES',
+					XAdES: 'XAdES',
+					'Алгоритм підпису': 'Signature algorithm',
+					'Тип підпису': 'Signature type',
+					'Підпис та дані в окремих файлах (detached)':
+						'Signature and data in separate files (detached)',
+					'Підпис та дані в одному файлі (enveloping)':
+						'Signature and data in one file (enveloping)',
+					'Підпис та дані в одному файлі (enveloped)':
+						'Signature and data in one file (enveloped))',
+					'XAdES-B-LTA – е-підпис для тривалого (архівного) зберігання':
+						'XAdES-B-LTA – e-signature for long-term (archival) storage',
+					'XAdES-B-LT – додаються повні дані для перевірки':
+						'XAdES-B-LT - complete validation data added',
+					'XAdES-B-T – додається час підписання файлу КЕП':
+						'XAdES-B-T - the time of signing the QES file is added',
+					'XAdES-B-B – базова перевірка достовірності і цілісності даних':
+						'XAdES-B-B – basic verification of reliability and integrity of data',
+					'PAdES-B-LTA – е-підпис для тривалого (архівного) зберігання':
+						'PAdES-B-LTA – e-signature for long-term (archival) storage',
+					'PAdES-B-LT – додаються повні дані для перевірки':
+						'PAdES-B-LT – complete validation data added',
+					'PAdES-B-T – додається час підписання файлу КЕП':
+						'PAdES-B-T – the time of signing the QES file is added',
+					'PAdES-B-B – базова перевірка достовірності і цілісності даних':
+						'PAdES-B-B – basic verification of reliability and integrity of data',
+					'CAdES-X Long – Довгостроковий з повними даними ЦСК для перевірки':
+						'CAdES-X Long – long-term with full CSC data for validation',
+					'CAdES-X Long – Довгостроковий з повними даними для перевірки':
+						'CAdES-X Long – long-term with full validation data',
+					'CAdES-C – додається посилання на повні дані для перевірки':
+						'CAdES-C – attached link to full validation data',
+					'CAdES-T – додається час підписання файлу КЕП':
+						'CAdES-T – the time of signing the QES file is added',
+					'CAdES-BES – базова перевірка достовірності і цілісності даних':
+						'CAdES-BES – basic verification of reliability and integrity of data',
+					'Перетягніть сюди файл(и) для підпису':
+						'Drag file(s) here for signature',
+					'(doc, pdf, docx та інші)': '(doc, pdf, docx and others)',
+					'Файл(и) для підпису:': 'File(s) to be signed:',
+					Підписати: 'Sign',
+					ОК: 'ОК',
+
+					'Зчитайте ключ': 'Read key',
+					'Оберіть тип носія особистого ключа, особистий ключ, введіть пароль захисту ключа та натисніть "Зчитати"':
+						'Select the type of private key carrier, private key, enter the key protection password and click "Read"',
+
+					'Підписати та зберегти': 'Sign and save',
+
+					'Формування нового сертифіката': 'Create a new certificate',
+					'Оберіть тип носія діючого особистого ключа, діючий особистий ключ, введіть пароль захисту ключа та натисніть "Зчитати"':
+						'Select a valid private key media type, a valid private key, enter the key protection password and click "Read"',
+					'Оберіть тип носія для нового особистого ключа, новий особистий ключ, введіть пароль захисту ключа та натисніть "Сформувати"':
+						'Select media type for new private key, new private key, enter key protection password and click "Generate"',
+					'Введіть новий пароль захисту ключа, його підтвердження та натисніть "Сформувати"':
+						'Enter the new key protection password, confirm it and click "Generate"',
+					'Завантажити нові сертифікати особистого ключа можна за посиланнями':
+						'You can download new private key certificates using the links',
+
+					'Встановлення налаштувань proxy-сервера':
+						'Setting proxy server settings',
+					'Встановіть налаштування proxy-сервера та натисніть "Зберегти"':
+						'Set the proxy server settings and click "Save"',
+
+					'Перевірте дані': 'Check data',
+
+					'Підписати файл за допомогою': 'Sign file with',
+					'Оберіть файл для підпису та натисніть "Підписати"':
+						'Select a file to sign and click "Sign"',
+					'👍 Документ підписано': '👍 Document signed',
+					'Ви можете зберігти підписаний файл.':
+						'You can save the signed file.',
+
+					'Перегляд інформації про сертифікати особистого ключа':
+						'View information about private key certificates',
+					'Для збереження сертифікатів особистого ключа до папки "Завантаження" натисніть "Зберегти"':
+						'To save the private key certificates to the "Downloads" folder, click "Save"',
+
+					'Формування технологічних сертифікатів':
+						'Create a technological certificates',
+					'Оберіть тип носія особистого ключа, особистий ключ, введіть пароль захисту ключа відповідальної особи та натисніть "Зчитати"':
+						'Select the type of private key carrier, private key, enter the key protection password of the responsible person and click "Read"',
+					'Введіть назву технічного пристрою, оберіть файл із запитом ЕЦП (EU.p10) та протоколу розподілу ключів (EU-KEP.p10), та натисніть "Сформувати"':
+						'Enter the name of the technical device, select the digital signature request file (EU.p10) and the key agreement (EU-KEP.p10), and click "Generate"',
+					'Завантажити технологічні сертифікати можна за посиланнями':
+						'Technological certificates can be downloaded using the links',
+
+					Завантаження: 'Loading',
+					'Завантаження криптографічної бібліотеки':
+						'Loading cryptographic library',
+					'Ініціалізація криптографічної бібліотеки':
+						'Initializing cryptographic library ',
+					'Збереження налаштувань proxy-серверу':
+						'Saving proxy server settings',
+					'Зчитування особистого ключа': 'Reading private key',
+					'Формування нових сертифікатів особистого ключа':
+						'Creating new private key certificates',
+					'Накладання підпису на файл': 'Signing a file',
+					'Накладання підпису на дані': 'Signing data',
+					'Формування технологічного сертифікату пристрою':
+						'Creating technological certificate of the device',
+
+					'Опис помилки': 'Error description',
+					'Для роботи з криптографічною бібліотекою необхідно встановити додаткове програмне забезпечення (web-бібліотеку підпису) після чого натиснути "Оновити сторінку"':
+						'To work with the cryptographic library, you need to install additional software (web-signature library) and then click "Refresh page"',
+					'Для роботи з криптографічною бібліотекою необхідно оновити додаткове програмне забезпечення (web-бібліотеку підпису) після чого натиснути "Оновити сторінку"':
+						'To work with the cryptographic library, you need to update the additional software (web-signature library) and then click "Refresh page"',
+					'Інсталяційний пакет web-бібліотеки підпису':
+						'Installation package for the web-signature library',
+					'Оновлення web-бібліотеки підпису':
+						'Update package for the web-signature library',
+					'Інсталяційний пакет бібліотеки підпису (web-розширення)':
+						'Installation package for the signature library (web-extension)',
+					'Настанова користувача': 'User guide',
+					'Завантажити нові сертифікати': 'Download new certificates',
+					'Зберегти новий особистий ключ': 'Save new private key',
+					'Зберегти підписаний файл': 'Save signed file',
+					'Визначити автоматично': 'Detect automatically',
+					'Перевірте та встановіть налаштування proxy-сервера':
+						'Check and set proxy server settings',
+					'ДСТУ 4145': 'DSTU 4145',
+					RSA: 'RSA',
+					ECDSA: 'ECDSA',
+					'Результат накладання підпису': 'Signature creation result',
+					'Підпис накладено успішно. Цілісність даних підтверджено':
+						'Signature created successfully. Data integrity confirmed',
+					'Назва файлу, що підписувався': 'Name of the file being signed',
+					Підписувач: 'Signer',
+					Власник: 'Subject',
+					Організація: 'Organization',
+					Посада: 'Title',
+					РНОКПП: 'TIN',
+					'Код ЄДРПОУ': 'NTR',
+					'Є цифровою печаткою': 'Digital stamp',
+					'Тип ключа': 'Key type',
+					'Використання ключів': 'Key usage',
+					ЕЦП: 'Digital signature',
+					Неспростовність: 'Non-repudiation',
+					'Протоколи розподілу ключів': 'Key agreement',
+					'Сертифікат виданий': 'Issuer',
+					'Серійний номер': 'Serial',
+					'Cертифікат чинний': 'Certificate validity',
+					Cертифікат: 'Certificate',
+					Cертифікати: 'Certificates',
+					'Час підпису': 'Sign time',
+					'Час підпису (підтверджено кваліфікованою позначкою часу для підпису від Надавача)':
+						'Sign time (confirmed by a qualified timestamp for signature from the QTSP)',
+					'Час підпису (підтверджено кваліфікованою позначкою часу для даних від Надавача)':
+						'Sign time (confirmed by a qualified timestamp for data from the QTSP)',
+					'Час підпису (не підтверджено кваліфікованою позначкою часу для підпису від Надавача)':
+						'Sign time (not confirmed by a qualified timestamp for signature from the QTSP)',
+					відсутній: 'missing',
+					'Носій ос. ключа': 'Key device',
+					'Завантажити сертифікати': 'Download certificates',
+					чинний: 'valid',
+					з: 'from',
+					до: 'to',
+					"Ім'я": 'Name',
+					'Тип носія особистого ключа': 'Private key device type',
+					Захищений: 'QSCD',
+					Незахищений: 'Not QSCD',
+					'Серійний номер носія особистого ключа': 'Key device serial number',
+					'Не визначено': 'Not specified',
+					'Натисність або зчитайте QR-код сканером у застосунку {0} та дотримуйтесь інструкцій':
+						'Click or scan the QR code in the {0} app and follow the instructions',
+					'QR-код буде дійсним ще': 'The QR code will still be valid',
+
+					'Особистий ключ': 'Private key',
+					'(зазвичай його назва "Key-6.dat" або *.pfx, *.pk8, *.zs2, *.jks)':
+						'(usually its name is "Key-6.dat" або *.pfx, *.pk8, *.zs2, *.jks)',
+					'(Key-6.dat або *.pfx)': '(Key-6.dat або *.pfx)',
+					'Файловий носій (flash-диск, CD-диск, SD-картка тощо)':
+						'File (flash, CD, SD, etc.)',
+					'Захищений носій (е.ключ Алмаз-1К, Кристал-1, Гряда-301, ID-картка тощо)':
+						'Key device (e.key Almaz-1K, Crystal-1, Gryada-301, ID card, etc.)',
+					'SIM-картка': 'SIM card',
+					'Назва технічного пристрою:': 'Technical device name:',
+					'Крок {0} з {1}': 'Step {0} from {1}',
+
+					Зчитати: 'Read',
+					Cтерти: 'Clear',
+					Сформувати: 'Make',
+					'Обрати інший': 'Choose another',
+					Назад: 'Back',
+					Зберегти: 'Save',
+					Завантажити: 'Download',
+					Дякую: 'Thank you',
+					'Підписати в форматі ASIC-E': 'Sign in ASIC-E format',
+
+					'Особистий ключ зчитано': 'Private key read',
+					'Особистий ключ створено': 'Private key generatedо',
+					'Підпис накладено успішно': 'Signature created successfully',
+					'Результат збережено до папки "Завантаження" з ім\'ям {0}':
+						'Result saved to folder "Downloads" with {0} name',
+
+					'Не вказана адреса proxy-сервера':
+						'Proxy server address not specified',
+					'Не вказаний порт proxy-сервера': 'Proxy server port not specified',
+					"Не вказане ім'я користувача proxy-сервера":
+						'Proxy server username not specified',
+					"Не вказане ім'я файлу нового ключа":
+						'New key file name not specified',
+					'Не вказано номер мобільного телефону або він має невірний формат':
+						'The mobile number is not specified or it is in the wrong format',
+					'Не вказано ідентифікатор користувача або він має невірний формат':
+						'The client ID is not specified or is in the wrong format',
+					'Не вказано пароль до особистого ключа':
+						'Private key password not specified',
+					'Не вказано користувача носія ключової інформації':
+						'Key media device user not specified',
+					'Не вказано новий пароль до особистого ключа':
+						'No new password for private key specified',
+					'Не вказано підтвердження нового паролю до особистого ключа':
+						'No confirmation of the new password for the private key',
+					'Новий пароль та його підтвердження не співпадають':
+						'The new password and its confirmation do not match',
+					'Новий пароль не відповідає вимогам':
+						'The new password does not meet the requirements',
+					'Не обрано сертифікати особистого ключа':
+						'No private key certificates selected',
+					'Виникла помилка при отриманні інформації про особистий ключ':
+						'An error occurred while retrieving private key information',
+					'Виникла помилка при оновленні списку носіїв ключової інформації':
+						'An error occurred while updating the list of key media devices',
+					'Криптографічна бібліотека не підтримується':
+						'Cryptographic library not supported',
+					'Криптографічна бібліотека не завантажена':
+						'Cryptographic library not loaded',
+					'Виникла помилка при завантаженні бібліотеки':
+						'An error occurred while loading the library',
+					'Виникла помилка при ініціалізації криптографічної бібліотеки':
+						'An error occurred while initializing the cryptographic library',
+					'Виникла помилка при отриманні налаштувань proxy-серверу':
+						'An error occurred while retrieving proxy server settings',
+					'Виникла помилка при збереженні налаштувань proxy-серверу':
+						'An error occurred while saving proxy server settings',
+					'Особистий ключ не зчитано': 'Private key not read',
+					'Зчитаний особистий ключ не підтримує {0}. Необхідно зчитати інший особистий ключ':
+						'The private key that was read does not support {0}. Another private key needs to be read',
+					'Виникла помилка при зчитуванні особистого ключа':
+						'An error occurred while reading the private key',
+					'Ваш сертифікат виданий іншим надавачем та не обслуговується в {0}. Необхідно обрати надавача Вашого сертифіката':
+						'Your certificate is issued by another QTSP and is not served in {0}. You must select the QTSP of your certificate manually',
+					'Надавач не підтримує автоматичний пошук сертифіката за ос. ключем. Необхідно обрати надавача самостійно':
+						'The QTSP does not support the automatic search of the certificate by the private key. You must select the QTSP of your certificate manually',
+					'Надавач {0} не підтримує автоматичний пошук сертифіката за ос. ключем. Необхідно обрати сертифікат(и) ос. ключа':
+						'QTSP {0} does not support automatic certificate search by private key. Private key certificate(s) must be selected',
+					'Виникла помилка при формуванні нових сертифікатів особистого ключа':
+						'An error occurred while generating new private key certificates',
+					'Формування нового сертифіката можливе лише для користувачів {0}! Ваш сертифікат виданий іншим надавачем!':
+						'Creation of a new certificate is possible only for {0} users! Your certificate is issued by another QTSP!',
+					'Не обрано файл для підпису': 'A file for sign not selected',
+					"Не вказане ім'я файлу з підписом":
+						'A signature file name not specified',
+					'Обраний файл не містить даних. Оберіть інший файл':
+						'The selected file does not contain data. Please choose another file',
+					'Занадто великий розмір файлу. Оберіть файл меншого розміру або оберіть тип підпису "Дані та підпис окремими файлами (формат CAdES)"':
+						'The file size is too large. Choose a smaller file size or choose the signature type "Data and signature in separate files (CAdES detached format)"',
+					'Обраний формат підпису не підтримує одночасний підпис декількох файлів. Необхідно використовувати формат підпису ASiC-E':
+						'The selected signature format does not support multiple files signing. The ASiC-E signature format must be used',
+					'Виникла помилка при підписі файла':
+						'An error occurred while signing the file',
+					'Не вказано назву технічного пристрою':
+						'The name of the technical device is not specified',
+					'Назва технічного пристрою має невірний формат':
+						'The name of the technical device is in the wrong format',
+					'Не обрано файл із запитом ЕЦП':
+						'File with request for DS not selected',
+					'Не обрано файл із запитом протоколу розподілу ключів':
+						'File with request for key agreement not selected',
+					'Виникла помилка при формуванні технологічних сертифікатів пристрою':
+						'An error occurred while generating the technological certificates of the device',
+					'Використання удосконаленого сертифіката відкритого ключа не дозволено. Зверніться до надавача Вашого сертифіката ({0}) для отримання квалфікованого сертифіката відкритого ключа':
+						'Usage of enhanced public key certificate is not allowed. Please contact your certificate authority ({0}) to obtain a qualified certificate public key',
+					'Формування підпису в форматі PAdES можливо лише для файлів pdf. Оберіть інший файл або формат підпису':
+						'Signature creation in PAdES format is only possible for pdf files. Please choose another file or signature format',
+					'Формування підпису в форматі XAdES-enveloped можливо лише для файлів xml. Оберіть інший файл, формат або тип підпису':
+						'Signature creation in XAdES-enveloped format is only possible for xml files. Please choose another file, format or signature type',
+
+					'Виникла помилка при завантаженні даних':
+						'An error occurred while loading data',
+					'Виникла помилка в шаблоні при відображенні результату підпису':
+						'An error occurred in the template while displaying the signature result',
+					'Виникла помилка при збереженні файлу {0}':
+						'An error occurred while saving {0} file',
+
+					'Ви відмовилися надавати ідентифікаційні дані ос. ключа. Продовжити?':
+						'You refused to provide key credentials. Continue?',
+
+					'Файл(и) без підпису': 'File(s) without signature',
+					'Перевірені файли:': 'Verified files:',
+
+					Файл: 'File',
+					'Файл з підписом:': 'File with signature:',
+					'Файл без підпису:': 'File without signature:',
+					'Завантажити інший файл': 'Load another file',
+					Перевірити: 'Verify',
+					'👍 Файл успішно перевірено. Усі дані цілі':
+						'👍 File checked successfully. All data is intact',
+					'Ви можете зберегти підписаний файл.':
+						'You can save the signed file.',
+					'Завантажити все архівом': 'Download everything as an archive',
+					'Підпис створено та перевірено успішно. Цілісність даних підтверджено':
+						'Signature created and verified successfully. Data integrity confirmed',
+					'Файл з підписом': 'File with signature',
+					'Файл без підпису': 'File without signature',
+					'Протокол створення та перевірки кваліфікованого електронного підпису від ':
+						'Protocol of creating and verifying a qualified electronic signature from ',
+					'Електронна печатка': 'Electronic seal',
+					Відсутній: 'Missing',
+					Кваліфікований: 'Qualified',
+					Удосконалений: 'Advanced',
+					'Необхідно обрати 2(два) файли для перевірки зовнішнього підпису або 1(один) для перевірки внутрішнього підпису':
+						'It is necessary to select 2 (two) files to verify the external signature or 1 (one) to verify the internal signature',
+					'Перевірка підпису файлів': 'File signature verification',
+					'Перевірка кваліфікованого електронного підпису, який сформовано у вигляді окремого файлу з розширенням .p7s виконується за умов наявності файлу з даними, на які накладено кваліфікований електронний підпис. Ім`я такого файлу зазвичай ідентичне з іменем файлу файлу з розширенням .p7s. Оберіть цей файл разом з файлом кваліфікованого електронного підпису.':
+						'Verification of a qualified electronic signature, which is formed as a separate file with the extension .p7s, is performed under the condition of having a file with data on which a qualified electronic signature is applied. The name of such a file is usually identical to the file name of the file with the extension .p7s. Select this file together with the qualified electronic signature file.',
+					'Файл не містить підписів': 'The file does not contain signatures',
+					'Файл занадто великий': 'The file is too large',
+					Б: 'B',
+					КБ: 'KB',
+					МБ: 'MB',
+					ГБ: 'GB',
+					ТБ: 'TB',
+					'Файл {0} збережено до директорії "Завантаження"':
+						'The {0} file has been saved to the "Downloads" directory',
+					'Невідома помилка, спробуйте перезавантажити сторінку або скористайтеся іншим браузером':
+						'Unknown error, try reloading the page or use a different browser',
+					'Виникла помилка при перевірці файлів':
+						'An error occurred while verifying files',
+					Ініціалізація: 'Initialization',
+					'Не ініціалізовано': 'Not initialized',
+					'Збереження файлу': 'Saving file',
+					'Підпис та дані в архіві (ASiC-S)':
+						'Signature and data in the archive (ASiC-S)',
+					'Підпис та дані в архіві (розширений) (ASiC-E)':
+						'Signature and data in the archive (extended) (ASiC-E)',
+					'Підписаний PDF-файл (PAdES)': 'Signed PDF (PAdES)',
+					'Підпис та дані в одному файлі (CAdES enveloped)':
+						'Signature and data in one file (CAdES enveloped)',
+					'Підпис та дані в окремих файлах (CAdES detached)':
+						'Signature and data in separate files (CAdES detached)',
+					'Підпис та дані в одному файлі (XAdES enveloped)':
+						'Signature and data in one file (XAdES enveloped)',
+					'Підпис та дані в окремих файлах (XAdES detached)':
+						'Signature and data in separate files (XAdES detached)',
+					'Підпис та дані в одному файлі (XAdES enveloping)':
+						'Signature and data in one file (XAdES enveloping)',
+					'Базовий (CAdES-BES)': 'Basic (CAdES-BES)',
+					'З позначкою часу від ЕП (CAdES-T)':
+						'With time stamp from DS (CAdES-T)',
+					'З посиланнями на повні дані для перевірки (CAdES-C)':
+						'With references to complete data for verification (CAdES-C)',
+					'З повними даними для перевірки (CAdES-X Long)':
+						'With complete data for verification (CAdES-X Long)',
+					'З повними даними ЦСК для перевірки (CAdES-X Long)':
+						'With full CA data for verification (CAdES-X Long)',
+					'CAdES (Не визначено)': 'CAdES (Undefined)',
+					'Базовий (XAdES-B-B)': 'Basic (XAdES-B-B)',
+					'З позначкою часу від ЕП (XAdES-B-T)':
+						'With time stamp from DS (XAdES-B-T)',
+					'З повними даними для перевірки (XAdES-B-LT)':
+						'With complete data for verification (XAdES-B-LT)',
+					'З повними даними для архівного зберігання (XAdES-B-LTA)':
+						'With complete data for archival storage (XAdES-B-LTA)',
+					'XAdES (Не визначено)': 'XAdES (Undefined)',
+					'Базовий (PAdES-B-B)': 'Basic (PAdES-B-B)',
+					'З позначкою часу від ЕП (PAdES-B-T)':
+						'With time stamp from DS (PAdES-B-T)',
+					'З повними даними для перевірки (PAdES-B-LT)':
+						'With complete data for verification (PAdES-B-LT)',
+					'З повними даними для архівного зберігання (PAdES-B-LTA)':
+						'With complete data for archival storage (PAdES-B-LTA)',
+					'PAdES (Не визначено)': 'PAdES (Undefined)',
+					'ЗНКІ е.ключ ІІТ Кристал-1': 'QSCD e.key IIT Crystal-1',
+					'ЗНКІ е.ключ ІІТ Алмаз-1К': 'QSCD e.key IIT Almaz-1K',
+					'ЗНКІ смарт-карта чи е.ключ Автор 337':
+						'QSCD smart card or e.key Avtor 337',
+					'ЗНКІ смарт-карта чи е.ключ Автор 338':
+						'QSCD smart card or e.key Avtor 338',
+					'ЗНКІ смарт-карта чи е.ключ БІФІТ IToken':
+						'QSCD smart card or e.key BIFIT IToken',
+					'ЗНКІ е.ключ Авест AvestKey': 'QSCD e.key Avest AvestKey',
+					'ЗНКІ е.ключ Ефіт EfitKey': 'QSCD e.key Efit EfitKey',
+					'ЗНКІ смарт-карта Техноконс. TEllipse2/3':
+						'QSCD smart card Technocons. TEllipse2/3',
+					'ЗНКІ ID-карта громадянина (БЕН)': 'QSCD citizen ID-card (CEC)',
+					'ЗНКІ ID-карта громадянина (БЕН) 2': 'QSCD citizen ID-card (CEC) 2',
+					'ЗНКІ криптомод. ІІТ Гряда-61': 'QSCD crypto module IIT Gryada-61',
+					'ЗНКІ SIM-карта ID HUB (MobileID)': 'QSCD SIM-card ID HUB (MobileID)',
+					'ЗНКІ криптомодуль ІІТ Гряда-301':
+						'QSCD crypto module IIT Gryada-301',
+					'ЗНКІ криптомодуль Сайфер Шифр-HSM':
+						'QSCD crypto module Cipher Cipher-HSM',
+					"ЗНКІ шлюз захисту ІІТ Бар'єр-301":
+						'QSCD secure gateway IIT Baryer-301',
+					'ЗНКІ IP-шифратор Канал': 'QSCD IP-encryptor Channel',
+					'ЗНКІ SIM-карта Київстар (MobileID)':
+						'QSCD SIM-card Kyivstar (MobileID)',
+					'Онлайн сервіс створення та перевірки кваліфікованого та удосконаленого електронного підпису':
+						'Online service for creating and verifying a qualified and improved electronic signature',
+					ПРОТОКОЛ: 'PROTOCOL',
+					'створення та перевірки кваліфікованого та удосконаленого електронного підпису':
+						'creation and verification of a qualified and advanced electronic signature',
+					'Дата та час': 'Date and Time',
+					'Назва файлу з підписом': 'Filename with signature',
+					'Розмір файлу з підписом': 'File size with signature',
+					'Назва файлу без підпису': 'Filename without signature',
+					'Розмір файлу без підпису': 'File size without signature',
+					'Результат перевірки підпису': 'Signature verification result',
+					Підписувачі: 'Signers',
+					'П.І.Б.': 'Full name',
+					Країна: 'Country',
+					'Організація (установа)': 'Organization',
+					'Тип контейнера': 'Container type',
+					'Формат підпису': 'Signature format',
+					Сертифікат: 'Certificate',
+					'Шановний користувач!': 'Dear user!',
+					'Звертаємо Вашу увагу на те, що із набуттям чинності 07.11.2018 Закону України «Про електронну ідентифікацію та електронні довірчі послуги» та відповідно до частини четвертої статті 26 цього закону, використання кваліфікованої електронної позначки часу для постійного зберігання електронних даних є обов’язковим.':
+						'We draw your attention to the fact that with the entry into force of the Law of Ukraine "On Electronic Identification And Electronic Trust Services" on November 7, 2018 and in accordance with the fourth part of Article 26 of this law, the use of a qualified electronic time stamp for the permanent storage of electronic data is mandatory.',
+					'Просимо звернутися до свого суб’єкта надання послуг електронного підпису із вимогою про приведення програмно-технічного комплексу у відповідність до норм законодавства.':
+						'Please contact your provider of electronic signature services with a request to bring the software and technical complex into compliance with legislation.',
+					'Звертаємо Вашу увагу на те, що із набуттям чинності 07.11.2018 Закону України «Про електронну ідентифікацію та електронні довірчі послуги» та відповідно до частини 2 статті 17 цього закону, використання кваліфікованого сертифікату відкритого ключа є обов’язковим.':
+						'We draw your attention to the fact that with the entry into force of the Law of Ukraine "On Electronic Identification And Electronic Trust Services" on November 7, 2018 and in accordance with Part 2 of Article 17 of this law, the use of a qualified public key certificate is mandatory.',
+					'Просимо звернутися до свого суб’єкта надання електронних довірчих послуг для отримання кваліфікованого сертифікату відкритого ключа.':
+						'Please contact your electronic trust service provider for a qualified public key certificate.',
+
+					'Як це працює?': 'How does it work?',
+					'Що таке електронний підпис?': 'What is an electronic signature?',
+					'Електронний підпис є аналогом власноручного підпису та забезпечує достовірність і цілісність інформації, викладеної у документі, а також дає змогу підтвердити цілісність електронного документа та ідентифікувати особу, яка підписала документ.':
+						'An electronic signature is an analogue of a handwritten signature and ensures the authenticity and integrity of the information contained in the document, as well as allows you to confirm the integrity of the electronic document and identify the person who signed the document.',
+					'Що таке сертифікат?': 'What is a certificate?',
+					'Сертифікат є засобом підтвердження приналежності відкритого (публічного) ключа його власникові.':
+						'The certificate is a means of confirming the ownership of the open (public) key to its owner.',
+					'Сертифікат видається кваліфікованим надавачем електронних довірчих послуг та використовується для перевірки, що відкритий ключ належить саме тому власнику, чиї дані зазначено в ньому.':
+						'The certificate is issued by a qualified provider of electronic trust services and is used to verify that the public key belongs to the owner whose data is specified in it.',
+					'Файл сертифікату має розширення “.cer”, зазвичай зазначені файли можливо відкрити вбудованими засобами операційної системи.':
+						'The certificate file has the extension ".cer", usually these files can be opened by the built-in tools of the operating system.',
+					'Файл сертифікату містить ідентифікаційні дані, які однозначно визначають кваліфікованого надавача та користувача електронних довірчих послуг, строк дії сертифікату тощо.':
+						'The certificate file contains identification data that uniquely identify the qualified provider and user of electronic trust services, the validity period of the certificate, etc.',
+					'Що таке файловий носій?': 'What is a file key?',
+					'Файловий носій – це спеціальний файл, який містить ваш особистий ключ.':
+						'A file key is a special file that contains your private key.',
+					'Зазвичай цей файл має назву Key-6 з розширенням *.dat (зустрічаються також розширення *.pfx, *.pk8, *.zs2, *.jks).':
+						'This file is usually named Key-6 with the extension *.dat (extensions *.pfx, *.pk8, *.zs2, *.jks are also found).',
+					'Для того, щоб скористатись файловим носієм, вам необхідно:':
+						'In order to use the file key, you need to:',
+					'1. Обрати зі списку свого надавача електронних довірчих послуг – суб’єкта, до якого ви зверталися для отримання електронного підпису.':
+						'1. Choose from the list of your provider of electronic trust services - the entity to which you applied for obtaining an electronic signature.',
+					'2. Завантажити із зовнішнього носія чи власного комп’ютера файл з вашим особистим ключем.':
+						'2. Download the file with your private key from an external medium or your own computer.',
+					'3. Вказати пароль доступу до особистого ключа у відповідному полі.':
+						'3. Specify the access password to the private key in the corresponding field.',
+					'Що таке токен?': 'What is a token?',
+					'Токен - це спеціальний апаратно-програмний пристрій, який захищає особисті ключі від копіювання чи зміни зловмисниками. Токен може мати форму USB-пристрою або у формі смарт-картки (картки з чипом). Прикладами токенів є пристрої Алмаз-1К, Кристал-1 тощо.':
+						'A token is a special hardware and software device that protects private keys from being copied or changed by attackers. The token can be in the form of a USB device or in the form of a smart card (card with a chip). Examples of tokens are devices Almaz-1K, Crystal-1, etc.',
+					'Для того, щоб скористатись токеном, вам необхідно:':
+						'In order to use the token, you need to:',
+					'1. Підключити ваш токен через USB-порт (якщо у вас токен у формі USB-пристрою) або скористатися спеціальним зчитувачем інформації (якщо у вас токен у формі смарт-картки).':
+						'1. Connect your token via a USB port (if you have a token in the form of a USB device) or use a special information reader (if you have a token in the form of a smart card).',
+					'2. Обрати зі списку свого надавача електронних довірчих послуг – суб’єкта, до якого ви зверталися для отримання електронного підпису.':
+						'2. Choose from the list of your provider of electronic trust services - the entity to which you applied to obtain an electronic signature.',
+					'3. Зі списку токенів обрати тип пристрою, який ви хочете використати.':
+						'3. Select the type of device you want to use from the list of tokens.',
+					'4. Вказати пароль доступу до особистого ключа у відповідному полі.':
+						'4. Specify the access password to the private key in the corresponding field.',
+					'Як працює хмарний підпис?': 'How does cloud signature work?',
+					'Якщо ваш особистий ключ зберігається за допомогою стороннього сервісу (зберігання у захищеному хмарному сховищі), то для зчитування ключа необхідно обрати свого надавача зі списку та пройти авторизацію у його системі.':
+						'If your private key is stored using a third-party service (storage in a secure cloud storage), then in order to read the key, you must select your provider from the list and go through authorization in their system.',
+					'Як працює Дія.Підпис?': 'How does Diia.Signature work?',
+					'Дія.Підпис – кваліфікований електронний підпис, який можна отримати віддалено за допомогою мобільного застосунку Дія.':
+						'Diia.Signature is a qualified electronic signature that can be obtained remotely using the Diia mobile application.',
+					'Для цього потрібні 1 хвилина та один з документів у Дії: ID-картка, біометричний закордонний паспорт, закордонний паспорт, виданий після 2015 року або посвідка на тимчасове чи постійне місце проживання.':
+						'It takes 1 minute and one of the documents in Diia: ID card, biometric international passport, international passport issued after 2015 or temporary or permanent residence permit.',
+					'Щоб активувати Дія.Підпис, потрібно: 1. зайти у застосунк Дія, обрати Меню; 2. натиснути Дія.Підпис та Активувати Дія.Підпис; 3. пройти перевірку за фото — Дія порівнює ваше зображення із зображенням на ваших документах; 4. придумати 5-значний ПІН-код для вашого Дія.Підпису.':
+						'To activate Diia.Signature, you need to: 1. go to the Diia application, select Menu; 2. click Diia.Signature and Activate Diia.Signature; 3. pass a photo check — the action compares your image with the image on your documents; 4. come up with a 5-digit PIN code for your Diia.Signature.',
+					'Щоб автентифікуватись чи підписати документ на сайті за допомогою Дія.Підпису, вам необхідно: 1. Обрати розділ «Дія.Підпис». 2. Відсканувати QR-код. 3. Зчитати особистий ключ шляхом сканування обличчя (перевірки за фото) та вводу паролю до особистого ключа. 4. У разі успішної автентифікації у мобільному застосунку Дія, система передає ваші персональні дані, що дозволить вас ідентифікувати.':
+						'To authenticate or sign a document on the site using Diia.Signature, you need to: 1. Select the "Diia.Signature" section. 2. Scan the QR code. 3. Read the private key by scanning the face (photo verification) and entering the password to the private key. 4. In case of successful authentication in the Diia mobile application, the system transmits your private data, which will allow you to be identified.',
+					'Що таке Дія.Підпис UA та EU?': 'What is Diia.Signature UA and EU?',
+					'Дія.Підпис-UA — це електронний підпис, який відповідає українському стандарту ДСТУ. Його ви можете використовувати для підписання документів, оформлення послуг у застосунку та на порталі Дія, а також авторизації в застосунках і на сайтах партнерів Дії.':
+						'Diia.Signature-UA is an electronic signature that meets the Ukrainian standard of DSTU. You can use it to sign documents, order services in the Diia application and portal, as well as to authorize in Diia partner applications and sites.',
+					'Дія.Підпис-EU  — це електронний підпис, який відповідає регламенту eIDAS Європейського Союзу і є удосконаленим електронним підписом у країнах ЄС. Партнери з країн ЄС зможуть перевірити його на ':
+						'Diia.Signature-EU is an electronic signature that complies with the eIDAS regulation of the European Union and is an advanced electronic signature in EU countries. Partners from EU countries will be able to check it on ',
+					платформі: 'platform',
+					' й впевнитись, що документ підписаний саме вами. Долучитися до бета-тесту можуть усі користувачі, які уже мають або активують Дія.Підпис. Для цього оновіть застосунок Дія до останньої версії. Документ з накладеним Дія.Підпис-EU матиме юридичну силу й після завершення бета-тесту.':
+						' and make sure that the document is signed by you. All users who already have or activate Diia.Signature can join the beta test. To do this, update the Diia app to the latest version. The document with the superimposed Diia.Signature-EU will have legal force even after the beta test is completed.',
+					'Що нового?': 'What`s new?',
+					'Підтримка формату ASiC': 'ASiC format support',
+					'Забезпечено підтримку європейського формату ASiC.':
+						'Support for the European ASiC format is provided.',
+					"ASiC — структурований контейнер, що дозволяє зберігати набір файлових об'єктів з пов'язаними е-підписами та/або е-позначками часу, що відповідає специфікації ZIP.":
+						'ASiC is a structured container that allows you to store a set of file objects with associated e-signatures and/or e-timestamps that conform to the ZIP specification.',
+					'Що таке ASiC-E?': 'What is ASiC-E?',
+					"ASiC-E дозволяє зберігати один або кілька файлових об'єктів з пов'язаними е-підписами та в подальшому додавати файлові об'єкти, файли е-підпису та е-позначки часу.":
+						'ASiC-E allows you to store one or more file objects with associated e-signatures and subsequently add file objects, e-signature files and e-timestamps.',
+					'Що таке ASiC-S?': 'What is ASiC-S?',
+					"ASiC-S дозволяє зберігати один файловий об'єкт з пов'язаним е-підписом та в подальшому додавати нові. Також дає можливість додавати файли для захисту е-позначок часу.":
+						'ASiC-S allows you to save one file object with an associated e-signature and add new ones later. Also allows you to add files to protect e-timestamps.',
+					'Формати підписів?': 'Signature formats?',
+					'Що таке XAdES?': 'What is XAdES?',
+					'XAdES — уніфікований е-підпис, що дозволяє підписувани е-дані будь-якого формату. Також зберігає е-підпис у форматі XML, окремо від е-даних або разом з ними. Підтримує паралельне та послідовне підписання одного або кількох е-документів.':
+						'XAdES is a unified e-signature that allows e-data of any format to be signed. Also stores e-signature in XML format, separately from or together with e-data. Supports parallel and sequential signing of one or more e-documents.',
+					'Що таке PAdES?': 'What is PAdES?',
+					'PAdES — уніфікований е-підпис, що дозволяє підписувати е-дані у форматі PDF завдяки програму забезпеченню для PDF-файлів. Не підтримує паралельне підписання е-даних.':
+						'PAdES is a unified e-signature that allows you to sign e-data in PDF format thanks to the security program for PDF files. Does not support parallel signing of e-data.',
+					'Що таке СAdES?': 'What is CAdES?',
+					'CAdES — уніфікований е-підпис, що дозволяє підписувати е-дані будь-якого формату, а також зберігати е-дані та е-підпис окремими файлами. Для подальшої перевірки е-підпису CAdES знадобляться два файли: оригінальний (без підпису) та підписаний.':
+						'CAdES is a unified e-signature that allows you to sign e-data in any format, as well as save e-data and e-signature in separate files. For further verification of CAdES e-signature, two files will be needed: original (without signature) and signed.',
+					'Який формат обрати': 'What format to choose',
+					'Дія.Підпис – послуга електронної ідентифікації для користувачів, які отримували особистий ключ віддалено за допомогою мобільного застосунку Дія.':
+						'Diia.Signature is an electronic identification service for users who received a private key remotely using the Diia mobile application.',
+					'Дія.Підпис містить дві частини. Одна частина зберігається у вашому смартфоні, а інша — в спеціальному захищеному модулі порталу Дія.':
+						'Diia.Signature contains two parts. One part is stored in your smartphone, and the other part is stored in a special secure module of the Diia portal.',
+					'Отримати особистий ключ віддалено за допомогою мобільного застосунку Дія мають можливість громадяни України, які є власниками ID-картки або біометричного закордонного паспорта.':
+						'Citizens of Ukraine who are holders of an ID card or a biometric international passport can receive a private key remotely using the Diia mobile application.',
+					'Щоб авторизуватися на сайті за допомогою Дія.Підпис, вам необхідно:':
+						'To log in to the site using Diia.Signature, you need:',
+					'1. Обрати розділ «Дія.Підпис».':
+						'1. Select the "Diia.Signature" section.',
+					'2. Відсканувати QR-код.': '2. Scan the QR code.',
+					'3. Зчитати особистий ключ шляхом сканування обличчя (перевірки за фото) та вводу паролю до особистого ключа.':
+						'3. Read the private key by scanning the face (photo verification) and entering the password to the private key.',
+					'4. У разі успішної автентифікації у мобільному застосунку Дія, система передає ваші персональні дані, що дозволить вас ідентифікувати.':
+						'4. In case of successful authentication in the Diia mobile application, the system transmits your personal data, which will allow you to be identified.',
+					'Що таке ASiC?': 'What is ASiC?',
+				},
+			}
+			var LIBRARY_HOST_LOCALIZATION = null
+			var LIBRARY_VERSION = '2025.03.17 13:00'
+			var STATISTICS_URL = ''
+
+			var scripts = [
+				'js/lib/Blob.min.js',
+				'js/lib/FileSaver.js',
+				'js/lib/jquery.js',
+				'js/lib/jquery.blockUI.js',
+				'js/lib/jspdf.min.js',
+				'js/lib/jszip.min.js',
+				'js/app.js',
+			]
+
+			scripts.forEach(function (src) {
+				var script = document.createElement('script')
+				script.src = src
+				script.async = false
+				document.head.appendChild(script)
+			})
+		</script>
+	</head>
+	<body>
+		<noscript>
+			<style>
+				#mainBlock {
+					display: none;
+				}
+			</style>
+			<div class="ErrorBlock">
+				<h1 class="i18n">Для роботи JavaScript має бути ввімкненим!</h1>
+			</div>
+		</noscript>
+
+		<div id="mainBlock" class="Block" style="overflow: hidden">
+			<div id="leftBlock" class="Block" style="overflow: hidden">
+				<div id="dimmerViewBlock" class="DimmerViewMainBlock">
+					<div class="DimmerViewImageBlock">
+						<div class="DimmerViewImage"></div>
+						<div class="DimmerViewAnimationMainBlock">
+							<div class="DimmerViewAnimationBlock">
+								<div class="DimmerViewAnimationBlock2"></div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<label id="dimmerViewMessageLabel" class="i18n">Loading</label>
+					</div>
+					<div id="dimmerViewQRCodeBlock" style="text-align: center"></div>
+					<div id="dimmerViewTimerBlock" class="Block" style="display: none">
+						<label
+							id="dimmerViewTimerLabel"
+							style="line-height: normal"
+						></label>
+					</div>
+				</div>
+
+				<div id="stepBlock" class="Block" style="display: none">
+					<span style="display: inline-block">
+						<span id="stepLabel" style="opacity: 0.5" class="i18n"
+							>Крок {0} з {1}</span
+						>
+						<div class="Separator"></div>
+					</span>
+				</div>
+
+				<div id="titleBlock" class="Block">
+					<div id="titleLabelBlock" class="Block">
+						<h1 id="titleLabel" class="i18n">Зчитайте ключ</h1>
+					</div>
+					<div id="subTitleLabelBlock" class="Block" style="display: none">
+						<h2 id="subTitleLabel" class="i18n">
+							Оберіть тип особистого ключа, особистий ключ та натисніть
+							"Зчитати"
+						</h2>
+					</div>
+				</div>
+
+				<div id="pkTypesBlock" class="Block" style="display: none">
+					<div class="WrapFlexBlock" style="overflow: hidden">
+						<button
+							class="TabButton"
+							id="pkTypeFileTabButton"
+							value="1"
+							selected
+						>
+							<span class="i18n">Файловий</span>
+						</button>
+						<button class="TabButton" id="pkTypeKMTabButton" value="2">
+							<span class="i18n">Токен</span>
+						</button>
+						<button class="TabButton" id="pkTypeKSPTabButton" value="4">
+							<span class="i18n">Хмарний</span>
+						</button>
+					</div>
+				</div>
+
+				<div id="helpContainerBlock">
+					<div
+						id="helpBlock"
+						class="HelpBlock ColoredBorderBlock"
+						style="display: none"
+					>
+						<div id="helpTitleBlock" class="HelpTitleBlock">
+							<span id="helpTitleLabel" class="i18n">Як це працює</span>
+							<div id="helpTitleArrow" class="Arrow" direction="down"></div>
+						</div>
+						<div id="helpTextBlock" class="HelpTextBlock" style="display: none">
+							<span id="helpLabel"></span>
+						</div>
+					</div>
+				</div>
+
+				<div id="pkTypesPreSelectBlock" class="Block" style="display: none">
+					<div class="MenuItem" id="pkTypeBaseMenuItem">
+						<span class="i18n">Електронного підпису</span>
+						<div class="MenuItemIcon"></div>
+					</div>
+				</div>
+
+				<div id="statusBlock" class="Block" style="display: none">
+					<label id="statusLabel"></label>
+				</div>
+				<div id="installBlock" class="Block" style="display: none">
+					<div>
+						<label id="installLabel"></label>
+					</div>
+					<div>
+						<a id="installURL" target="_blank"></a>
+					</div>
+					<div>
+						<a id="installHelpURL" target="_blank"></a>
+					</div>
+					<div class="ButtonBlock">
+						<div id="updatePageButton" class="Button ButtonBlack">
+							<a
+								href="javascript:void(0);"
+								title="Оновити сторінку"
+								onclick="location.href = location.href;"
+							>
+								<span class="i18n">Оновити сторінку</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div id="proxySettingsBlock" class="Block" style="display: none">
+					<div>
+						<input
+							id="proxyUseCheckbox"
+							class="Checkbox"
+							type="checkbox"
+						/><span class="i18n">Підключатися через proxy-сервер</span>
+					</div>
+					<div id="proxyUseBlock" class="Block">
+						<br />
+						<div class="FlexBlock">
+							<div
+								id="proxyAddressBlock"
+								class="Block FormControl FormTextInput"
+							>
+								<label
+									class="InputLabel i18n"
+									id="proxyAddressLabel"
+									for="proxyAddressTextField"
+									>Адреса серверу</label
+								>
+								<div class="InputBase Input">
+									<input
+										id="proxyAddressTextField"
+										class="TextField"
+										type="text"
+									/>:
+								</div>
+								<p
+									class="FormHelperText error i18n"
+									id="proxyAddressErrorLabel"
+									style="display: none"
+								>
+									Введіть DNS-ім`я чи ip-адресу proxy-сервера
+								</p>
+							</div>
+
+							<div id="proxyPortBlock" class="Block FormControl FormTextInput">
+								<label
+									class="InputLabel i18n"
+									id="proxyPortLabel"
+									for="proxyPortTextField"
+									>Порт</label
+								>
+								<div class="InputBase Input">
+									<input
+										id="proxyPortTextField"
+										class="TextField"
+										type="text"
+										maxlength="5"
+									/>
+								</div>
+								<p
+									class="FormHelperText error i18n"
+									id="proxyPortErrorLabel"
+									style="display: none"
+								>
+									Введіть номер порту proxy-сервера
+								</p>
+							</div>
+						</div>
+						<br />
+						<br />
+						<div>
+							<input
+								id="proxyAuthCheckbox"
+								class="Checkbox"
+								type="checkbox"
+							/><span class="i18n">Автентифікуватися на proxy-сервері</span>
+						</div>
+						<div id="proxyAuthBlock" class="Block">
+							<div id="proxyUserBlock" class="Block FormControl FormTextInput">
+								<label
+									class="InputLabel i18n"
+									id="proxyUserLabel"
+									for="proxyUserTextField"
+									>Ім'я користувача</label
+								>
+								<div class="InputBase Input">
+									<input
+										id="proxyUserTextField"
+										class="TextField"
+										type="text"
+									/>
+								</div>
+								<p
+									class="FormHelperText error i18n"
+									id="proxyUserErrorLabel"
+									style="display: none"
+								>
+									Введіть ім'я користувача
+								</p>
+							</div>
+
+							<div
+								id="proxyPasswordBlock"
+								class="Block FormControl FormTextInput"
+							>
+								<label
+									class="InputLabel i18n"
+									id="proxyPasswordLabel"
+									for="proxyPasswordTextField"
+									>Пароль</label
+								>
+								<div class="InputBase Input">
+									<input
+										id="proxyPasswordTextField"
+										class="TextField"
+										type="password"
+									/>
+								</div>
+								<p
+									class="FormHelperText error i18n"
+									id="proxyPasswordErrorLabel"
+									style="display: none"
+								>
+									Введіть пароль користувача
+								</p>
+							</div>
+						</div>
+					</div>
+					<div id="proxySaveBlock" class="ButtonBlock FlexBlock">
+						<div id="proxyCancelButton" class="Button FlexBlockItem i18n">
+							Відміна
+						</div>
+						<div
+							id="proxySaveButton"
+							class="Button ButtonBlack FlexBlockItem i18n"
+						>
+							Зберегти
+						</div>
+					</div>
+				</div>
+				<div id="pkBlock" class="Block" style="display: none">
+					<div id="proxyButtonBlock" class="Block" style="display: none">
+						<div id="proxyButton" class="Block">
+							<div class="ProxySettingsIcon" style="float: left"></div>
+							<label class="i18n">Налаштувати proxy-сервер</label>
+						</div>
+					</div>
+
+					<div id="pkCABloсk" class="FormControl">
+						<label
+							id="pkCATitleLabel"
+							class="InputLabel InputLabel-shrink i18n"
+							for="pkCASelect"
+							>Кваліфікований надавач електронних довірчих послуг</label
+						>
+						<div class="InputBase Input">
+							<div class="InputBase-input">
+								<select id="pkCASelect"></select>
+								<div
+									class="Arrow"
+									direction="down"
+									style="top: 1em; position: absolute; right: 0px"
+								></div>
+							</div>
+						</div>
+						<p
+							id="pkCAErrorLabel"
+							class="FormHelperText i18n"
+							style="display: none"
+						>
+							Нажаль, ми не змогли автоматично визначити центр сертифікацї
+							вашого ключа
+						</p>
+					</div>
+
+					<div id="pkReadFileBlock" class="Block" style="display: none">
+						<div
+							id="pkReadFileSelectFileBlock"
+							class="Block FormControl FormTextInput"
+						>
+							<div class="Block">
+								<br />
+								<input
+									id="pkReadFileInput"
+									type="file"
+									accept=".dat,.pfx,.pk8,.zs2,.jks"
+									style="display: none"
+								/>
+								<div
+									class="FileDropZone CenterBaseBlock"
+									id="pkReadFileSelectFileDropZone"
+								>
+									<div class="FileDropZoneMessage CenterNodeBlock">
+										<div class="Block" id="pkReadFileSelectFileCenterBlock">
+											<label class="i18n">Перетягніть сюди файл ключа</label>
+											<br />
+											<label class="i18n">або </label
+											><span class="LabelButton TextUnderline i18n"
+												>завантажте його зі свого носія</span
+											>
+											<br />
+											<label
+												id="pkReadFileSelectFileFileTypeLabel"
+												class="TextSmall TextLight i18n"
+												>(зазвичай його назва "Key-6.dat" або *.pfx, *.pk8,
+												*.zs2, *.jks)</label
+											>
+										</div>
+										<div
+											class="Block"
+											id="pkReadFileSelectFileSelectedCenterBlock"
+										>
+											<label id="pkReadFileSelectFileTextField"
+												>Key-6.dat</label
+											>
+											<br />
+											<label
+												class="LabelButton TextUnderline TextSmall i18n"
+												id="pkReadFileSelectFileChangeButton"
+												>Змінити</label
+											>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<p
+								class="FormHelperText error i18n"
+								id="pkReadFileErrorLabel"
+								style="display: none"
+							>
+								Оберіть файл з особистим ключем
+							</p>
+						</div>
+
+						<div id="pkReadFileSelectAliasBlock" class="FormControl">
+							<label
+								class="InputLabel InputLabel-shrink i18n"
+								for="pkReadFileAliasSelect"
+								>Ім'я ключа</label
+							>
+							<div class="InputBase Input">
+								<div class="InputBase-input">
+									<select id="pkReadFileAliasSelect"></select>
+									<div
+										class="Arrow"
+										direction="down"
+										style="top: 1em; position: absolute; right: 0px"
+									></div>
+								</div>
+							</div>
+							<p
+								id="pkReadFileAliasErrorLabel"
+								class="FormHelperText"
+								style="display: none"
+							></p>
+						</div>
+
+						<div
+							id="pkReadFilePasswordBlock"
+							class="Block FormControl FormTextInput"
+						>
+							<label
+								class="InputLabel i18n"
+								id="pkReadFilePasswordLabel"
+								for="pkReadFilePasswordTextField"
+								>Пароль захисту ключа</label
+							>
+							<div class="InputBase Input">
+								<input
+									id="pkReadFilePasswordTextField"
+									class="TextField"
+									type="password"
+									value=""
+									disabled
+								/>
+							</div>
+							<p
+								class="FormHelperText error i18n"
+								id="pkReadFilePasswordErrorLabel"
+								style="display: none"
+							>
+								Введіть пароль від особистого ключа
+							</p>
+						</div>
+
+						<div
+							id="pkReadFileCertsBlock"
+							class="Block FormControl FormTextInput"
+							style="display: none"
+						>
+							<div class="Block">
+								<br />
+								<input
+									id="pkReadFileCertsInput"
+									type="file"
+									multiple="true"
+									accept=".cer,.crt"
+									style="display: none"
+								/>
+								<div
+									class="FileDropZone CenterBaseBlock"
+									id="pkReadFileSelectCertsDropZone"
+								>
+									<div class="FileDropZoneMessage CenterNodeBlock">
+										<div class="Block" id="pkReadFileSelectCertsCenterBlock">
+											<label class="i18n"
+												>Перетягніть сюди файл з сертифікатами</label
+											>
+											<br />
+											<label class="i18n">або </label
+											><span class="LabelButton TextUnderline i18n"
+												>завантажте його зі свого носія</span
+											>
+											<br />
+											<label
+												id="pkReadFileSelectCertsFileTypeLabel"
+												class="TextSmall TextLight i18n"
+												>(зазвичай *.cer або *.crt)</label
+											>
+										</div>
+										<div
+											class="Block"
+											id="pkReadFileSelectCertsSelectedCenterBlock"
+										>
+											<label class="i18n">Файл(и) з сертифікатами:</label>
+											<div style="text-align: left">
+												<ul id="pkReadFileSelectCertsSelectedList">
+													<li>Файл 1</li>
+												</ul>
+											</div>
+											<label
+												class="LabelButton TextUnderline TextSmall i18n"
+												id="pkReadFileSelectCertsChangeButton"
+												>Змінити</label
+											>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<p
+								class="FormHelperText error i18n"
+								id="pkReadFileSelectCertsErrorLabel"
+								style="display: none"
+							>
+								Оберіть файл з сертифікатами
+							</p>
+						</div>
+
+						<div id="pkReadFileButtonBlock" class="ButtonBlock FlexBlock">
+							<div id="pkReadFileBackButton" class="Button FlexBlockItem i18n">
+								Назад
+							</div>
+							<div
+								id="pkReadFileButton"
+								class="Button ButtonBlack FlexBlockItem i18n"
+								disabled
+							>
+								Далі
+							</div>
+						</div>
+					</div>
+
+					<div id="pkReadKMBlock" class="Block" style="display: none">
+						<div id="pkReadKMSelectBlock" class="FormControl">
+							<label
+								id="pkReadKMTitleLabel"
+								class="InputLabel InputLabel-shrink i18n"
+								for="pkReadFileAliasSelect"
+								>Носій особистого ключа</label
+							>
+							<div class="InputBase Input">
+								<div class="InputBase-input">
+									<select id="pkReadKMSelect"></select>
+									<div
+										class="Arrow"
+										direction="down"
+										style="top: 1em; position: absolute; right: 0px"
+									></div>
+								</div>
+							</div>
+							<p
+								id="pkReadKMErrorLabel"
+								class="FormHelperText"
+								style="display: none"
+							></p>
+						</div>
+
+						<div id="pkReadKMUserBlock" class="Block FormControl FormTextInput">
+							<label
+								class="InputLabel i18n"
+								id="pkReadKMUserTitleLabel"
+								for="pkReadKMUserTextField"
+								>Ім'я користувача</label
+							>
+							<div class="InputBase Input">
+								<input id="pkReadKMUserTextField" class="TextField" disabled />
+							</div>
+							<p
+								class="FormHelperText error i18n"
+								id="pkReadKMUserErrorLabel"
+								style="display: none"
+							>
+								Введіть ім'я користувача
+							</p>
+						</div>
+
+						<div
+							id="pkReadKMPasswordBlock"
+							class="Block FormControl FormTextInput"
+						>
+							<label
+								class="InputLabel i18n"
+								id="pkReadKMPasswordTitleLabel"
+								for="pkReadKMPasswordTextField"
+								>Пароль захисту ключа</label
+							>
+							<div class="InputBase Input">
+								<input
+									id="pkReadKMPasswordTextField"
+									class="TextField"
+									type="password"
+									disabled
+								/>
+							</div>
+							<p
+								class="FormHelperText error i18n"
+								id="pkReadKMPasswordErrorLabel"
+								style="display: none"
+							>
+								Введіть пароль захисту ключа
+							</p>
+						</div>
+
+						<div
+							id="pkReadKMCertsBlock"
+							class="Block FormControl FormTextInput"
+							style="display: none"
+						>
+							<div class="Block">
+								<br />
+								<input
+									id="pkReadKMCertsInput"
+									type="file"
+									multiple="true"
+									accept=".cer,.crt"
+									style="display: none"
+								/>
+								<div
+									class="FileDropZone CenterBaseBlock"
+									id="pkReadKMSelectCertsDropZone"
+								>
+									<div class="FileDropZoneMessage CenterNodeBlock">
+										<div class="Block" id="pkReadKMSelectCertsCenterBlock">
+											<label class="i18n"
+												>Перетягніть сюди файл з сертифікатами</label
+											>
+											<br />
+											<label class="i18n">або </label
+											><span class="LabelButton TextUnderline i18n"
+												>завантажте його зі свого носія</span
+											>
+											<br />
+											<label
+												id="pkReadKMSelectCertsFileTypeLabel"
+												class="TextSmall TextLight i18n"
+												>(зазвичай *.cer або *.crt)</label
+											>
+										</div>
+										<div
+											class="Block"
+											id="pkReadKMSelectCertsSelectedCenterBlock"
+										>
+											<label class="i18n">Файл(и) з сертифікатами:</label>
+											<div style="text-align: left">
+												<ul id="pkReadKMSelectCertsSelectedList">
+													<li>Файл 1</li>
+												</ul>
+											</div>
+											<label
+												class="LabelButton TextUnderline TextSmall i18n"
+												id="pkReadKMSelectCertsChangeButton"
+												>Змінити</label
+											>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<p
+								class="FormHelperText error i18n"
+								id="pkReadKMSelectCertsErrorLabel"
+								style="display: none"
+							>
+								Оберіть файл з сертифікатами
+							</p>
+						</div>
+
+						<div id="pkReadKMButtonBlock" class="ButtonBlock FlexBlock">
+							<div id="pkReadKMBackButton" class="Button FlexBlockItem i18n">
+								Назад
+							</div>
+							<div
+								id="pkReadKMButton"
+								class="Button ButtonBlack FlexBlockItem i18n"
+								disabled
+							>
+								Далі
+							</div>
+						</div>
+					</div>
+
+					<div id="pkReadKSPBlock" class="Block" style="display: none">
+						<div id="pkReadKSPSelectBlock" class="FormControl">
+							<label
+								id="pkReadKSPTitleLabel"
+								class="InputLabel InputLabel-shrink i18n"
+								for="pkReadKSPSelect"
+								>Тип сервісу підпису</label
+							>
+							<div class="InputBase Input">
+								<div class="InputBase-input">
+									<select id="pkReadKSPSelect"></select>
+									<div
+										class="Arrow"
+										direction="down"
+										style="top: 1em; position: absolute; right: 0px"
+									></div>
+								</div>
+							</div>
+							<p
+								id="pkReadKSPSelectErrorLabel"
+								class="FormHelperText"
+								style="display: none"
+							></p>
+						</div>
+
+						<div
+							id="pkReadKSPUserIdBlock"
+							class="Block FormControl FormTextInput"
+						>
+							<label
+								class="InputLabel i18n"
+								id="pkReadKSPUserIdTitleLabel"
+								for="pkReadKSPUserIdTextField"
+								>Ідентифікатор користувача</label
+							>
+							<div class="InputBase Input">
+								<input
+									id="pkReadKSPUserIdTextField"
+									class="TextField"
+									type="text"
+									disabled
+								/>
+							</div>
+							<p
+								class="FormHelperText error i18n"
+								id="pkReadKSPUserIdErrorLabel"
+								style="display: none"
+							>
+								Введіть ідентифікатор користувача
+							</p>
+						</div>
+
+						<div id="pkReadKSPButtonBlock" class="ButtonBlock FlexBlock">
+							<div id="pkReadKSPBackButton" class="Button FlexBlockItem i18n">
+								Назад
+							</div>
+							<div
+								id="pkReadKSPButton"
+								class="Button ButtonBlack FlexBlockItem i18n"
+								disabled
+							>
+								Далі
+							</div>
+						</div>
+					</div>
+
+					<div id="pkReadDIIABlock" class="Block" style="display: none">
+						<div id="pkReadDIIAQRCodeBlock" style="text-align: center"></div>
+
+						<div id="pkReadDIIAButtonBlock" class="ButtonBlock FlexBlock">
+							<div id="pkReadDIIABackButton" class="Button FlexBlockItem i18n">
+								Назад
+							</div>
+						</div>
+					</div>
+					<!-- !!!! -->
+					<div id="pkWriteFileBlock" class="Block" style="display: none">
+						<div id="pkWriteFileSelectFileBlock" class="Block">
+							<label class="i18n">Ім`я файла з особистим ключем</label>
+							<br />
+							<input
+								id="pkWriteFileTextField"
+								class="TextField"
+								type="text"
+								value="Key-6.dat"
+							/>
+						</div>
+						<div id="pkWriteFilePasswordBlock" class="Block">
+							<label class="i18n">Пароль захисту ключа</label>
+							<br />
+							<input
+								id="pkWriteFilePasswordTextField"
+								class="TextField"
+								type="password"
+								disabled
+							/>
+						</div>
+						<div id="pkWriteFilePasswordConfirmBlock" class="Block">
+							<label class="i18n">Підтвердження пароля захисту ключа</label>
+							<br />
+							<input
+								id="pkWriteFilePasswordConfirmTextField"
+								class="TextField"
+								type="password"
+								disabled
+							/>
+						</div>
+						<div id="pkWriteFileButtonBlock" class="ButtonBlock FlexBlock">
+							<div id="pkWriteFileBackButton" class="Button FlexBlockItem i18n">
+								Назад
+							</div>
+							<div
+								id="pkWriteFileButton"
+								class="Button ButtonBlack FlexBlockItem i18n"
+								disabled
+							>
+								Далі
+							</div>
+						</div>
+					</div>
+
+					<div id="pkWriteKMBlock" class="Block" style="display: none">
+						<div id="pkWriteKMSelectBlock" class="FormControl">
+							<label
+								id="pkWriteKMTitleLabel"
+								class="InputLabel InputLabel-shrink i18n"
+								for="pkWriteKMSelect"
+								>Носій особистого ключа</label
+							>
+							<div class="InputBase Input">
+								<div class="InputBase-input">
+									<select id="pkWriteKMSelect"></select>
+									<div
+										class="Arrow"
+										direction="down"
+										style="top: 1em; position: absolute; right: 0px"
+									></div>
+								</div>
+							</div>
+							<p
+								id="pkWriteKMErrorLabel"
+								class="FormHelperText"
+								style="display: none"
+							></p>
+						</div>
+
+						<div id="pkWriteKMUserBlock" class="Block" style="display: none">
+							<label id="pkWriteKMUserTitleLabel" class="i18n"
+								>Ім'я користувача</label
+							>
+							<br />
+							<input id="pkWriteKMUserTextField" class="TextField" disabled />
+						</div>
+						<div id="pkWriteKMPasswordBlock" class="Block">
+							<label class="i18n">Пароль захисту ключа</label>
+							<br />
+							<input
+								id="pkWriteKMPasswordTextField"
+								class="TextField"
+								type="password"
+								disabled
+							/>
+						</div>
+						<div id="pkWriteKMPasswordConfirmBlock" class="Block">
+							<label class="i18n">Підтвердження пароля захисту ключа</label>
+							<br />
+							<input
+								id="pkWriteKMPasswordConfirmTextField"
+								class="TextField"
+								type="password"
+								disabled
+							/>
+						</div>
+						<div id="pkWriteKMButtonBlock" class="ButtonBlock FlexBlock">
+							<div id="pkWriteKMBackButton" class="Button FlexBlockItem i18n">
+								Назад
+							</div>
+							<div
+								id="pkWriteKMButton"
+								class="Button ButtonBlack FlexBlockItem i18n"
+								disabled
+							>
+								Далі
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- !!!! -->
+				<div id="pkInfoBlock" class="Block" style="display: none">
+					<div class="Block InfoBlock">
+						<h6 id="pkInfoSubjCN"></h6>
+						<br />
+						<div class="Block">
+							<h5 class="i18n">Організація</h5>
+							<label id="pkInfoSubjOrg"></label>
+						</div>
+						<div class="Block">
+							<h5 class="i18n">Підрозділ</h5>
+							<label id="pkInfoSubjOrgUnit"></label>
+						</div>
+						<div class="Block">
+							<h5 class="i18n">Посада</h5>
+							<label id="pkInfoSubjTitle"></label>
+						</div>
+						<div id="pkInfoSubjCodesBlock" class="FlexBlock">
+							<div class="FlexBlockItem">
+								<h5 class="i18n">РНОКПП</h5>
+								<label id="pkInfoSubjDRFOCode"></label>
+							</div>
+							<div class="FlexBlockItem">
+								<h5 class="i18n">УНЗР</h5>
+								<label id="pkInfoSubjUNZR"></label>
+							</div>
+							<div class="FlexBlockItem">
+								<h5 class="i18n">ЄДРПОУ</h5>
+								<label id="pkInfoSubjEDRPOUCode"></label>
+							</div>
+						</div>
+						<br />
+						<div class="Block">
+							<h6 class="i18n">Сертифікати</h6>
+							<div id="pkInfoContentBlock" class="Block"></div>
+						</div>
+					</div>
+					<div id="pkInfoButtonsBlock" class="ButtonBlock FlexBlock">
+						<div id="pkInfoBackButton" class="Button FlexBlockItem i18n">
+							Назад
+						</div>
+						<div
+							id="pkInfoNextButton"
+							class="Button ButtonBlack FlexBlockItem i18n"
+							disabled
+						>
+							Далі
+						</div>
+					</div>
+				</div>
+
+				<div id="makeTechnicalCertBlock" class="Block" style="display: none">
+					<div id="makeTechnicalCertDeviceNameBlock" class="Block">
+						<label id="makeTechnicalCertDeviceNameTitleLabel" class="i18n"
+							>Назва технічного пристрою</label
+						>
+						<br />
+						<input
+							id="makeTechnicalCertDeviceNameTextField"
+							class="TextField"
+							type="text"
+							maxlength="64"
+						/>
+					</div>
+					<div id="makeTechnicalCertEUFileBlock" class="Block">
+						<label class="i18n">Файл із запитом (ЕЦП, EU.p10)</label>
+						<br />
+						<div class="FlexBlock">
+							<input
+								id="makeTechnicalCertEUFileTextField"
+								class="TextField"
+								type="text"
+								readonly="true"
+								onclick="document.getElementById('makeTechnicalCertEUFileInput').click();"
+							/>
+							<div
+								id="makeTechnicalCertEUFileSelectButton"
+								class="Button ButtonWithLeftMargin"
+							>
+								<a
+									href="javascript:void(0);"
+									title="Обрати"
+									onclick="document.getElementById('makeTechnicalCertEUFileInput').click();"
+								>
+									<span class="i18n">Обрати</span>
+								</a>
+								<input
+									id="makeTechnicalCertEUFileInput"
+									type="file"
+									accept=".p10"
+								/>
+							</div>
+						</div>
+					</div>
+					<div id="makeTechnicalCertEUKEPFileBlock" class="Block">
+						<label class="i18n"
+							>Файл із запитом (протокол розподілу ключів, EU-KEP.p10)</label
+						>
+						<br />
+						<div class="FlexBlock">
+							<input
+								id="makeTechnicalCertEUKEPFileTextField"
+								class="TextField"
+								type="text"
+								readonly="true"
+								onclick="document.getElementById('makeTechnicalCertEUKEPFileInput').click();"
+							/>
+							<div
+								id="makeTechnicalCertEUKEPFileSelectButton"
+								class="Button ButtonWithLeftMargin"
+							>
+								<a
+									href="javascript:void(0);"
+									title="Обрати"
+									onclick="document.getElementById('makeTechnicalCertEUKEPFileInput').click();"
+								>
+									<span class="i18n">Обрати</span>
+								</a>
+								<input
+									id="makeTechnicalCertEUKEPFileInput"
+									type="file"
+									accept=".p10"
+								/>
+							</div>
+						</div>
+					</div>
+					<div id="makeTechnicalCertButtonsBlock" class="ButtonBlock FlexBlock">
+						<div
+							id="makeTechnicalCertBackButton"
+							class="Button FlexBlockItem i18n"
+						>
+							Назад
+						</div>
+						<div
+							id="makeTechnicalCertNextButton"
+							class="Button ButtonBlack FlexBlockItem i18n"
+							disabled
+						>
+							Далі
+						</div>
+					</div>
+				</div>
+
+				<div id="preSignBlock" class="Block" style="display: none">
+					<div class="Block Tip">
+						<div class="TipIcon">☝️</div>
+						<div>
+							<div class="TipTitle i18n">
+								Рекомендуємо підписувати документи у форматі ASIC-E.
+							</div>
+							<br />
+							<label class="i18n"
+								>Це уніфікований формат електронного документообігу, який
+								гарантує, що ваші документи прийматимуть всі держоргани.</label
+							>
+						</div>
+					</div>
+					<input
+						id="preSignShowParamsCheckbox"
+						type="checkbox"
+						style="display: none"
+					/>
+					<div id="preSignButtonBlock" class="ButtonBlock FlexBlock">
+						<div
+							id="preSignNextButton"
+							class="Button ButtonBlack FlexBlockItem i18n"
+						>
+							Так, підписати в форматі ASIC-E
+						</div>
+						<div id="preSignBackButton" class="Button FlexBlockItem i18n">
+							Ні, обрати інший формат
+						</div>
+					</div>
+				</div>
+
+				<div id="signBlock" class="Block" style="display: none">
+					<div id="signTipBlock" class="Block Tip">
+						<div class="TipIcon">☝️</div>
+						<div>
+							<div class="TipTitle i18n">
+								Рекомендуємо підписувати документи у форматі ASIC-E.
+							</div>
+							<br />
+							<label class="i18n"
+								>Це уніфікований формат електронного документообігу, який
+								гарантує, що ваші документи прийматимуть всі держоргани.</label
+							>
+						</div>
+					</div>
+
+					<div id="signParamsBlock" class="Block">
+						<div>
+							<h3 class="i18n">Виберіть, в якому форматі підписати документ</h3>
+						</div>
+
+						<div id="signTypeBlock" class="Block">
+							<div id="signTypeXAdESRadioBlock" class="Block">
+								<input
+									type="radio"
+									name="signTypesRadio"
+									id="signTypeXAdESRadioInput"
+									value="1"
+									align="left"
+									checked="checked"
+								/>
+								<label for="signTypeXAdESRadioInput" class="i18n"
+									>XAdES. Дані та підпис зберігаються в XML файлі (*.xml)</label
+								>
+							</div>
+							<div id="signTypePAdESRadioBlock" class="Block">
+								<input
+									type="radio"
+									name="signTypesRadio"
+									id="signTypePAdESRadioInput"
+									value="2"
+									align="left"
+								/>
+								<label for="signTypePAdESRadioInput" class="i18n"
+									>PAdES. Дані та підпис зберігаються в PDF файлі (*.pdf)</label
+								>
+							</div>
+							<div id="signTypeCAdESRadioBlock" class="Block">
+								<input
+									type="radio"
+									name="signTypesRadio"
+									id="signTypeCAdESRadioInput"
+									value="3"
+									align="left"
+								/>
+								<label for="signTypeCAdESRadioInput" class="i18n"
+									>CAdES. Дані та підпис зберігаються в CMS файлі (*.p7s)</label
+								>
+							</div>
+							<div class="Block">
+								<div class="Block">
+									<div class="NewIcon i18n">NEW!</div>
+									<div class="i18n">
+										ASIC. Дані та підпис зберігаються в архіві
+									</div>
+								</div>
+								<div class="Block" style="padding-left: 60px">
+									<div id="signTypeASiCERadioBlock" class="Block">
+										<input
+											type="radio"
+											name="signTypesRadio"
+											id="signTypeASiCERadioInput"
+											value="5"
+											align="left"
+										/>
+										<label for="signTypeASiCERadioInput" class="i18n"
+											>ASIC-E. Дані та підпис зберігаються в архіві (розширений
+											формат)</label
+										>
+									</div>
+									<div id="signTypeASiCSRadioBlock" class="Block">
+										<input
+											type="radio"
+											name="signTypesRadio"
+											id="signTypeASiCSRadioInput"
+											value="4"
+											align="left"
+										/>
+										<label for="signTypeASiCSRadioInput" class="i18n"
+											>ASIC-S. Дані та підпис зберігаються в архіві (простий
+											формат)</label
+										>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div id="signAlgoBlock" class="FormControl">
+							<label
+								id="signAlgoTitleLabel"
+								class="InputLabel InputLabel-shrink i18n"
+								for="signAlgoSelect"
+								>Алгоритм підпису</label
+							>
+							<div class="InputBase Input">
+								<div class="InputBase-input">
+									<select id="signAlgoSelect"></select>
+									<div
+										class="Arrow"
+										direction="down"
+										style="top: 1em; position: absolute; right: 0px"
+									></div>
+								</div>
+							</div>
+							<p
+								id="signAlgoErrorLabel"
+								class="FormHelperText"
+								style="display: none"
+							></p>
+						</div>
+
+						<div
+							id="signTypeASiCBlock"
+							class="FormControl"
+							style="display: none"
+						>
+							<label
+								id="signTypeASiCTitleLabel"
+								class="InputLabel InputLabel-shrink i18n"
+								for="signTypeASiCSelect"
+								>Тип підпису</label
+							>
+							<div class="InputBase Input">
+								<div class="InputBase-input">
+									<select id="signTypeASiCSelect">
+										<option id="signTypeASiCCAdESOption" value="1" class="i18n">
+											CAdES
+										</option>
+										<option id="signTypeASiCXAdESOption" value="2" class="i18n">
+											XAdES
+										</option>
+									</select>
+									<div
+										class="Arrow"
+										direction="down"
+										style="top: 1em; position: absolute; right: 0px"
+									></div>
+								</div>
+							</div>
+							<p
+								id="signTypeASiCErrorLabel"
+								class="FormHelperText"
+								style="display: none"
+							></p>
+						</div>
+
+						<div
+							id="signTypeXAdESBlock"
+							class="FormControl"
+							style="display: none"
+						>
+							<label
+								id="signTypeXAdESTitleLabel"
+								class="InputLabel InputLabel-shrink i18n"
+								for="signTypeXAdESSelect"
+								>Тип підпису</label
+							>
+							<div class="InputBase Input">
+								<div class="InputBase-input">
+									<select id="signTypeXAdESSelect">
+										<option
+											id="signTypeXAdESDetachedOption"
+											value="1"
+											class="i18n"
+										>
+											Підпис та дані в окремих файлах (detached)
+										</option>
+										<option
+											id="signTypeXAdESEnvelopingOption"
+											value="2"
+											style="display: none"
+											class="i18n"
+										>
+											Підпис та дані в одному файлі (enveloping)
+										</option>
+										<option
+											id="signTypeXAdESEnvelopedOption"
+											value="3"
+											class="i18n"
+										>
+											Підпис та дані в одному файлі (enveloped)
+										</option>
+									</select>
+									<div
+										class="Arrow"
+										direction="down"
+										style="top: 1em; position: absolute; right: 0px"
+									></div>
+								</div>
+							</div>
+							<p
+								id="signTypeXAdESErrorLabel"
+								class="FormHelperText"
+								style="display: none"
+							></p>
+						</div>
+
+						<div
+							id="signFormatXAdESBlock"
+							class="FormControl"
+							style="display: none"
+						>
+							<label
+								id="signFormatXAdESTitleLabel"
+								class="InputLabel InputLabel-shrink i18n"
+								for="signFormatXAdESSelect"
+								>Формат підпису</label
+							>
+							<div class="InputBase Input">
+								<div class="InputBase-input">
+									<select id="signFormatXAdESSelect">
+										<option value="32" class="i18n">
+											XAdES-B-LTA – е-підпис для тривалого (архівного)
+											зберігання
+										</option>
+										<option value="16" class="i18n">
+											XAdES-B-LT – додаються повні дані для перевірки
+										</option>
+										<option value="4" class="i18n">
+											XAdES-B-T – додається час підписання файлу КЕП
+										</option>
+										<option value="1" class="i18n">
+											XAdES-B-B – базова перевірка достовірності і цілісності
+											даних
+										</option>
+									</select>
+									<div
+										class="Arrow"
+										direction="down"
+										style="top: 1em; position: absolute; right: 0px"
+									></div>
+								</div>
+							</div>
+							<p
+								id="signFormatXAdESErrorLabel"
+								class="FormHelperText"
+								style="display: none"
+							></p>
+						</div>
+
+						<div
+							id="signFormatPAdESBlock"
+							class="FormControl"
+							style="display: none"
+						>
+							<label
+								id="signFormatPAdESTitleLabel"
+								class="InputLabel InputLabel-shrink i18n"
+								for="signFormatPAdESSelect"
+								>Формат підпису</label
+							>
+							<div class="InputBase Input">
+								<div class="InputBase-input">
+									<select id="signFormatPAdESSelect">
+										<option value="32" class="i18n">
+											PAdES-B-LTA – е-підпис для тривалого (архівного)
+											зберігання
+										</option>
+										<option value="16" class="i18n">
+											PAdES-B-LT – додаються повні дані для перевірки
+										</option>
+										<option value="4" class="i18n">
+											PAdES-B-T – додається час підписання файлу КЕП
+										</option>
+										<option value="1" class="i18n">
+											PAdES-B-B – базова перевірка достовірності і цілісності
+											даних
+										</option>
+									</select>
+									<div
+										class="Arrow"
+										direction="down"
+										style="top: 1em; position: absolute; right: 0px"
+									></div>
+								</div>
+							</div>
+							<p
+								id="signFormatPAdESErrorLabel"
+								class="FormHelperText"
+								style="display: none"
+							></p>
+						</div>
+
+						<div
+							id="signTypeCAdESBlock"
+							class="FormControl"
+							style="display: none"
+						>
+							<label
+								id="signTypeCAdESTitleLabel"
+								class="InputLabel InputLabel-shrink"
+								for="signTypeCAdESSelect"
+								>Тип підпису</label
+							>
+							<div class="InputBase Input">
+								<div class="InputBase-input">
+									<select id="signTypeCAdESSelect">
+										<option
+											id="signTypeCAdESDetachedOption"
+											value="1"
+											class="i18n"
+										>
+											Підпис та дані в окремих файлах (detached)
+										</option>
+										<option
+											id="signTypeCAdESEnvelopedOption"
+											value="3"
+											class="i18n"
+										>
+											Підпис та дані в одному файлі (enveloped)
+										</option>
+									</select>
+									<div
+										class="Arrow"
+										direction="down"
+										style="top: 1em; position: absolute; right: 0px"
+									></div>
+								</div>
+							</div>
+							<p
+								id="signTypeCAdESErrorLabel"
+								class="FormHelperText"
+								style="display: none"
+							></p>
+						</div>
+
+						<div id="signFormatCAdESBlock" class="FormControl">
+							<label
+								id="signFormatCAdESTitleLabel"
+								class="InputLabel InputLabel-shrink i18n"
+								for="signFormatCAdESSelect"
+								>Формат підпису</label
+							>
+							<div class="InputBase Input">
+								<div class="InputBase-input">
+									<select id="signFormatCAdESSelect">
+										<option value="144" class="i18n">
+											CAdES-X Long – Довгостроковий з повними даними ЦСК для
+											перевірки
+										</option>
+										<option value="16" class="i18n">
+											CAdES-X Long – Довгостроковий з повними даними для
+											перевірки
+										</option>
+										<option value="8" class="i18n">
+											CAdES-C – додається посилання на повні дані для перевірки
+										</option>
+										<option value="4" class="i18n">
+											CAdES-T – додається час підписання файлу КЕП
+										</option>
+										<option value="1" class="i18n">
+											CAdES-BES – базова перевірка достовірності і цілісності
+											даних
+										</option>
+									</select>
+									<div
+										class="Arrow"
+										direction="down"
+										style="top: 1em; position: absolute; right: 0px"
+									></div>
+								</div>
+							</div>
+							<p
+								id="signFormatCAdESErrorLabel"
+								class="FormHelperText"
+								style="display: none"
+							></p>
+						</div>
+					</div>
+
+					<div class="Block" id="signFilesBlock">
+						<input
+							id="signFilesInput"
+							type="file"
+							multiple="true"
+							style="display: none"
+						/>
+						<div class="FileDropZone CenterBaseBlock" id="signFilesDropZone">
+							<div class="FileDropZoneMessage CenterNodeBlock">
+								<div id="signFilesSelectBlock" class="Block">
+									<label class="i18n"
+										>Перетягніть сюди файл(и) для підпису</label
+									>
+									<br />
+									<div>
+										<label class="i18n">або </label
+										><span
+											id="signFilesSelectButton"
+											class="LabelButton TextUnderline i18n"
+											>завантажте його зі свого носія</span
+										>
+									</div>
+									<label class="TextSmall TextLight i18n"
+										>(doc, pdf, docx та інші)</label
+									>
+								</div>
+								<div
+									id="signFilesSelectedBlock"
+									class="Block"
+									style="display: none"
+								>
+									<label class="i18n">Файл(и) для підпису:</label>
+									<div style="text-align: left">
+										<ul id="signFilesSelectedList">
+											<li>Файл 1</li>
+										</ul>
+									</div>
+									<label
+										class="LabelButton TextUnderline TextSmall i18n"
+										id="signFilesChangeButton"
+										>Змінити</label
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div id="signButtonBlock" class="ButtonBlock FlexBlock">
+						<div
+							id="signButton"
+							class="Button ButtonBlack FlexBlockItem i18n"
+							disabled
+						>
+							Підписати
+						</div>
+						<div id="signCancelButton" class="Button FlexBlockItem i18n">
+							Назад
+						</div>
+					</div>
+				</div>
+
+				<div id="resultBlock" class="Block" style="display: none">
+					<div id="resultContentBlock"></div>
+					<div
+						id="resultButtonsBlock"
+						class="ButtonBlock"
+						style="text-align: center"
+					>
+						<div id="resultOKButton" class="Button i18n">ОК</div>
+					</div>
+				</div>
+
+				<br />
+				<br />
+				<div id="bottomBlock" class="Block">
+					<label class="i18n">Версія від</label><label> 2025.03.17 13:00</label>
+				</div>
+			</div>
+
+			<div id="rightBlock" class="Block" style="overflow: hidden">
+				<div id="helpPanel1" class="HelpPanel Block">
+					<div class="HelpPanelLine"></div>
+					<div class="HelpPanelItem">
+						<input type="checkbox" id="helpItem1" style="display: none" />
+						<label class="HelpPanelItemHeader i18n" for="helpItem1"
+							>Як це працює?</label
+						>
+
+						<div class="HelpPanelSubItem HelpPanelItemContent">
+							<input type="checkbox" id="helpSubItem11" style="display: none" />
+							<label class="HelpPanelSubItemHeader i18n" for="helpSubItem11"
+								>Що таке електронний підпис?</label
+							>
+							<div class="HelpPanelSubLine"></div>
+							<div class="HelpPanelText HelpPanelItemContent i18n">
+								Електронний підпис є аналогом власноручного підпису та
+								забезпечує достовірність і цілісність інформації, викладеної у
+								документі, а також дає змогу підтвердити цілісність електронного
+								документа та ідентифікувати особу, яка підписала документ.
+							</div>
+						</div>
+
+						<div class="HelpPanelSubItem HelpPanelItemContent">
+							<input type="checkbox" id="helpSubItem12" style="display: none" />
+							<label class="HelpPanelSubItemHeader i18n" for="helpSubItem12"
+								>Що таке сертифікат?</label
+							>
+							<div class="HelpPanelSubLine"></div>
+							<div class="HelpPanelText HelpPanelItemContent">
+								<span class="i18n"
+									>Сертифікат є засобом підтвердження приналежності відкритого
+									(публічного) ключа його власникові.</span
+								>
+								<br />
+								<span class="i18n"
+									>Сертифікат видається кваліфікованим надавачем електронних
+									довірчих послуг та використовується для перевірки, що
+									відкритий ключ належить саме тому власнику, чиї дані зазначено
+									в ньому.</span
+								>
+								<span class="i18n"
+									>Файл сертифікату має розширення “.cer”, зазвичай зазначені
+									файли можливо відкрити вбудованими засобами операційної
+									системи.</span
+								>
+								<br />
+								<span class="i18n"
+									>Файл сертифікату містить ідентифікаційні дані, які однозначно
+									визначають кваліфікованого надавача та користувача електронних
+									довірчих послуг, строк дії сертифікату тощо.</span
+								>
+								<br /><br />
+							</div>
+						</div>
+
+						<div class="HelpPanelSubItem HelpPanelItemContent">
+							<input type="checkbox" id="helpSubItem13" style="display: none" />
+							<label class="HelpPanelSubItemHeader i18n" for="helpSubItem13"
+								>Що таке файловий носій?</label
+							>
+							<div class="HelpPanelSubLine"></div>
+							<div class="HelpPanelText HelpPanelItemContent">
+								<span class="i18n"
+									>Файловий носій – це спеціальний файл, який містить ваш
+									особистий ключ.</span
+								>
+								<span class="i18n"
+									>Зазвичай цей файл має назву Key-6 з розширенням *.dat
+									(зустрічаються також розширення *.pfx, *.pk8, *.zs2,
+									*.jks).</span
+								>
+								<span class="i18n"
+									>Для того, щоб скористатись файловим носієм, вам
+									необхідно:</span
+								>
+								<span class="i18n"
+									>1. Обрати зі списку свого надавача електронних довірчих
+									послуг – суб’єкта, до якого ви зверталися для отримання
+									електронного підпису.</span
+								>
+								<span class="i18n"
+									>2. Завантажити із зовнішнього носія чи власного комп’ютера
+									файл з вашим особистим ключем.</span
+								>
+								<span class="i18n"
+									>3. Вказати пароль доступу до особистого ключа у відповідному
+									полі.</span
+								>
+							</div>
+						</div>
+
+						<div class="HelpPanelSubItem HelpPanelItemContent">
+							<input type="checkbox" id="helpSubItem14" style="display: none" />
+							<label class="HelpPanelSubItemHeader i18n" for="helpSubItem14"
+								>Що таке токен?</label
+							>
+							<div class="HelpPanelSubLine"></div>
+							<div class="HelpPanelText HelpPanelItemContent">
+								<span class="i18n"
+									>Токен - це спеціальний апаратно-програмний пристрій, який
+									захищає особисті ключі від копіювання чи зміни зловмисниками.
+									Токен може мати форму USB-пристрою або у формі смарт-картки
+									(картки з чипом). Прикладами токенів є пристрої Алмаз-1К,
+									Кристал-1 тощо.</span
+								>
+								<br />
+								<span class="i18n"
+									>Для того, щоб скористатись токеном, вам необхідно:</span
+								>
+								<span class="i18n"
+									>1. Підключити ваш токен через USB-порт (якщо у вас токен у
+									формі USB-пристрою) або скористатися спеціальним зчитувачем
+									інформації (якщо у вас токен у формі смарт-картки).</span
+								>
+								<span class="i18n"
+									>2. Обрати зі списку свого надавача електронних довірчих
+									послуг – суб’єкта, до якого ви зверталися для отримання
+									електронного підпису.</span
+								>
+								<span class="i18n"
+									>3. Зі списку токенів обрати тип пристрою, який ви хочете
+									використати.</span
+								>
+								<span class="i18n"
+									>4. Вказати пароль доступу до особистого ключа у відповідному
+									полі.</span
+								>
+							</div>
+						</div>
+
+						<div class="HelpPanelSubItem HelpPanelItemContent">
+							<input type="checkbox" id="helpSubItem15" style="display: none" />
+							<label class="HelpPanelSubItemHeader i18n" for="helpSubItem15"
+								>Як працює хмарний підпис?</label
+							>
+							<div class="HelpPanelSubLine"></div>
+							<div class="HelpPanelText HelpPanelItemContent">
+								<span class="i18n"
+									>Якщо ваш особистий ключ зберігається за допомогою стороннього
+									сервісу (зберігання у захищеному хмарному сховищі), то для
+									зчитування ключа необхідно обрати свого надавача зі списку та
+									пройти авторизацію у його системі.</span
+								>
+							</div>
+						</div>
+
+						<div class="HelpPanelSubItem HelpPanelItemContent">
+							<input type="checkbox" id="helpSubItem17" style="display: none" />
+							<label class="HelpPanelSubItemHeader i18n" for="helpSubItem17"
+								>Як працює Дія.Підпис?</label
+							>
+							<div class="HelpPanelSubLine"></div>
+							<div class="HelpPanelText HelpPanelItemContent">
+								<span class="i18n"
+									>Дія.Підпис – кваліфікований електронний підпис, який можна
+									отримати віддалено за допомогою мобільного застосунку
+									Дія.</span
+								>
+								<br />
+								<span class="i18n"
+									>Для цього потрібні 1 хвилина та один з документів у Дії:
+									ID-картка, біометричний закордонний паспорт, закордонний
+									паспорт, виданий після 2015 року або посвідка на тимчасове чи
+									постійне місце проживання.</span
+								>
+								<br />
+								<span class="i18n"
+									>Щоб активувати Дія.Підпис, потрібно: 1. зайти у застосунк
+									Дія, обрати Меню; 2. натиснути Дія.Підпис та Активувати
+									Дія.Підпис; 3. пройти перевірку за фото — Дія порівнює ваше
+									зображення із зображенням на ваших документах; 4. придумати
+									5-значний ПІН-код для вашого Дія.Підпису.</span
+								>
+								<br />
+								<span class="i18n"
+									>Щоб автентифікуватись чи підписати документ на сайті за
+									допомогою Дія.Підпису, вам необхідно: 1. Обрати розділ
+									«Дія.Підпис». 2. Відсканувати QR-код. 3. Зчитати особистий
+									ключ шляхом сканування обличчя (перевірки за фото) та вводу
+									паролю до особистого ключа. 4. У разі успішної автентифікації
+									у мобільному застосунку Дія, система передає ваші персональні
+									дані, що дозволить вас ідентифікувати.</span
+								>
+							</div>
+						</div>
+
+						<div class="HelpPanelSubItem HelpPanelItemContent">
+							<input type="checkbox" id="helpSubItem18" style="display: none" />
+							<label class="HelpPanelSubItemHeader i18n" for="helpSubItem18"
+								>Що таке Дія.Підпис UA та EU?</label
+							>
+							<div class="HelpPanelSubLine"></div>
+							<div class="HelpPanelText HelpPanelItemContent">
+								<span class="i18n"
+									>Дія.Підпис-UA — це електронний підпис, який відповідає
+									українському стандарту ДСТУ. Його ви можете використовувати
+									для підписання документів, оформлення послуг у застосунку та
+									на порталі Дія, а також авторизації в застосунках і на сайтах
+									партнерів Дії.</span
+								>
+								<br />
+								<br />
+								<span class="i18n"
+									>Дія.Підпис-EU — це електронний підпис, який відповідає
+									регламенту eIDAS Європейського Союзу і є удосконаленим
+									електронним підписом у країнах ЄС. Партнери з країн ЄС зможуть
+									перевірити його на
+								</span>
+								<a
+									href="https://ec.europa.eu/digital-building-blocks/DSS/webapp-demo/validation"
+									target="_blank"
+								>
+									<span class="i18n">платформі</span>
+								</a>
+								<span class="i18n">
+									й впевнитись, що документ підписаний саме вами. Долучитися до
+									бета-тесту можуть усі користувачі, які уже мають або активують
+									Дія.Підпис. Для цього оновіть застосунок Дія до останньої
+									версії. Документ з накладеним Дія.Підпис-EU матиме юридичну
+									силу й після завершення бета-тесту.</span
+								>
+							</div>
+						</div>
+
+						<br />
+					</div>
+
+					<div class="HelpPanelLine"></div>
+					<div class="HelpPanelItem">
+						<input type="checkbox" id="helpItem2" style="display: none" />
+						<label class="HelpPanelItemHeader i18n" for="helpItem2"
+							>Що нового?</label
+						>
+
+						<div class="HelpPanelSubItem HelpPanelItemContent">
+							<input type="checkbox" id="helpSubItem21" style="display: none" />
+							<label class="HelpPanelSubItemHeader i18n" for="helpSubItem21"
+								>Підтримка формату ASiC</label
+							>
+							<div class="HelpPanelSubLine"></div>
+							<div class="HelpPanelText HelpPanelItemContent">
+								<span class="i18n"
+									>Забезпечено підтримку європейського формату ASiC.</span
+								>
+								<br />
+								<span class="i18n"
+									>ASiC — структурований контейнер, що дозволяє зберігати набір
+									файлових об'єктів з пов'язаними е-підписами та/або
+									е-позначками часу, що відповідає специфікації ZIP.</span
+								>
+							</div>
+						</div>
+
+						<div class="HelpPanelSubItem HelpPanelItemContent">
+							<input type="checkbox" id="helpSubItem22" style="display: none" />
+							<label class="HelpPanelSubItemHeader i18n" for="helpSubItem22"
+								>Що таке ASiC-E?</label
+							>
+							<div class="HelpPanelSubLine"></div>
+							<div class="HelpPanelText HelpPanelItemContent">
+								<span class="i18n"
+									>ASiC-E дозволяє зберігати один або кілька файлових об'єктів з
+									пов'язаними е-підписами та в подальшому додавати файлові
+									об'єкти, файли е-підпису та е-позначки часу.</span
+								>
+							</div>
+						</div>
+
+						<div class="HelpPanelSubItem HelpPanelItemContent">
+							<input type="checkbox" id="helpSubItem23" style="display: none" />
+							<label class="HelpPanelSubItemHeader i18n" for="helpSubItem23"
+								>Що таке ASiC-S?</label
+							>
+							<div class="HelpPanelSubLine"></div>
+							<div class="HelpPanelText HelpPanelItemContent">
+								<span class="i18n"
+									>ASiC-S дозволяє зберігати один файловий об'єкт з пов'язаним
+									е-підписом та в подальшому додавати нові. Також дає можливість
+									додавати файли для захисту е-позначок часу.</span
+								>
+							</div>
+						</div>
+
+						<br />
+					</div>
+
+					<div class="HelpPanelLine"></div>
+					<div class="HelpPanelItem">
+						<input type="checkbox" id="helpItem3" style="display: none" />
+						<label class="HelpPanelItemHeader i18n" for="helpItem3"
+							>Формати підписів?</label
+						>
+
+						<div class="HelpPanelSubItem HelpPanelItemContent">
+							<input type="checkbox" id="helpSubItem31" style="display: none" />
+							<label class="HelpPanelSubItemHeader i18n" for="helpSubItem31"
+								>Що таке XAdES?</label
+							>
+							<div class="HelpPanelSubLine"></div>
+							<div class="HelpPanelText HelpPanelItemContent">
+								<span class="i18n"
+									>XAdES — уніфікований е-підпис, що дозволяє підписувани е-дані
+									будь-якого формату. Також зберігає е-підпис у форматі XML,
+									окремо від е-даних або разом з ними. Підтримує паралельне та
+									послідовне підписання одного або кількох е-документів.</span
+								>
+							</div>
+						</div>
+
+						<div class="HelpPanelSubItem HelpPanelItemContent">
+							<input type="checkbox" id="helpSubItem32" style="display: none" />
+							<label class="HelpPanelSubItemHeader i18n" for="helpSubItem32"
+								>Що таке PAdES?</label
+							>
+							<div class="HelpPanelSubLine"></div>
+							<div class="HelpPanelText HelpPanelItemContent">
+								<span class="i18n"
+									>PAdES — уніфікований е-підпис, що дозволяє підписувати е-дані
+									у форматі PDF завдяки програму забезпеченню для PDF-файлів. Не
+									підтримує паралельне підписання е-даних.</span
+								>
+							</div>
+						</div>
+
+						<div class="HelpPanelSubItem HelpPanelItemContent">
+							<input type="checkbox" id="helpSubItem33" style="display: none" />
+							<label class="HelpPanelSubItemHeader i18n" for="helpSubItem33"
+								>Що таке СAdES?</label
+							>
+							<div class="HelpPanelSubLine"></div>
+							<div class="HelpPanelText HelpPanelItemContent">
+								<span class="i18n"
+									>CAdES — уніфікований е-підпис, що дозволяє підписувати е-дані
+									будь-якого формату, а також зберігати е-дані та е-підпис
+									окремими файлами. Для подальшої перевірки е-підпису CAdES
+									знадобляться два файли: оригінальний (без підпису) та
+									підписаний.</span
+								>
+							</div>
+						</div>
+
+						<br />
+					</div>
+
+					<div class="HelpPanelLine"></div>
+				</div>
+
+				<div id="helpPanel2" class="HelpPanel Block" style="display: none">
+					<h3 class="i18n">Що таке файловий носій?</h3>
+					<div>
+						<span class="i18n"
+							>Файловий носій – це спеціальний файл, який містить ваш особистий
+							ключ.</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>Зазвичай цей файл має назву Key-6 з розширенням *.dat
+							(зустрічаються також розширення *.pfx, *.pk8, *.zs2, *.jks).</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>Для того, щоб скористатись файловим носієм, вам необхідно:</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>1. Обрати зі списку свого надавача електронних довірчих послуг –
+							суб’єкта, до якого ви зверталися для отримання електронного
+							підпису.</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>2. Завантажити із зовнішнього носія чи власного комп’ютера файл з
+							вашим особистим ключем.</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>3. Вказати пароль доступу до особистого ключа у відповідному
+							полі.</span
+						>
+						<br /><br />
+					</div>
+				</div>
+
+				<div id="helpPanel3" class="HelpPanel Block" style="display: none">
+					<h3 class="i18n">Що таке токен?</h3>
+					<div>
+						<span class="i18n"
+							>Токен - це спеціальний апаратно-програмний пристрій, який захищає
+							особисті ключі від копіювання чи зміни зловмисниками. Токен може
+							мати форму USB-пристрою або у формі смарт-картки (картки з чипом).
+							Прикладами токенів є пристрої Алмаз-1К, Кристал-1 тощо.</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>Для того, щоб скористатись токеном, вам необхідно:</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>1. Підключити ваш токен через USB-порт (якщо у вас токен у формі
+							USB-пристрою) або скористатися спеціальним зчитувачем інформації
+							(якщо у вас токен у формі смарт-картки).</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>2. Обрати зі списку свого надавача електронних довірчих послуг –
+							суб’єкта, до якого ви зверталися для отримання електронного
+							підпису.</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>3. Зі списку токенів обрати тип пристрою, який ви хочете
+							використати.</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>4. Вказати пароль доступу до особистого ключа у відповідному
+							полі.</span
+						>
+						<br /><br />
+					</div>
+				</div>
+
+				<div id="helpPanel4" class="HelpPanel Block" style="display: none">
+					<h3 class="i18n">Як працює хмарний підпис?</h3>
+					<div>
+						<span class="i18n"
+							>Якщо ваш особистий ключ зберігається за допомогою стороннього
+							сервісу (зберігання у захищеному хмарному сховищі), то для
+							зчитування ключа необхідно обрати свого надавача зі списку та
+							пройти авторизацію у його системі.</span
+						>
+						<br /><br />
+					</div>
+				</div>
+
+				<div id="helpPanel6" class="HelpPanel Block" style="display: none">
+					<h3 class="i18n">Як працює Дія.Підпис?</h3>
+					<div>
+						<span class="i18n"
+							>Дія.Підпис – послуга електронної ідентифікації для користувачів,
+							які отримували особистий ключ віддалено за допомогою мобільного
+							застосунку Дія.</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>Дія.Підпис містить дві частини. Одна частина зберігається у
+							вашому смартфоні, а інша — в спеціальному захищеному модулі
+							порталу Дія.</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>Отримати особистий ключ віддалено за допомогою мобільного
+							застосунку Дія мають можливість громадяни України, які є
+							власниками ID-картки або біометричного закордонного
+							паспорта.</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>Щоб авторизуватися на сайті за допомогою Дія.Підпис, вам
+							необхідно:</span
+						>
+						<br /><br />
+						<span class="i18n">1. Обрати розділ «Дія.Підпис».</span>
+						<br /><br />
+						<span class="i18n">2. Відсканувати QR-код.</span>
+						<br /><br />
+						<span class="i18n"
+							>3. Зчитати особистий ключ шляхом сканування обличчя (перевірки за
+							фото) та вводу паролю до особистого ключа.</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>4. У разі успішної автентифікації у мобільному застосунку Дія,
+							система передає ваші персональні дані, що дозволить вас
+							ідентифікувати.</span
+						>
+						<br /><br />
+					</div>
+				</div>
+
+				<div id="helpPanel7" class="HelpPanel Block" style="display: none">
+					<h3 class="i18n">Що таке сертифікат?</h3>
+					<div>
+						<span class="i18n"
+							>Сертифікат є засобом підтвердження приналежності відкритого
+							(публічного) ключа його власникові.</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>Сертифікат видається кваліфікованим надавачем електронних
+							довірчих послуг та використовується для перевірки, що відкритий
+							ключ належить саме тому власнику, чиї дані зазначено в
+							ньому.</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>Файл сертифікату має розширення “.cer”, зазвичай зазначені файли
+							можливо відкрити вбудованими засобами операційної системи.</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>Файл сертифікату містить ідентифікаційні дані, які однозначно
+							визначають кваліфікованого надавача та користувача електронних
+							довірчих послуг, строк дії сертифікату тощо.</span
+						>
+						<br /><br />
+					</div>
+				</div>
+
+				<div id="helpPanel8" class="HelpPanel Block" style="display: none">
+					<h3 class="i18n">Що таке ASiC?</h3>
+					<div>
+						<span class="i18n"
+							>ASiC — структурований контейнер, що дозволяє зберігати набір
+							файлових об'єктів з пов'язаними е-підписами та/або е-позначками
+							часу, що відповідає специфікації ZIP.</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>ASiC-S дозволяє зберігати один файловий об'єкт з пов'язаним
+							е-підписом та в подальшому додавати нові. Також дає можливість
+							додавати файли для захисту е-позначок часу.</span
+						>
+						<br /><br />
+						<span class="i18n"
+							>ASiC-E дозволяє зберігати один або кілька файлових об'єктів з
+							пов'язаними е-підписами та в подальшому додавати файлові об'єкти,
+							файли е-підпису та е-позначки часу.</span
+						>
+						<br /><br />
+					</div>
+				</div>
+
+				<div id="helpPanel9" class="HelpPanel Block" style="display: none">
+					<h3 class="i18n">Який формат обрати</h3>
+
+					<div class="Block HelpPanelSubItem">
+						<input type="checkbox" id="helpSubItem91" style="display: none" />
+						<label class="HelpPanelSubItemHeader i18n" for="helpSubItem91"
+							>Що таке XAdES?</label
+						>
+						<div class="HelpPanelSubLine"></div>
+						<div class="HelpPanelText HelpPanelItemContent">
+							<span class="i18n"
+								>XAdES — уніфікований е-підпис, що дозволяє підписувани е-дані
+								будь-якого формату. Також зберігає е-підпис у форматі XML,
+								окремо від е-даних або разом з ними. Підтримує паралельне та
+								послідовне підписання одного або кількох е-документів.</span
+							>
+						</div>
+					</div>
+
+					<div class="Block HelpPanelSubItem">
+						<input type="checkbox" id="helpSubItem92" style="display: none" />
+						<label class="HelpPanelSubItemHeader i18n" for="helpSubItem92"
+							>Що таке PAdES?</label
+						>
+						<div class="HelpPanelSubLine"></div>
+						<div class="HelpPanelText HelpPanelItemContent">
+							<span class="i18n"
+								>PAdES — уніфікований е-підпис, що дозволяє підписувати е-дані у
+								форматі PDF завдяки програму забезпеченню для PDF-файлів. Не
+								підтримує паралельне підписання е-даних.</span
+							>
+						</div>
+					</div>
+
+					<div class="Block HelpPanelSubItem">
+						<input type="checkbox" id="helpSubItem93" style="display: none" />
+						<label class="HelpPanelSubItemHeader i18n" for="helpSubItem93"
+							>Що таке СAdES?</label
+						>
+						<div class="HelpPanelSubLine"></div>
+						<div class="HelpPanelText HelpPanelItemContent">
+							<span class="i18n"
+								>CAdES — уніфікований е-підпис, що дозволяє підписувати е-дані
+								будь-якого формату, а також зберігати е-дані та е-підпис
+								окремими файлами. Для подальшої перевірки е-підпису CAdES
+								знадобляться два файли: оригінальний (без підпису) та
+								підписаний.</span
+							>
+						</div>
+					</div>
+
+					<div class="Block HelpPanelSubItem">
+						<input type="checkbox" id="helpSubItem94" style="display: none" />
+						<label class="HelpPanelSubItemHeader i18n" for="helpSubItem94"
+							>Що таке ASiC?</label
+						>
+						<div class="HelpPanelSubLine"></div>
+						<div class="HelpPanelText HelpPanelItemContent">
+							<span class="i18n"
+								>ASiC — структурований контейнер, що дозволяє зберігати набір
+								файлових об'єктів з пов'язаними е-підписами та/або е-позначками
+								часу, що відповідає специфікації ZIP.</span
+							>
+						</div>
+					</div>
+
+					<div class="Block HelpPanelSubItem">
+						<input type="checkbox" id="helpSubItem95" style="display: none" />
+						<label class="HelpPanelSubItemHeader i18n" for="helpSubItem95"
+							>Що таке ASiC-E?</label
+						>
+						<div class="HelpPanelSubLine"></div>
+						<div class="HelpPanelText HelpPanelItemContent">
+							<span class="i18n"
+								>ASiC-E дозволяє зберігати один або кілька файлових об'єктів з
+								пов'язаними е-підписами та в подальшому додавати файлові
+								об'єкти, файли е-підпису та е-позначки часу.</span
+							>
+						</div>
+					</div>
+
+					<div class="Block HelpPanelSubItem">
+						<input type="checkbox" id="helpSubItem96" style="display: none" />
+						<label class="HelpPanelSubItemHeader i18n" for="helpSubItem96"
+							>Що таке ASiC-S?</label
+						>
+						<div class="HelpPanelSubLine"></div>
+						<div class="HelpPanelText HelpPanelItemContent">
+							<span class="i18n"
+								>ASiC-S дозволяє зберігати один файловий об'єкт з пов'язаним
+								е-підписом та в подальшому додавати нові. Також дає можливість
+								додавати файли для захисту е-позначок часу.</span
+							>
+						</div>
+					</div>
+
+					<br />
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
