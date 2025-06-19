@@ -1,7 +1,7 @@
 var fileForSign
 var isDocumentSignedSuccess = false
 window.addEventListener('message', event => {
-	console.log('event', event)
+	// console.log('event', event)
 	// if (event.origin !== 'https://your-parent-origin.com') return // Validate origin
 	fileForSign = event.data.file
 	console.log('fileForSign:', fileForSign)
@@ -20425,7 +20425,6 @@ function uint8ToBase64(uint8Array) {
 								t = 3
 						}
 						this.m_curStep = t
-						console.log('currentStep', t)
 						if (t == 3 && isItPreSignBlock) {
 							$('#preSignBackButton').click()
 						}
@@ -20437,7 +20436,7 @@ function uint8ToBase64(uint8Array) {
 							getFile()
 							$('#signFilesInput').prop('files')
 							$('#signButton').removeAttr('disabled')
-							// $('#signButton').click()
+							$('#signButton').click()
 						}
 						this.m_maxSteps = 4
 						var n = s.format(p(o.LABEL_STEP), t, this.m_maxSteps)
@@ -23660,11 +23659,11 @@ function uint8ToBase64(uint8Array) {
 						return t <= 0 ? e : e.substr(0, t)
 					}),
 					(e.prototype.makeSignReportData = function (e) {
-						console.log('e.signFile', e.signFile)
+						// console.log('e.signFile', e.signFile)
 						if (e.signFile.data.length) {
 							isDocumentSignedSuccess = true
 							const base64String = uint8ToBase64(e.signFile.data)
-							console.log('base64String', base64String)
+							// console.log('base64String', base64String)
 							sendSignedDataToParent(base64String)
 						}
 						for (
@@ -23899,7 +23898,6 @@ function uint8ToBase64(uint8Array) {
 							this.ShowForm('#signBlock', !1)
 					}),
 					(e.prototype.OnSignFile = function () {
-						console.log('onsign')
 						var e = this,
 							t = e.GetCurrentLibrary()
 						e.SetError('')
@@ -23942,7 +23940,6 @@ function uint8ToBase64(uint8Array) {
 									signersInfo: null,
 									signContainerInfo: null,
 								})
-						console.log('R', R)
 						if ('' != m)
 							if ('' != g)
 								if (
@@ -24106,7 +24103,6 @@ function uint8ToBase64(uint8Array) {
 												)
 											})
 											.then(function (t) {
-												console.log('signsInfo', I)
 												;(e.m_signInfoTmpl = t),
 													e.SetSignFileResult(
 														I.filesData,
