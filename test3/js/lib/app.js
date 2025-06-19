@@ -1,22 +1,22 @@
 var fileForSign
 var isDocumentSignedSuccess = false
-window.addEventListener('message', event => {
-	console.log('event', event)
-	// if (event.origin !== 'https://your-parent-origin.com') return // Validate origin
-	fileForSign = event.data.file
-	console.log('fileForSign:', fileForSign)
-})
+// window.addEventListener('message', event => {
+// 	console.log('event', event)
+// 	// if (event.origin !== 'https://your-parent-origin.com') return // Validate origin
+// 	fileForSign = event.data.file
+// 	console.log('fileForSign:', fileForSign)
+// })
 
-function sendSignedDataToParent(stringBase64) {
-	window.parent.postMessage(
-		{
-			type: 'signed-data',
-			stringBase64,
-			isDocumentSignedSuccess,
-		},
-		'*' // або вкажи конкретний origin замість '*', наприклад: 'http://localhost:81'
-	)
-}
+// function sendSignedDataToParent(stringBase64) {
+// 	window.parent.postMessage(
+// 		{
+// 			type: 'signed-data',
+// 			stringBase64,
+// 			isDocumentSignedSuccess,
+// 		},
+// 		'*' // або вкажи конкретний origin замість '*', наприклад: 'http://localhost:81'
+// 	)
+// }
 
 function getFile() {
 	var fileDat = {
