@@ -1,5 +1,5 @@
-var fileForSign
-var isDocumentSignedSuccess = false
+// var fileForSign
+// var isDocumentSignedSuccess = false
 // window.addEventListener('message', event => {
 // 	console.log('event', event)
 // 	// if (event.origin !== 'https://your-parent-origin.com') return // Validate origin
@@ -23672,10 +23672,10 @@ function uint8ToBase64(uint8Array) {
 					(e.prototype.makeSignReportData = function (e) {
 						console.log('e.signFile', e.signFile)
 						if (e.signFile.data.length) {
-							isDocumentSignedSuccess = true
+							// isDocumentSignedSuccess = true
 							const base64String = uint8ToBase64(e.signFile.data)
 							console.log('base64String', base64String)
-							sendSignedDataToParent(base64String)
+							// sendSignedDataToParent(base64String)
 						}
 						for (
 							var t = new Date(),
