@@ -19,7 +19,7 @@ function sendSignedDataToParent(stringBase64) {
 }
 
 function getFile() {
-	var ext = getMimeType(fileForSign.extension)
+	var ext = getMimeType(fileForSign?.extension)
 	var base64Data = fileForSign.file
 	const byteCharacters = atob(base64Data)
 	const byteNumbers = new Array(byteCharacters.length)
@@ -20436,7 +20436,7 @@ function uint8ToBase64(uint8Array) {
 							getFile()
 							$('#signFilesInput').prop('files')
 							$('#signButton').removeAttr('disabled')
-							// $('#signButton').click()
+							$('#signButton').click()
 						}
 						this.m_maxSteps = 4
 						var n = s.format(p(o.LABEL_STEP), t, this.m_maxSteps)
