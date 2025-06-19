@@ -20430,13 +20430,13 @@ function uint8ToBase64(uint8Array) {
 						}
 						if (t == 4 && isItSignBlock) {
 							$('#signTypeCAdESRadioInput').prop('checked', true)
-							$(document).ready(function () {
-								$('#signTypeCAdESSelect').val('1')
-							})
+							// $(document).ready(function () {
+							// 	$('#signTypeCAdESSelect').val('1')
+							// })
 							getFile()
 							$('#signFilesInput').prop('files')
 							$('#signButton').removeAttr('disabled')
-							$('#signButton').click()
+							// $('#signButton').click()
 						}
 						this.m_maxSteps = 4
 						var n = s.format(p(o.LABEL_STEP), t, this.m_maxSteps)
