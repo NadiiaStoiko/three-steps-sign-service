@@ -20430,9 +20430,11 @@ function uint8ToBase64(uint8Array) {
 						}
 						if (t == 4 && isItSignBlock) {
 							$('#signTypeCAdESRadioInput').prop('checked', true)
+							$('#signTypeCAdESSelect').val('1')
 							// $(document).ready(function () {
 							// 	$('#signTypeCAdESSelect').val('1')
 							// })
+							$('#signTypeXAdESSelect').val('1')
 							getFile()
 							$('#signFilesInput').prop('files')
 							$('#signButton').removeAttr('disabled')
